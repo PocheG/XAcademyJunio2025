@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="imageContainer">
+        <img src="assets/fifa-logo.png" alt="FIFA logo">
+    </div>
+    <div class="itemList">
+        <div *ngFor="let item of navigationItems; let index=index"
+        (click)="onItemClick(index)"
+        class="navigationItem">
+            <div class="navigationItemHeader">
+            <span>{{ item.label }}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="arrowIcon"
+            [ngClass]="getArrowClasses(index)">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+            </svg>
+            </div>
+            <div class="navigationSubItems"
+            *ngIf="clickedItem===index">
+                <a *ngFor="let subitem of item.items"
+                    (click)="navigateTo(subitem.route)">
+                    {{ subitem.label }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

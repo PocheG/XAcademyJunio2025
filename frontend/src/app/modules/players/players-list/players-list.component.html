@@ -1,0 +1,33 @@
+<h1 class="pageTitle"> Listado de jugadores</h1>
+
+<div class="basicSearchContainer">
+    <input class="nameInput" [formControl]="fullName" placeholder="Ingrese un nombre">
+    <button class="searchButton" (click)="getPaginatedPlayer()">Buscar</button>
+    <button class="searchButton" (click)="isSidebarOpen=true">Filtros avanzados</button>
+    <button class="searchButton">Exportar listado</button>
+</div>
+<div class="tableContainer">
+<app-table
+    [pagination]="pagination"
+    [columnsSetting]="columnsSetting"
+    [rows]="rows"
+    (handlePageChange)="onPageChange($event)"
+    (handleSortChange)="onOrderChange($event)"></app-table>
+
+</div>
+<div class="background"
+    (click)="isSidebarOpen=false"
+    *ngIf="isSidebarOpen"
+>
+    <div class="sidebar" (click)="$event.stopPropagation()">
+        <h2>Filtros avanzados</h2>
+        <form [formGroup]="form" (ngSubmit)="getPaginatedPlayer()>
+            <div class="longFromItem">
+                <label>Version</label>
+                <input class="nameInput" [formControl]="fullName" placeholder="Ingrese una versión">
+            </div>
+
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,69 @@
+@import "main";
+.table{
+    margin-top: 4vh;
+    table-layout: auto;
+    height: 100%;
+    max-width: 100vw;
+    justify-self: center;
+    align-self: center;
+    overflow: auto;
+    border-collapse: collapse;
+}
+
+.columnHeader{
+    background-color: #0C0C0C;
+    color: #A6F0C7;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.columnHeaderCell{
+    font-family: sans-serif;
+    padding: 0.5rem;
+    font-size: 1.35rem;
+    width: fit-content;
+    max-width: 200px;
+    min-width: 100px;
+    border: none;
+    white-space: nowrap;
+}
+
+span{
+    width: 100%;
+}
+
+.arrowIcon{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.tableRow{
+    color: $app-text-color;
+    background-color: transparent;
+    border-bottom: 1px solid $app-input-border;
+    font-weight: medium;
+    font-family: Inter;
+}   
+
+.tableRowCell{
+    text-align: center;
+    max-width: 200px;
+    padding: 0.5rem 0.1rem;
+}
+.footer{
+    width: 100%;
+    justify-content: center;
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    color: $app-text-color;
+    font-family: Inter;
+    font-weight: 500;
+}
+
+.footerItem{
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
+}

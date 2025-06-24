@@ -1,0 +1,76 @@
+.container{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left:0;
+    flex-direction: row;
+    z-index: 10;
+    height: 10vh;
+    width: 100vw;
+    border-bottom: 1px solid gray;
+    background-color: #151616;
+    gap: 2vw;
+}
+
+.imageContainer{
+    height: 5vh;
+}
+
+img{
+    height: 10vh;
+}
+
+.navigationItem{
+    display: block;
+    width: fit-content;
+    flex-direction: row;
+}
+
+.arrowIcon{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.itemList{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navigationItemHeader{
+    padding: 0.25rem;
+    justify-items: center;
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.5vw;
+    color: #fafafa;
+    font-size: 1.2rem;
+    font-family: sans-serif;
+    cursor:pointer;
+}
+
+.navigationItemHeader:hover{
+    background-color: #333;
+
+}
+.navigationSubItems{
+    position: absolute;
+    justify-content: start;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    color: white;
+    top: 10.05vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border: 1px solid gray;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.navigationSubItems:hover{
+    background-color: #333;
+
+}

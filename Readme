@@ -1,0 +1,40 @@
+### Challenge XAcademy
+
+En este readme se deja registro de las decisiones tomadas en cada commit. 
+Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https://www.figma.com/design/Dc8YFuKtNAwYe5F0jUleoM/XAcademy-Challenge?node-id=3-19&t=9XewDKwFRoKwDeov-0
+
+
+## Como iniciar el proyecto
+1- Iniciar la instancia de docker donde esta almacenada la base de datos (debe correr en el puerto 3306).
+2- Abrir una consola en la carpeta backend y ejecutar el comando npm run start.
+3- Abrir una consola en la carpeta frontend y ejecutar el comando npm run start.
+
+## Primer commit 
+
+# Backend
+- Decidi estructurar el backend de forma modular porque me parecia una forma organizada y escalable. Además, es la que utilizo en otro proyecto.
+- Dentro de cada módulo decidi separar la funcionalidad en controller-service-repository para que cada método sea mas cohesivo y fácil de mantener. El controller se encarga de las peticiones, el repository de la comunicación con la base de datos y el service de la lógica de negocio. Todo lo que corresponda al módulo  pero no sea ninguno de los componentes mencionados (como los modelos de sequelize y las clases para validaciones) estara en una carpeta core.
+- Pensaba dejar el proyecto en javascript, pero al querer hacer una validacion reutilizable para los jugadores paginados no se podia, asi que decidi pasarlo a typescript.
+- Decidi crear un middleware para el manejo de errores y crear errores nuevos para manejar las respuestas de las response.
+- La funcionalidad del csv la deje como una utility porque es algo que podria tranquilamente utilizarse en otro modulo.
+
+- Dependencias agregadas:
+    -- class-validator: Decidi usarla para las validaciones ya que me parecio mas ordenado hacer las validaciones en las clases antes que en el router. Además las dos primeras rutas que debia crear para el challenge (para obtener jugadores paginados y para exportarlos como csv), usan los mismos filtros, asi que iba a tener las validaciones duplicadas.
+    -- class-transformer: Necesario para las validaciones. Permite transformar el tipo de una variable al momento de hacer una validación. Dado que pienso validar las query (cuyo valores son string), esta dependencia me ahorra la necesidad de transformar los valores previamente.
+    -- es-lint: Para ayudar a mantenere el código consistente y limpio (como detectar variables no usadas por ejemplo).
+    -- sequelize: como ORM
+    -- sql2: para conectar con la base de datos mysql
+    -- swagger/swagger-jsdoc/swagger-ui: Para la documentación de los endpoints.
+    -- reflect-metadata: para que se puedan detectar las etiquetas de class-validator
+
+# Frontend
+- El sistema de carpetas del front esta dividida en:
+-- Components: dedicado a componentes reutilizabels (como la tabla).
+-- layout: para almacenar componentes que son parte del layout de la aplicacion, como la sidebar.
+-- models: para guardar las clases utilizadas en la aplicación.
+-- modules: para guardar los componentes de páginas de la aplicación.
+-- service: Para almacenar servicios que pueden ser usados en mas de un modulo.
+
+- Para la navegación, decidi hacer la sidebar y la navbar por separado y usar un componente para renderizarlos condicionalmente. Si bien hacer lo mismo, me parecio mas organizado, principalmente por las clases del scss.
+- Defini los breakpoints en un archivo global para definirlos una sola vez y poder importarlos desde cada archivo scss que los requiera. Estos breakpoints los saque de un proyecto que habia hecho anteriormente. 
+- La tabla claramente me parecio un componente que podria aparecer en varios módulos por mas que no haya planteado mas pantallas que la tengan, asi que la puse dentro de components.

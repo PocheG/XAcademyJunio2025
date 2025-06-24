@@ -1,0 +1,119 @@
+ @import 'main';
+.pageTitle{
+    color: #FAFAFA;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 3rem;
+
+}
+
+.basicSearchContainer{
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    flex-direction: column;
+    gap: 3vh;
+    width: 60vw;
+    @include respond(smallLaptop){
+        width: 70vw;
+        flex-direction: row;
+    }
+    @include respond(mediumLaptop){
+        width: 70vw;
+        flex-direction: row;
+    }
+    @include respond(desktop){
+        width: 70vw;
+        flex-direction: row;
+    }
+    @include respond(bigDesktop){
+        width: 50vw;
+        flex-direction: row;
+    }
+    
+}
+
+.nameInput{
+    box-sizing: border-box;
+    width: 100%;
+    color: #FAFAFA;
+    padding: 0.5rem;
+    text-align: start;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 1px solid #4B4B4B;
+    border-radius: 20px;
+    @include respond(smallLaptop){
+        padding: 0.1rem 0.5rem;
+        width: 60%;
+    }
+    @include respond(mediumLaptop){
+        padding: 0.1rem 0.5rem;
+        width: 60%;
+    }
+    @include respond(desktop){
+        padding: 0.1rem 0.5rem;
+        width: 60%;
+    }
+    @include respond(bigDesktop){
+        padding: 0.1rem 0.5rem;
+        width: 80%;
+    }
+}
+
+.searchButton{
+    background-color: #70F468;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: Roboto;
+    padding: 0.5rem;
+    border-radius: 20px;
+    border:none;
+    cursor: pointer;
+    @include respond(smallLaptop){
+        padding: 0.5rem 0.5rem;
+        width: 40%;
+        min-width: 100px;
+    }
+    @include respond(mediumLaptop){
+        padding: 0.5rem 0.5rem;
+        width: 40%;
+        min-width: 100px;
+    }
+    @include respond(mediumDesktop){
+        padding: 0.5rem 0.5rem;
+        width: 40%;
+        min-width: 100px;
+    }
+    @include respond(bigDesktop){
+        padding: 0.5rem 0.5rem;
+        width: 40%;
+        min-width: 100px;
+    }
+    
+}
+
+.background{
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 10px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    display: flex;
+    justify-content: end;
+}
+
+.sidebar{
+    height: 100Vh;
+    width: 30vw;
+    display: flex;
+    position: fixed;
+    background-color: #151616;
+    z-index: 6;
+}
