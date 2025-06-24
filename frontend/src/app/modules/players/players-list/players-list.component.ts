@@ -19,7 +19,6 @@ export class PlayersListComponent implements OnInit{
   fullName = new FormControl('');
   advancedFilters= new FormGroup({
     version:new FormControl('',[
-      Validators.
     ])
   })
   columnsSetting:columnSetting<Player>[]=[{

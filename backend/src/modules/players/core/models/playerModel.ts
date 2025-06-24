@@ -35,7 +35,7 @@ export const playerModel = sequelize.define("player", {
         allowNull:false,
         field:"club_name"
     },
-    position:{
+    positions:{
         type: DataTypes.STRING,
         allowNull:false,
         field:"player_positions"

@@ -14,7 +14,7 @@ export class PlayersRepository{
     if (filters.fifaVersion) where.fifaVersion = { [Op.iLike]: `${filters.fifaVersion}` };
     if (filters.fifaUpdate) where.fifaUpdate = { [Op.eq]: filters.fifaUpdate };
     if (filters.team) where.team = { [Op.iLike]: `%${filters.team}%` };
-    if (filters.position) where.position = { [Op.iLike]: `%${filters.position}%` };
+    if (filters.positions) where.positions = { [Op.iLike]: `%${filters.positions}%` };
     
     if (filters.minOverall) where.overall = { [Op.gte]: parseInt(filters.minOverall, 10) };
     if (filters.minPace) where.pace = { [Op.gte]: parseInt(filters.minPace, 10) };
@@ -47,6 +47,41 @@ export class PlayersRepository{
       },
     };
 };
+static async getTeams(){
+  const uniqueTeams:any[] = await playerModel.findAll({
+    attributes: ['team'],
+    group: ['team'],
+    raw: true,
+  });
+  
+ 
+  const stringArray: string[] = uniqueTeams.map((element) => element.team);
+  return stringArray;
+  
+}
+static async getVersions(){
+  const uniqueVersions:any[] = await playerModel.findAll({
+    attributes: ['fifaVersion'],
+    group: ['fifaVersion'],
+    raw: true,
+  });
+ 
+  const stringArray: string[] = uniqueVersions.map((element) => element.fifaVersion);
+  return stringArray;
+  
+}
+static async getPositions(){
+  const uniquePositions:any[] = await playerModel.findAll({
+    attributes: ['positions'],
+    group: ['positions'],
+    raw: true,
+  });
+  
+  const stringArray: string[] = uniquePositions.map((element) => element.positions);
+  return stringArray;
+  
+}
+
 
 }
 

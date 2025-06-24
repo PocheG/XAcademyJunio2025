@@ -46,5 +46,31 @@ export class PlayersController{
             next(error)
         }
     }
+
+    static async getTeams(req:Request,res:Response,next:NextFunction){
+        try{
+            const teams= await PlayerService.getTeams()
+            res.status(200).send(teams)
+        }catch(error){
+            next(error)
+        }
+
+    }
+    static async getVersions(req:Request,res:Response,next:NextFunction){
+        try{
+            const versions= await PlayerService.getVersions()
+            res.status(200).send(versions)
+        }catch(error){
+            next(error)
+        }
+    }
+    static async getPositions(req:Request,res:Response,next:NextFunction){
+        try{
+            const positions= await PlayerService.getPositions()
+            res.status(200).send(positions)
+        }catch(error){
+            next(error)
+        }
+    }
   
 }

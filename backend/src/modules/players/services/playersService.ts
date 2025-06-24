@@ -13,5 +13,22 @@ export class PlayerService{
 
   }
 
+  static async getTeams(){
+    return await PlayersRepository.getTeams()
+  }
+
+  static async getVersions(){
+    return await PlayersRepository.getVersions()
+  }
+
+  static async getPositions(){
+    const positions:string[]=await PlayersRepository.getPositions()
+    //crea un array de string con 1 valor por posicion, eliminando espacios adicionales
+    const allUnified= positions.flatMap((element)=>element.split(",")).map((pos) => pos.trim());
+    
+    //crea un array de unicos
+    const uniquePositions = [...new Set(allUnified)];
+    return uniquePositions
+  }
 
 };

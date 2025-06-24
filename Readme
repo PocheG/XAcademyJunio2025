@@ -1,4 +1,4 @@
-### Challenge XAcademy
+# Challenge XAcademy
 
 En este readme se deja registro de las decisiones tomadas en cada commit. 
 Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https://www.figma.com/design/Dc8YFuKtNAwYe5F0jUleoM/XAcademy-Challenge?node-id=3-19&t=9XewDKwFRoKwDeov-0
@@ -9,9 +9,10 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 2- Abrir una consola en la carpeta backend y ejecutar el comando npm run start.
 3- Abrir una consola en la carpeta frontend y ejecutar el comando npm run start.
 
+
 ## Primer commit 
 
-# Backend
+### Backend
 - Decidi estructurar el backend de forma modular porque me parecia una forma organizada y escalable. Además, es la que utilizo en otro proyecto.
 - Dentro de cada módulo decidi separar la funcionalidad en controller-service-repository para que cada método sea mas cohesivo y fácil de mantener. El controller se encarga de las peticiones, el repository de la comunicación con la base de datos y el service de la lógica de negocio. Todo lo que corresponda al módulo  pero no sea ninguno de los componentes mencionados (como los modelos de sequelize y las clases para validaciones) estara en una carpeta core.
 - Pensaba dejar el proyecto en javascript, pero al querer hacer una validacion reutilizable para los jugadores paginados no se podia, asi que decidi pasarlo a typescript.
@@ -27,7 +28,7 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
     -- swagger/swagger-jsdoc/swagger-ui: Para la documentación de los endpoints.
     -- reflect-metadata: para que se puedan detectar las etiquetas de class-validator
 
-# Frontend
+### Frontend
 - El sistema de carpetas del front esta dividida en:
 -- Components: dedicado a componentes reutilizabels (como la tabla).
 -- layout: para almacenar componentes que son parte del layout de la aplicacion, como la sidebar.
@@ -38,3 +39,6 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 - Para la navegación, decidi hacer la sidebar y la navbar por separado y usar un componente para renderizarlos condicionalmente. Si bien hacer lo mismo, me parecio mas organizado, principalmente por las clases del scss.
 - Defini los breakpoints en un archivo global para definirlos una sola vez y poder importarlos desde cada archivo scss que los requiera. Estos breakpoints los saque de un proyecto que habia hecho anteriormente. 
 - La tabla claramente me parecio un componente que podria aparecer en varios módulos por mas que no haya planteado mas pantallas que la tengan, asi que la puse dentro de components.
+
+## Segundo commit
+- Me parecio correcto agregar los endpoints para obtener los endpoints para los filtros dentro del módulo players porque comparten el mismo módelo de sequelize (lo correcto seria tener una tabla aparte en la base de datos para cada filtros seleccionable y que cada uno tenga su endpoint aparte, pero no dispongo de tiempo para hacer las modificaciones en la db).
