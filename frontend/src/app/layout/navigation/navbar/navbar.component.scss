@@ -1,3 +1,5 @@
+ @import "main";
+
 .container{
     display: flex;
     position: fixed;
@@ -27,8 +29,19 @@ img{
 }
 
 .arrowIcon{
+    align-self: center;
     width: 1.2rem;
     height: 1.2rem;
+    @include respond(desktop){
+        font-size: 2rem;
+    }
+    @include respond(bigDesktop){
+        font-size: 2rem;
+    }
+}
+
+.arrowUp{
+    transform: rotate(180deg);
 }
 .itemList{
     height: 10vh;
@@ -46,9 +59,17 @@ img{
     align-items: flex-start;
     gap: 0.5vw;
     color: #fafafa;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-family: sans-serif;
     cursor:pointer;
+    @include respond(desktop){
+        padding: 0.4rem;
+        font-size: 2rem;
+    }
+    @include respond(bigDesktop){
+        padding: 0.6rem;
+        font-size: 2rem;
+    }
 }
 
 .navigationItemHeader:hover{
@@ -59,7 +80,7 @@ img{
     position: absolute;
     justify-content: start;
     padding: 0.5rem;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     color: white;
     top: 10.05vh;
     display: flex;
@@ -68,6 +89,14 @@ img{
     border: 1px solid gray;
     border-radius: 10px;
     cursor: pointer;
+    @include respond(desktop){
+        padding: 0.7rem;
+        font-size: 1.5rem;
+    }
+    @include respond(bigDesktop){
+        padding: 0.7rem;
+        font-size: 1.5rem;
+    }
 }
 
 .navigationSubItems:hover{

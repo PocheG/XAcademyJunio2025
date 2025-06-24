@@ -9,12 +9,14 @@ export class PlayersRepository{
 
   static async getPaginatedPlayers (filters:any):Promise<PaginatedPlayersResponse> {
     const where:any={}
-
     if (filters.fullName) where.longName = { [Op.like]: `%${filters.fullName}%` };
-    if (filters.fifaVersion) where.fifaVersion = { [Op.iLike]: `${filters.fifaVersion}` };
-    if (filters.fifaUpdate) where.fifaUpdate = { [Op.eq]: filters.fifaUpdate };
-    if (filters.team) where.team = { [Op.iLike]: `%${filters.team}%` };
-    if (filters.positions) where.positions = { [Op.iLike]: `%${filters.positions}%` };
+    if (filters.fifaVersion) where.fifaVersion = { [Op.like]: `${filters.fifaVersion}` };
+    if (filters.fifaUpdate ==='true') {
+      const maxUpdate = await playerModel.max('fifaUpdate');
+      where.fifaUpdate = { [Op.eq]: maxUpdate };
+    }
+    if (filters.team) where.team = { [Op.like]: `%${filters.team}%` };
+    if (filters.positions) where.positions = { [Op.like]: `%${filters.positions}%` };
     
     if (filters.minOverall) where.overall = { [Op.gte]: parseInt(filters.minOverall, 10) };
     if (filters.minPace) where.pace = { [Op.gte]: parseInt(filters.minPace, 10) };
@@ -37,7 +39,7 @@ export class PlayersRepository{
       order: [[orderBy, orderDirection]],
     });
 
-    const totalPlayers = await playerModel.count();
+    const totalPlayers = await playerModel.count({ where });
 
     return {
       results: players.map(player=> new PlayerForTable(player)),

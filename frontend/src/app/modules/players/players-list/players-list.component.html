@@ -1,12 +1,12 @@
 <h1 class="pageTitle"> Listado de jugadores</h1>
 
 <div class="basicSearchContainer">
-    <input class="nameInput" [formControl]="fullName" placeholder="Ingrese un nombre">
+    <input class="nameInput" [(ngModel)]="fullName" name="fullName" placeholder="Ingrese un nombre">
     <button class="searchButton" (click)="getPaginatedPlayer()">Buscar</button>
-    <button class="searchButton" (click)="isSidebarOpen=true">Filtros avanzados</button>
+    <button class="searchButton" (click)="openSibebar()">Filtros avanzados</button>
     <button class="searchButton">Exportar listado</button>
 </div>
-<div class="tableContainer">
+
 <app-table
     [pagination]="pagination"
     [columnsSetting]="columnsSetting"
@@ -14,20 +14,80 @@
     (handlePageChange)="onPageChange($event)"
     (handleSortChange)="onOrderChange($event)"></app-table>
 
-</div>
+
 <div class="background"
     (click)="isSidebarOpen=false"
     *ngIf="isSidebarOpen"
 >
     <div class="sidebar" (click)="$event.stopPropagation()">
-        <h2>Filtros avanzados</h2>
-        <form [formGroup]="form" (ngSubmit)="getPaginatedPlayer()>
+        <div class="sidebarHeader">
+            <h2 class="sidebarTitle">Filtros avanzados</h2>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="sidebarCloseIcon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+              
+        </div>
+       <form class="filtersForm" [formGroup]="filtrosForm" (submit)="getPaginatedPlayer()">
             <div class="longFromItem">
-                <label>Version</label>
-                <input class="nameInput" [formControl]="fullName" placeholder="Ingrese una versión">
+                <label class="formLabel">Versión</label>
+                <select class="formInput" formControlName="version">
+                  <option value="">Seleccione una versión</option>
+                  <option *ngFor="let v of versions" [value]="v">{{ v }}</option>
+                </select>
             </div>
+            <div class="longFromItem">
+                <label class="formLabel">Equipo</label>
+                <select class="formInput" formControlName="team">
+                  <option value="">Seleccione un equipo</option>
+                  <option *ngFor="let v of teams" [value]="v">{{ v }}</option>
+                </select>
+            </div>
+            <div class="longFromItem">
+                <label class="formLabel">Posición</label>
+                <select class="formInput" formControlName="position">
+                  <option class="option" value="">Seleccione una posición</option>
+                  <option class="option" *ngFor="let v of positions" [value]="v">{{ v }}</option>
+                </select>
+            </div>
+            <div class="shortItemsRow">
+                <div class="shortFromItem">
+                    <label class="formLabel" >Overall mínimo</label>
+                    <input class="formInput" formControlName="minOverall" type="number" placeholder=50>
+                </div>
+                <div class="shortFromItem">
+                    <label class="formLabel" >RIT mínimo</label>
+                    <input class="formInput" formControlName="minPace" type="number" placeholder=50>
+                </div>
+            </div>
+            <div class="shortItemsRow">
+                <div class="shortFromItem">
+                    <label class="formLabel">TIR mínimo</label>
+                    <input class="formInput" formControlName="minShooting" type="number" placeholder=50>
+                </div>
+                <div class="shortFromItem">
+                    <label class="formLabel">PAS mínimo</label>
+                    <input class="formInput" formControlName="minPassing" type="number" placeholder=50>
+                </div>
+            </div>
+            <div class="shortItemsRow">
+                <div class="shortFromItem">
+                    <label class="formLabel">REG mínimo</label>
+                    <input class="formInput"  formControlName="minDribbling"type="number" placeholder=50>
+                </div>
+                <div class="shortFromItem">
+                    <label class="formLabel" >DEF mínimp</label>
+                    <input class="formInput" formControlName="minDefending" type="number" placeholder=50>
+                </div>
+            </div>   
+            <div class="checkboxRow">
+                <input type="checkbox" formControlName="fifaUpdate"><label class="formLabel">Actualizados</label>
+            </div>
+            <div class="formFooter">
+                <button class="resetFiltersButton" (click)="resetFilters()">Borrar filtros</button>
+                <button class="searchFooterButton" type="submit">Aplicar filtros</button>
+            </div>
+       </form>
 
-        </form>
     </div>
 
 </div>

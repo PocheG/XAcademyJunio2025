@@ -27,7 +27,7 @@ export class TableComponent<T extends {[key:string]:any}> implements OnChanges {
     }
   }
   onRightArrowClick(){
-    if(this.pagination?.page===this.pagination?.totalPages){
+    if(this.pagination?.page!==this.pagination?.totalPages){
       this.onPageChange((this.pagination?.page!+1).toString())
     }
   }
@@ -42,20 +42,41 @@ export class TableComponent<T extends {[key:string]:any}> implements OnChanges {
   }
 
   calculateFooterPages(){
-    if(this.pagination!.page<5){
-      this.currentFooter=["1","2","3","4","5","6","7","8","...",(this.pagination!.totalPages-1).toString()]
+    if(!this.pagination)this.currentFooter= []
+
+    if(this.pagination!.totalPages<7){
+      
+      let pageFooter:string[]=[]
+      for(let i=1;i<this.pagination!.totalPages;i++){
+        pageFooter.push(i.toString())
+      }
+      this.currentFooter= pageFooter
     }else{
-      const footerStart=["1","...",]
-      const footerEnd=["...", (this.pagination!.totalPages-1).toString()]
+      if(this.pagination?.page!<8){
+      
+        let pageFooter:string[]=[]
+        for(let i=1;i<9;i++){
+          pageFooter.push(i.toString())
+        }
+        this.currentFooter= pageFooter.concat(["...",(this.pagination?.totalPages!).toString()])
+        }
+      else{
+      const footerStart=this.pagination!.page<5?[]:["1","...",]
+      const footerEnd= this.pagination!.page+5 <this.pagination!.totalPages?["...", (this.pagination!.totalPages).toString()]:[(this.pagination?.totalPages!).toString()]
       let middleFooter:string[]=[]
       let index=-4
-      while(index<4){
-        middleFooter.push((this.pagination!.page+index).toString())
-        index++
+      while(index<5){
+        if(this.pagination?.page!+index<this.pagination!.totalPages){
+          middleFooter.push((this.pagination!.page+index).toString())
+        }
+          index++
       }
       this.currentFooter= footerStart.concat(middleFooter.concat(footerEnd))
+      }
+      
     }
-  }
+  
+    }
   ngOnChanges(changes: SimpleChanges): void {
     if(this.pagination){
       this.calculateFooterPages()
@@ -63,6 +84,10 @@ export class TableComponent<T extends {[key:string]:any}> implements OnChanges {
   }
 
   getArrowClasses(key:string): string {
-    return this.pagination?.orderBy===key ? 'arrowIcon arrowUp' : 'arrowIcon';
+    return this.pagination?.orderBy===key && this.pagination.orderDirection==="asc"? 'arrowIcon arrowUp' : 'arrowIcon';
+  }
+
+  getFooterClasses(currentPage:string):string{
+    return this.pagination?.page.toString()===currentPage?"selectedPage":""
   }
 }

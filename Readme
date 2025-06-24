@@ -42,3 +42,6 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 
 ## Segundo commit
 - Me parecio correcto agregar los endpoints para obtener los endpoints para los filtros dentro del módulo players porque comparten el mismo módelo de sequelize (lo correcto seria tener una tabla aparte en la base de datos para cada filtros seleccionable y que cada uno tenga su endpoint aparte, pero no dispongo de tiempo para hacer las modificaciones en la db).
+
+## Tercer commit 
+- Por mas que ya setee controles, dicidi quitarlos de momento porque no tiene mucho sentido hacer una validación a una busqueda como esta. En el peor de los casos, se trae una lista vacia en lugar de romper alguna regla de negocio o generar un error.

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { NavigationItem } from '../models/navigationsItems';
 import { Router } from '@angular/router';
 
@@ -18,12 +18,22 @@ export class NavbarComponent {
   clickedItem:number|null=null
 
   onItemClick(index: number): void {
-    
     if(!this.clickedItem){
       this.clickedItem = index;
     }
     else{
       this.clickedItem=null
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    const clickedInside = target.closest('.navigationItem');
+
+    if (!clickedInside) {
+      this.clickedItem = null;
     }
   }
 

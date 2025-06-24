@@ -9,17 +9,8 @@ import { exportCSV } from "../../../../utilities/csvUtility";
 export class PlayersController{
     static async getPaginatedPlayers(req:Request,res:Response,next:NextFunction){
         try{
-            const requestQuery= plainToClass(PaginatedPlayerFilters, req.query)
-            const requestErrors= await validate(requestQuery)
-            if(requestErrors.length>0){
-                //retorna solo el primer error para no hacer un mensaje tan largo
-                const message:string= Object.values(requestErrors[0].constraints!)[0]
-                throw new BadRequestError(JSON.stringify(message))
-            }
-
             const filters=req.query
             const players=await PlayerService.getPaginatedPlayers(filters)
-            console.log(players)
             res.status(200).send(players)
         }catch(error){
             next(error)
@@ -27,14 +18,6 @@ export class PlayersController{
     }
     static async getPlayersCSV(req:Request,res:Response,next:NextFunction){
         try{
-            const requestQuery= plainToClass(PaginatedPlayerFilters, req.query)
-            const requestErrors= await validate(requestQuery)
-
-            if(requestErrors.length>0){
-                //retorna solo el primer error para no hacer un mensaje tan largo
-                const message:string= Object.values(requestErrors[0].constraints!)[0]
-                throw new BadRequestError(JSON.stringify(message))
-            }
             const filters=req.query
             const players=await PlayerService.getPlayersCSV(filters)
 

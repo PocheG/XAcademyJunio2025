@@ -1,6 +1,6 @@
  @import 'main';
 .pageTitle{
-    color: #FAFAFA;
+    color: $app-text-color;
     font-family: sans-serif;
     text-align: center;
     font-size: 3rem;
@@ -36,12 +36,12 @@
 .nameInput{
     box-sizing: border-box;
     width: 100%;
-    color: #FAFAFA;
+    color: $app-text-color;
     padding: 0.5rem;
     text-align: start;
     font-size: 1rem;
     background-color: transparent;
-    border: 1px solid #4B4B4B;
+    border: 1px solid $app-input-border;
     border-radius: 20px;
     @include respond(smallLaptop){
         padding: 0.1rem 0.5rem;
@@ -62,7 +62,7 @@
 }
 
 .searchButton{
-    background-color: #70F468;
+    background-color: $app-green-button;
     font-size: 1rem;
     font-weight: 500;
     font-family: Roboto;
@@ -93,11 +93,14 @@
     
 }
 
+.tableContainer{
+    width: 95vw;
+}
+
 .background{
     position: fixed;
     top: 0;
     left: 0;
-    
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     background-color: rgba(255, 255, 255, 0.1); 
@@ -111,9 +114,249 @@
 
 .sidebar{
     height: 100Vh;
-    width: 30vw;
+    width: 80vw;
     display: flex;
+    flex-direction: column;
     position: fixed;
     background-color: #151616;
     z-index: 6;
+    overflow-y: auto;
+    @include respond(smallLaptop){
+        width: 26.5vw;
+    }
+    @include respond(mediumLaptop){
+        width: 30vw;
+    }
+    @include respond(mediumDesktop){
+        width: 20vw;
+    }
+    @include respond(bigDesktop){
+        width: 17.5vw;
+    }
+}
+
+.sidebarHeader{
+    padding:  0.5vw 10%;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    align-items: center;
+    gap: 4rem;
+    justify-content: flex-start;
+    @include respond(smallLaptop){
+        padding:  0.5vw 2.25vw;
+        gap: 0rem;
+        width: 80%;
+        justify-content: space-between;
+    }
+    @include respond(mediumLaptop){
+        padding:  0.5vw 2.25vw;
+        gap: 0rem;
+        width: 80%;
+        justify-content: space-between;
+    }
+    @include respond(mediumDesktop){
+        padding:  0.5vw 2.25vw;
+        gap: 0rem;
+        width: 80%;
+        justify-content: space-between;
+    }
+    @include respond(bigDesktop){
+        padding:  0.5vw 2.25vw;
+        gap: 0rem;
+        width: 80%;
+        justify-content: space-between;
+    }
+}
+
+.sidebarTitle{
+    font-size: 1.5rem;
+    color: $app-text-color;
+    max-width: 65%;
+    word-wrap: break-word;
+    @include respond(smallLaptop){
+        max-width: 80%;
+    }
+    @include respond(mediumLaptop){
+        max-width: 80%;
+    }
+    @include respond(mediumDesktop){
+        max-width: 80%;
+    }
+    @include respond(bigDesktop){
+        max-width: 80%;
+    }
+}
+.sidebarCloseIcon{
+    width: 2rem;
+    height: 2rem;
+    color: $app-text-color;
+}
+
+select.formInput option {
+    background-color: #1e1e1e; 
+    color: white; 
+  }
+
+.filtersForm{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 95vh;
+    align-content: space-evenly;
+    padding: 2rem;
+    padding-top: 0rem;
+    @include respond(smallLaptop){
+        padding-right: 0rem;
+    }
+    @include respond(mediumLaptop){
+        padding-right: 0rem;
+    }
+    @include respond(mediumDesktop){
+        padding-right: 0rem;
+    }
+    @include respond(bigDesktop){
+        padding-right: 0rem;
+    }
+}
+
+.longFromItem{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.shortItemsRow{
+    padding-right: 3vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+    @include respond(smallLaptop){
+        padding-right: 1.75vw;
+    }
+    @include respond(mediumLaptop){
+        padding-right: 1.75vw;
+    }
+    @include respond(mediumDesktop){
+        padding-right: 1vw;
+    }
+    @include respond(bigDesktop){
+        padding-right: 1vw;
+    }
+
+}
+
+.shortFromItem{
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.formLabel{
+    font-family: Inter;
+    color: $app-text-color;
+}
+
+.formInput{
+    box-sizing: border-box;
+    width: 90%;
+    color: $app-text-color;
+    padding: 0.5rem;
+    text-align: start;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 1px solid $app-input-border;
+    border-radius: 20px;
+
+}
+
+.formFooter{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    padding-right: 6.5vw;
+    gap: 2rem;
+    margin-top: 2.5vh;
+    margin-bottom: 4vh;
+    @include respond(smallLaptop){
+        flex-direction:row;
+        padding-right: 2.75vw;
+    }
+    @include respond(mediumLaptop){
+        padding-right: 2.75vw;
+        flex-direction:row
+    }
+    @include respond(mediumDesktop){
+        flex-direction:row;
+    }
+    @include respond(bigDesktop){
+        flex-direction:row;
+    }
+    
+}
+
+.searchFooterButton{
+    background-color: $app-green-button;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: Roboto;
+    padding: 0.5rem;
+    border-radius: 20px;
+    border:none;
+    cursor: pointer;
+    @include respond(smallLaptop){
+        padding: 0.5rem 0.5rem;
+        width: 50%;
+        min-width: 100px;
+    }
+    @include respond(mediumLaptop){
+        padding: 0.5rem 0.5rem;
+        width: 50%;
+        min-width: 100px;
+    }
+    @include respond(mediumDesktop){
+        padding: 0.5rem 0.5rem;
+        width: 40%;
+        min-width: 100px;
+    }
+    @include respond(bigDesktop){
+        padding: 0.5rem 0.5rem;
+        width: 40%;
+        min-width: 100px;
+    }
+    
+}
+
+.resetFiltersButton{
+    color:$app-green-button ;
+    background-color: transparent;
+    border: 1px solid $app-green-button ;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: Roboto;
+    padding: 0.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    @include respond(smallLaptop){
+        padding: 0.5rem 0.5rem;
+        width: 50%;
+        min-width: 100px;
+    }
+    @include respond(mediumLaptop){
+        padding: 0.5rem 0.5rem;
+        width: 50%;
+        min-width: 100px;
+    }
+    @include respond(mediumDesktop){
+        padding: 0.5rem 0.5rem;
+        width: 40%;
+        min-width: 100px;
+    }
+    @include respond(bigDesktop){
+        padding: 0.5rem 0.5rem;
+        width: 40%;
+        min-width: 100px;
+    }
 }

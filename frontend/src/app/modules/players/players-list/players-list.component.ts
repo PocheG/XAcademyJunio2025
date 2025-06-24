@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { PlayerService } from '../../../service/player-service';
 import { Player } from '../../../models/player';
 import { columnSetting } from '../../../components/table/models/columnsSetting';
 import { Pagination } from '../../../components/table/models/Pagination';
-import { FormControl, FormGroup,  Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-players-list',
@@ -13,14 +13,32 @@ import { FormControl, FormGroup,  Validators } from '@angular/forms';
 })
 export class PlayersListComponent implements OnInit{
 
-  constructor(private playerService: PlayerService){}
+  filtrosForm:FormGroup
+
+  versions:string[]=[]
+  teams:string[]=[]
+  positions:string[]=[]
+
+  constructor(private playerService: PlayerService,
+    private fb:FormBuilder,
+  ){
+    this.filtrosForm = this.fb.group({
+      version: [''],
+      team: [''],
+      position: [''],
+      minOverall: [null],
+      minPace: [null],
+      minShooting: [null],
+      minDefending: [null],
+      minPassing: [null],
+      minDribbling: [null],
+      fifaUpdate:[false]
+    });
+  }
   subscription = new Subscription
 
-  fullName = new FormControl('');
-  advancedFilters= new FormGroup({
-    version:new FormControl('',[
-    ])
-  })
+  fullName=''
+
   columnsSetting:columnSetting<Player>[]=[{
     label:"Jugador",
     key:"longName",
@@ -90,13 +108,18 @@ export class PlayersListComponent implements OnInit{
     this.pagination.orderDirection = event.orderDirection;
     this.getPaginatedPlayer();
   }
-
+  resetFilters() {
+    this.isSidebarOpen=false
+    this.filtrosForm.reset(); 
+    this.fullName = '';    
+    this.getPaginatedPlayer(); 
+  }
   isSidebarOpen:boolean=false;
   getPaginatedPlayer(){
-    console.log(this.isSidebarOpen)
-    console.log(this.fullName)
+    const filters= this.filtrosForm.value
+    this.isSidebarOpen=false
     this.subscription.add(this.playerService.getPaginatedPlayers(
-      this.pagination,this.fullName.value!.toString()).subscribe({
+      this.pagination,this.fullName, filters).subscribe({
       next:res=>{
         this.rows=res.results.map((player: any)=> new Player(player))
         this.pagination={
@@ -109,9 +132,46 @@ export class PlayersListComponent implements OnInit{
         console.error(error)
       }
     }))
+  } 
+
+  openSibebar(){
+    this.isSidebarOpen=true
+  }
+  getVersions(){ 
+    this.subscription.add(this.playerService.getVersions().subscribe({
+      next:res=>{
+        this.versions=[...res]
+      },
+      error:error=>{
+        console.error(error)
+      }
+    }))
+  }
+  getTeams(){ 
+    this.subscription.add(this.playerService.getTeams().subscribe({
+      next:res=>{
+        this.teams=res
+      },
+      error:error=>{
+        console.error(error)
+      }
+    }))
+  }
+  getPositions(){ 
+    this.subscription.add(this.playerService.getPositions().subscribe({
+      next:res=>{
+        this.positions=res
+      },
+      error:error=>{
+        console.error(error)
+      }
+    }))
   }
 
   ngOnInit(): void {
+    this.getPositions()
+    this.getTeams()
+    this.getVersions()
     this.getPaginatedPlayer()
   }
 }

@@ -6,6 +6,7 @@ export function ErrorHandler(
     response:Response,
     next:NextFunction):void{
     const statusCode =error.statusCode??500
+    console.log(error)
     response.status(statusCode).json({
         statusCode:statusCode,
         message:error.message
