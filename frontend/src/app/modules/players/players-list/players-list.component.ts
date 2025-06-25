@@ -42,51 +42,63 @@ export class PlayersListComponent implements OnInit{
   columnsSetting:columnSetting<Player>[]=[{
     label:"Jugador",
     key:"longName",
-    sortable:true
+    sortable:true,
+    width:"200px"
   },{
     label:"Version",
     key:"fifaVersion",
-    sortable:true
+    sortable:true,
+    width:"50px"
   },{
     label:"Actualizado",
     key:"fifaUpdate",
-    sortable:true
+    sortable:true,
+    width:"50px"
   },{
     label:"Equipo",
     key:"team",
-    sortable:true
+    sortable:true,
+    width:"80px"
   },{
     label:"Posicion",
     key:"positions",
-    sortable:true
+    sortable:true,
+    width:"50px"
   },{
-    label:"P. General",
+    label:"Overall",
     key:"overall",
-    sortable:true
+    sortable:true,
+    width:"50px"
   },{
     label:"RIT",
     key:"pace",
-    sortable:true
+    sortable:true,
+    width:"50px"
   },{
     label:"TIR",
     key:"shooting",
-    sortable:true
+    sortable:true,
+    width:"50px"
   },{
     label:"PAS",
     key:"passing",
-    sortable:true
+    sortable:true,
+    width:"50px"
   },{
     label:"REG",
     key:"dribbling",
-    sortable:true
+    sortable:true,
+    width:"50px"
   },{
     label:"DEF",
     key:"defending",
-    sortable:true
+    sortable:true,
+    width:"50px"
   },{
     label:"FIS",
     key:"physic",
-    sortable:true
+    sortable:true,
+    width:"50px"
   },
 ]
 
@@ -114,10 +126,15 @@ export class PlayersListComponent implements OnInit{
     this.fullName = '';    
     this.getPaginatedPlayer(); 
   }
+
+  error:boolean=false
+  isLoading:boolean=false
   isSidebarOpen:boolean=false;
   getPaginatedPlayer(){
     const filters= this.filtrosForm.value
     this.isSidebarOpen=false
+    this.error=false
+    this.isLoading=true
     this.subscription.add(this.playerService.getPaginatedPlayers(
       this.pagination,this.fullName, filters).subscribe({
       next:res=>{
@@ -127,6 +144,28 @@ export class PlayersListComponent implements OnInit{
           totalPages:res.pagination.totalPages,
           
         }
+      },
+      error:error=>{
+        error=true
+      },
+      complete:()=>{
+        this.isLoading=false
+      }
+    }))
+  } 
+
+  getPlayersCSV(){
+    const filters= this.filtrosForm.value
+    this.isSidebarOpen=false
+    this.subscription.add(this.playerService.getPlayersCSV(
+      this.pagination,this.fullName, filters).subscribe({
+      next:(blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'jugadores.xlsx';
+        a.click();
+        window.URL.revokeObjectURL(url);
       },
       error:error=>{
         console.error(error)
@@ -173,5 +212,8 @@ export class PlayersListComponent implements OnInit{
     this.getTeams()
     this.getVersions()
     this.getPaginatedPlayer()
+  }
+  getButtonsClass(){
+    return this.isLoading?'buttonDisabled':""
   }
 }

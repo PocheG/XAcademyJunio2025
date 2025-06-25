@@ -92,7 +92,9 @@
     }
     
 }
-
+.buttonDisabled{
+    background-color: #999;
+}
 .tableContainer{
     width: 95vw;
 }
@@ -121,6 +123,7 @@
     background-color: #151616;
     z-index: 6;
     overflow-y: auto;
+    overflow-x: hidden;
     @include respond(smallLaptop){
         width: 26.5vw;
     }
@@ -156,13 +159,13 @@
         justify-content: space-between;
     }
     @include respond(mediumDesktop){
-        padding:  0.5vw 2.25vw;
+        padding:  0.5vw 1.25vw;
         gap: 0rem;
         width: 80%;
         justify-content: space-between;
     }
     @include respond(bigDesktop){
-        padding:  0.5vw 2.25vw;
+        padding:  0.5vw 1.25vw;
         gap: 0rem;
         width: 80%;
         justify-content: space-between;
@@ -213,10 +216,12 @@ select.formInput option {
         padding-right: 0rem;
     }
     @include respond(mediumDesktop){
-        padding-right: 0rem;
+        gap: 5vh;
+        padding-right: 1rem;
     }
     @include respond(bigDesktop){
-        padding-right: 0rem;
+        gap: 5vh;
+        padding-right: 1rem;
     }
 }
 
@@ -289,9 +294,11 @@ select.formInput option {
         flex-direction:row
     }
     @include respond(mediumDesktop){
+        padding-right: 1.5vw;
         flex-direction:row;
     }
     @include respond(bigDesktop){
+        padding-right: 1.5vw;
         flex-direction:row;
     }
     
@@ -317,13 +324,13 @@ select.formInput option {
         min-width: 100px;
     }
     @include respond(mediumDesktop){
-        padding: 0.5rem 0.5rem;
-        width: 40%;
+        padding: 0.45rem 0.45rem;
+        width: 45%;
         min-width: 100px;
     }
     @include respond(bigDesktop){
         padding: 0.5rem 0.5rem;
-        width: 40%;
+        width: 45%;
         min-width: 100px;
     }
     
@@ -350,13 +357,13 @@ select.formInput option {
         min-width: 100px;
     }
     @include respond(mediumDesktop){
-        padding: 0.5rem 0.5rem;
-        width: 40%;
+        padding: 0.45rem 0.45rem;
+        width: 45%;
         min-width: 100px;
     }
     @include respond(bigDesktop){
         padding: 0.5rem 0.5rem;
-        width: 40%;
+        width: 45%;
         min-width: 100px;
     }
 }

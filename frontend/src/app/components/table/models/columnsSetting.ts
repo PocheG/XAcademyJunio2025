@@ -3,4 +3,5 @@ export interface columnSetting<T>{
     key:keyof T,
     tooltip?:string
     sortable?:boolean,
+    width?:string
 }

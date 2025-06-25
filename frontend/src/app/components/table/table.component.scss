@@ -114,3 +114,39 @@ span{
     background-color: $app-input-border;
     border-radius: 20px;
 }
+
+.feedback{
+    color: $app-text-color;
+    display: flex;
+    flex-direction: column;
+    max-height: 50vh;
+    padding-top: 7.5vh;
+    align-self: center;
+    width: 40vw;
+    margin-left: 30vw;
+    margin-right: auto;
+    text-align: center;
+}
+
+.feedbackIcon{
+    max-height: 10rem;
+    max-width: 10rem;
+    align-self: center;
+}
+
+.feedbackLabel{
+    font-size: 3rem;
+}
+
+.skeleton {
+    background: linear-gradient(90deg, #474343 25%, #ddd 37%, #eee 63%);
+    background-size: 400% 100%;
+    animation: shine 1.5s ease infinite;
+    border-radius: 4px;
+    height: 20px;
+  }
+  
+  @keyframes shine {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }

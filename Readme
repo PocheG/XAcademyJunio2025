@@ -45,3 +45,6 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 
 ## Tercer commit 
 - Por mas que ya setee controles, dicidi quitarlos de momento porque no tiene mucho sentido hacer una validación a una busqueda como esta. En el peor de los casos, se trae una lista vacia en lugar de romper alguna regla de negocio o generar un error.
+
+## Cuarto commit 
+- Agrege los condicionales los inputs de error e isLoading a la tabla. Error me parecio correcto para que cuando haay un error al usar la tabla no se tenga que hacer un mensaje de error en cada lugar que se use. isLoading lo utilizo para poder mostrar un skeleton en la tabla porque el uso de skeletons para datos que se estan esperando me parece estetico y correcto, le da al usuario la sensación de que algo se esta procesando.

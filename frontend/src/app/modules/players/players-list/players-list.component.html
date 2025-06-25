@@ -2,15 +2,17 @@
 
 <div class="basicSearchContainer">
     <input class="nameInput" [(ngModel)]="fullName" name="fullName" placeholder="Ingrese un nombre">
-    <button class="searchButton" (click)="getPaginatedPlayer()">Buscar</button>
-    <button class="searchButton" (click)="openSibebar()">Filtros avanzados</button>
-    <button class="searchButton">Exportar listado</button>
+    <button class="searchButton" (click)="getPaginatedPlayer()"  [ngClass]="getButtonsClass()" [disabled]="isLoading">Buscar</button>
+    <button class="searchButton" (click)="openSibebar()"  [ngClass]="getButtonsClass()" [disabled]="isLoading">Filtros avanzados</button>
+    <button class="searchButton" (click)="getPlayersCSV()"  [ngClass]="getButtonsClass()" [disabled]="isLoading">Exportar listado</button>
 </div>
 
 <app-table
     [pagination]="pagination"
     [columnsSetting]="columnsSetting"
     [rows]="rows"
+    [isLoading]="isLoading"
+    [error]="error"
     (handlePageChange)="onPageChange($event)"
     (handleSortChange)="onOrderChange($event)"></app-table>
 
@@ -83,8 +85,8 @@
                 <input type="checkbox" formControlName="fifaUpdate"><label class="formLabel">Actualizados</label>
             </div>
             <div class="formFooter">
-                <button class="resetFiltersButton" (click)="resetFilters()">Borrar filtros</button>
-                <button class="searchFooterButton" type="submit">Aplicar filtros</button>
+                <button class="resetFiltersButton" (click)="resetFilters()" [disabled]="isLoading">Borrar filtros</button>
+                <button class="searchFooterButton" type="submit" [disabled]="isLoading">Aplicar filtros</button>
             </div>
        </form>
 

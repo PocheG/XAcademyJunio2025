@@ -11,8 +11,8 @@ export class TableComponent<T extends {[key:string]:any}> implements OnChanges {
   @Input() columnsSetting: columnSetting<T>[]=[]
   @Input() pagination?:Pagination<T>
   @Input() rows:T[]=[]
-  @Input() isLoading:boolean=true
-
+  @Input() isLoading:boolean=false
+  @Input() error:boolean=false
   @Output() handlePageChange= new EventEmitter<number>()
   @Output() handleSortChange= new EventEmitter<{orderBy:keyof T, orderDirection:"asc"|"desc"}>()
 
