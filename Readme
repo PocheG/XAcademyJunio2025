@@ -48,3 +48,6 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 
 ## Cuarto commit 
 - Agrege los condicionales los inputs de error e isLoading a la tabla. Error me parecio correcto para que cuando haay un error al usar la tabla no se tenga que hacer un mensaje de error en cada lugar que se use. isLoading lo utilizo para poder mostrar un skeleton en la tabla porque el uso de skeletons para datos que se estan esperando me parece estetico y correcto, le da al usuario la sensación de que algo se esta procesando.
+
+## Quinto commit
+- El control en el controller de getPlayerById lo hice sin class validator porque me parecio mas adecuado: si bien no es mucho trabajo, hacer una clase por una validación de un campo parece excesivo.

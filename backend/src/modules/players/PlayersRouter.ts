@@ -45,11 +45,11 @@ const playersRouter= Router()
  *         required: false
  *         description: dirección por la cual ordenar
  *       - in: query
- *         name: fullName
+ *         name: longName
  *         schema:
  *           type: string
  *         required: false
- *         description: para buscar el fullname por patrón
+ *         description: para buscar el longName por patrón
  *       - in: query
  *         name: team
  *         schema:
@@ -167,11 +167,11 @@ playersRouter.get(
  *         required: false
  *         description: dirección por la cual ordenar
  *       - in: query
- *         name: fullName
+ *         name: longName
  *         schema:
  *           type: string
  *         required: false
- *         description: para buscar el fullname por patrón
+ *         description: para buscar el longName por patrón
  *       - in: query
  *         name: team
  *         schema:
@@ -256,6 +256,39 @@ playersRouter.get(
   PlayersController.getPlayersCSV
 );
 
+/**
+ * @swagger
+ * /{id}:
+ *   get:
+ *     summary: Obtiene los datos de un jugador
+ *     description: Retorna el jugador correspondiente con el id
+ *     tags:
+ *       - Player
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: number
+ *         required: true
+ *         description: id del jugador a buscar
+ *     responses:
+ *       200:
+ *         description: JUgador encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/PlayerById'
+ *       400:
+ *         description: id invalido
+ *       404:
+ *         description: jugador no encontrado
+ *       500:
+ *         description: Error interno del servidor
+ */
+playersRouter.get(
+  "/:id",
+  PlayersController.getPlayerById
+);
 
 /**
  * @swagger

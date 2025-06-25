@@ -30,6 +30,22 @@ export class PlayersController{
         }
     }
 
+    static async getPlayerById(req:Request,res:Response,next:NextFunction){
+        try{
+            const id= req.params.id
+            if(!id || isNaN(Number(id))){
+                throw new BadRequestError("La variable id del path debe ser un número y es requerida")
+            }
+
+            const player= await PlayerService.getPlayerById(Number(id))
+
+            res.status(200).send(player)
+        }catch(error){
+            next(error)
+        }
+
+    }
+
     static async getTeams(req:Request,res:Response,next:NextFunction){
         try{
             const teams= await PlayerService.getTeams()

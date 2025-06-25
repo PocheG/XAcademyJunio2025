@@ -13,6 +13,10 @@ export class PlayerService{
 
   }
 
+  static async getPlayerById(id:number){
+    return await PlayersRepository.getPlayerById(id)
+  }
+
   static async getTeams(){
     return await PlayersRepository.getTeams()
   }

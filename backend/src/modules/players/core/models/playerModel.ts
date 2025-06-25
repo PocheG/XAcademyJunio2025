@@ -41,6 +41,54 @@ export const playerModel = sequelize.define("player", {
         field:"player_positions"
 
     },
+    reputation:{
+        type: DataTypes.NUMBER,
+        allowNull:false,
+        field:"international_reputation"
+
+    },
+    age:{
+        type: DataTypes.NUMBER,
+        allowNull:false,
+        field:"age"
+
+    },
+    weightKg:{
+        type: DataTypes.NUMBER,
+        allowNull:false,
+        field:"weight_kg"
+
+    },
+    heightCm:{
+        type: DataTypes.NUMBER,
+        allowNull:false,
+        field:"height_cm"
+
+    },
+    nationality:{
+        type: DataTypes.STRING,
+        allowNull:false,
+        field:"nationality_name"
+
+    },
+    preferedFoot:{
+        type: DataTypes.STRING,
+        allowNull:false,
+        field:"preferred_foot"
+
+    },
+    traits:{
+        type: DataTypes.STRING,
+        allowNull:false,
+        field:"player_traits"
+
+    },
+    bodyType:{
+        type: DataTypes.STRING,
+        allowNull:false,
+        field:"body_type"
+
+    },
     overall: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -76,6 +124,69 @@ export const playerModel = sequelize.define("player", {
         allowNull: true,
         field:"physic"
     },
+    attackingCrossing: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        field: "attacking_crossing",
+    },
+    attackingFinishing: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        field: "attacking_finishing",
+    },
+    attackingHeadingAccuracy: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        field: "attacking_heading_accuracy",
+    },
+    attackingShortPassing: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        field: "attacking_short_passing",
+    },
+    attackingVolleys: { 
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        field: "attacking_volleys"
+    },
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 },{
     timestamps:false
 });

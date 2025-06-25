@@ -37,7 +37,7 @@ export class PlayersListComponent implements OnInit{
   }
   subscription = new Subscription
 
-  fullName=''
+  longName=''
 
   columnsSetting:columnSetting<Player>[]=[{
     label:"Jugador",
@@ -123,7 +123,7 @@ export class PlayersListComponent implements OnInit{
   resetFilters() {
     this.isSidebarOpen=false
     this.filtrosForm.reset(); 
-    this.fullName = '';    
+    this.longName = '';    
     this.getPaginatedPlayer(); 
   }
 
@@ -136,7 +136,7 @@ export class PlayersListComponent implements OnInit{
     this.error=false
     this.isLoading=true
     this.subscription.add(this.playerService.getPaginatedPlayers(
-      this.pagination,this.fullName, filters).subscribe({
+      this.pagination,this.longName, filters).subscribe({
       next:res=>{
         this.rows=res.results.map((player: any)=> new Player(player))
         this.pagination={
@@ -158,7 +158,7 @@ export class PlayersListComponent implements OnInit{
     const filters= this.filtrosForm.value
     this.isSidebarOpen=false
     this.subscription.add(this.playerService.getPlayersCSV(
-      this.pagination,this.fullName, filters).subscribe({
+      this.pagination,this.longName, filters).subscribe({
       next:(blob: Blob) => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');

@@ -22,7 +22,7 @@ export class PaginatedPlayerFilters{
     @IsOptional()
     @IsString()
     @Length(1, 100, { message: 'El nombre completo debe tener entre 1 y 100 caracteres' })
-    fullName?:string;
+    longName?:string;
     @IsOptional()
     team?:string
     @IsOptional()

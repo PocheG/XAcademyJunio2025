@@ -44,7 +44,7 @@
  *           description: puntaje de fisico
  *       example:
  *         id: 1
- *         fullname: Lionel Andrés Messi Cuccittini
+ *         longName: Lionel Andrés Messi Cuccittini
  *         fifaVersion: 23
  *         fifaUpdate: "1"
  *         playerFaceUrl: urlDEejemplo.com

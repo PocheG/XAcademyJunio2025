@@ -24,14 +24,14 @@ export class PlayerService {
     return this.http.get<string[]>(this.url+"/positions")
   }
 
-  getPaginatedPlayers(pagination:Pagination<Player>,fullName:string, advanceFilters:any):Observable<any>{
+  getPaginatedPlayers(pagination:Pagination<Player>,longName:string, advanceFilters:any):Observable<any>{
     let params:any={
       "page":pagination.page.toString(),
     }
     if(pagination.page){params["page"]=pagination.page}
     if(pagination.orderDirection){params["orderDirection"]=pagination.orderDirection}
     if(pagination.pageSize)params["pageSize"]=pagination.pageSize
-    if(fullName!=="")params["fullName"]=fullName
+    if(longName!=="")params["longName"]=longName
     if(advanceFilters.fifaUpdate)params['fifaUpdate']=advanceFilters.fifaUpdate
     if(advanceFilters.position)params['position']=advanceFilters.position
     if(advanceFilters.version)params['fifaVersion']=advanceFilters.version
@@ -47,14 +47,14 @@ export class PlayerService {
 
   }
 
-  getPlayersCSV(pagination:Pagination<Player>,fullName:string, advanceFilters:any):Observable<any>{
+  getPlayersCSV(pagination:Pagination<Player>,longName:string, advanceFilters:any):Observable<any>{
     let params:any={
       "page":pagination.page.toString(),
     }
     if(pagination.page){params["page"]=pagination.page}
     if(pagination.orderDirection){params["orderDirection"]=pagination.orderDirection}
     if(pagination.pageSize)params["pageSize"]=pagination.pageSize
-    if(fullName!=="")params["fullName"]=fullName
+    if(longName!=="")params["longName"]=longName
     if(advanceFilters.fifaUpdate)params['fifaUpdate']=advanceFilters.fifaUpdate
     if(advanceFilters.position)params['position']=advanceFilters.position
     if(advanceFilters.version)params['fifaVersion']=advanceFilters.version

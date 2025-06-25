@@ -1,7 +1,7 @@
 <h1 class="pageTitle"> Listado de jugadores</h1>
 
 <div class="basicSearchContainer">
-    <input class="nameInput" [(ngModel)]="fullName" name="fullName" placeholder="Ingrese un nombre">
+    <input class="nameInput" [(ngModel)]="longName" name="longName" placeholder="Ingrese un nombre">
     <button class="searchButton" (click)="getPaginatedPlayer()"  [ngClass]="getButtonsClass()" [disabled]="isLoading">Buscar</button>
     <button class="searchButton" (click)="openSibebar()"  [ngClass]="getButtonsClass()" [disabled]="isLoading">Filtros avanzados</button>
     <button class="searchButton" (click)="getPlayersCSV()"  [ngClass]="getButtonsClass()" [disabled]="isLoading">Exportar listado</button>
