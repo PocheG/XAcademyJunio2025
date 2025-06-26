@@ -71,7 +71,7 @@ export const playerModel = sequelize.define("player", {
         field:"nationality_name"
 
     },
-    preferedFoot:{
+    preferredFoot:{
         type: DataTypes.STRING,
         allowNull:false,
         field:"preferred_foot"

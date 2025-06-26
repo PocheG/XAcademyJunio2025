@@ -9,11 +9,24 @@ export class Player{
     longName: string
     overall: number
     pace: number
+    age:number
     shooting: number
     passing: number
     dribbling: number
     defending: number
     physic: number
+    reputation:number
+    heightCm:number;
+    weightKg:number;
+    nationality:string
+    preferredFoot:string;
+    bodyType:number
+    tags:string[]
+    stats:{        
+        title:string;
+        labels:string[],
+        values:number[]
+    }[]
 
     constructor(data:any){
         this.id=data.id
@@ -22,8 +35,8 @@ export class Player{
         this.playerFaceURL= data.playerFaceURL
         this.longName=data.longName
         this.team=data.team
+        this.age=data.age
         this.positions=data.positions
-        
         this.overall= data.overall
         this.pace= data.pace
         this.shooting= data.shooting
@@ -31,5 +44,14 @@ export class Player{
         this.dribbling= data.dribbling
         this.defending= data.defending
         this.physic= data.physic
+        this.reputation= data.reputation
+        this.heightCm= data.heightCm
+        this.weightKg= data.weightKg
+        this.nationality= data.nationality
+        this.preferredFoot = data.preferredFoot
+        this.positions = data.positions
+        this.bodyType = data.bodyType
+        this.tags= data.tags
+        this.stats=data.stats
     }
 }

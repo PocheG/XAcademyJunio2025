@@ -51,3 +51,8 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 
 ## Quinto commit
 - El control en el controller de getPlayerById lo hice sin class validator porque me parecio mas adecuado: si bien no es mucho trabajo, hacer una clase por una validación de un campo parece excesivo.
+
+## Sexto commit
+- Decidi manejar el feedback de si se encuentra o no un jugador de la misma forma que en la pagina donde se ve la tabla. 
+- El loading de las estadisticas los deje como circulos, admito que me gustaria darle una forma mas cercana al gráfico si me da el tiempo.
+

@@ -17,12 +17,28 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
                 </svg>
             </th>
+            <th *ngIf="tableOptions"
+            class="columnHeaderCell">Opciones</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of rows" class="tableRow">
+        <tr *ngFor="let row of rows; let i=index;" class="tableRow">
         <td *ngFor="let col of columnsSetting"
-        class="tableRowCell">{{ row[col.key] }}</td>
+        class="tableRowCell">{{ row[col.key] }}</td><td *ngIf="tableOptions">
+            <div class="iconCell">
+              <svg (click)="onOptionClick($event, i)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="optionsIcon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+              </svg>
+              <div *ngIf="menuVisibleRowIndex === i" class="optionsMenu">
+                <div *ngFor="let opt of tableOptions"
+                     class="menuItem"
+                     (click)="onOptionAction(row, opt.action)">
+                  {{ opt.label }}
+                </div>
+              </div>
+              
+            </div>
+          </td>
       </tr>
     </tbody>
 </table>

@@ -1,0 +1,193 @@
+<div 
+class="page"
+*ngIf="player">
+    <h1 class="pageTitle">Detalles del jugador</h1>
+    <div class="generalInfoContainer">
+      <h2 class="sectionTitle">Información General</h2>
+  
+      <div class="sectionContent">
+        <div class="imageContainer">
+          <img [src]="player?.playerFaceURL" />
+        </div>
+  
+        <div class="generalInfoColumn">
+          <div class="generalInfoRow">
+            <div class="infoItem">
+              <label class="infoLabel">Nombre</label>
+              <span class="infoValue">{{ player.longName }}</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Versión</label>
+              <span class="infoValue">{{ player.fifaVersion }}</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Club</label>
+              <span class="infoValue">{{ player.team }}</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Reputación</label>
+              <span class="infoValue">{{ player.reputation }}</span>
+            </div>
+          </div>
+  
+          <div class="generalInfoRow">
+            <div class="infoItem">
+              <label class="infoLabel">Nacionalidad</label>
+              <span class="infoValue">{{ player.nationality }}</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Edad</label>
+              <span class="infoValue">{{ player.age }}</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Altura</label>
+              <span class="infoValue">{{ player.heightCm }} m</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Peso</label>
+              <span class="infoValue">{{ player.weightKg }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="secondRowBoxes">
+    <div class="traitInfoContainer">
+        <h2 class="sectionTitle">Características</h2>
+        <div class="traitInfoColumn">
+            <div class="traitsItem">
+                <label class="infoLabel">Pie preferido</label>
+                <span class="infoValue">{{player.preferredFoot}}</span>
+            </div>
+            <div class="traitsItem">
+                <label class="infoLabel">Posiciones jugadas</label>
+                <span class="infoValue">{{player.positions}}</span>
+            </div>
+            <div class="infoItem">
+                <label class="infoLabel">Rasgos</label>
+                <span class="infoValue">{{player.tags}}</span>
+            </div>
+            <div class="traitsItem">
+                <label class="infoLabel">Tipo cuerpo</label>
+                <span class="infoValue">{{player.bodyType}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="statsContainer">
+        <h2 class="sectionTitle">Estadísticas</h2>
+        <div class="statsList">
+          <div *ngFor="let stats of player.stats" class="statsBox">
+            <div class="chartContainer">
+              <canvas [id]="stats.title"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+<div 
+class="page"
+*ngIf="isLoading &&  !player">
+    <h1 class="pageTitle">Detalles del jugador</h1>
+    <div class="generalInfoContainer">
+      <h2 class="sectionTitle">Información General</h2>
+  
+      <div class="sectionContent">
+        <div class="imageContainer">
+          <img/>
+        </div>
+  
+        <div class="generalInfoColumn">
+          <div class="generalInfoRow">
+            <div class="infoItem">
+              <label class="infoLabel">Nombre</label>
+              <span class="skeleton">&nbsp;</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Versión</label>
+              <span class="skeleton">&nbsp;</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Club</label>
+              <span class="skeleton">&nbsp;</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Reputación</label>
+              <span class="skeleton">&nbsp;</span>
+            </div>
+          </div>
+  
+          <div class="generalInfoRow">
+            <div class="infoItem">
+              <label class="infoLabel">Nacionalidad</label>
+              <span class="skeleton">&nbsp;</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Edad</label>
+              <span class="skeleton">&nbsp;</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Altura</label>
+              <span class="skeleton">&nbsp;</span>
+            </div>
+            <div class="infoItem">
+              <label class="infoLabel">Peso</label>
+              <span class="skeleton">&nbsp;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="secondRowBoxes">
+    <div class="traitInfoContainer">
+        <h2 class="sectionTitle">Características</h2>
+        <div class="traitInfoColumn">
+            <div class="traitsItem">
+                <label class="infoLabel">Pie preferido</label>
+                <span class="skeleton">&nbsp;</span>
+            </div>
+            <div class="traitsItem">
+                <label class="infoLabel">Posiciones jugadas</label>
+                <span class="skeleton">&nbsp;</span>
+            </div>
+            <div class="infoItem">
+                <label class="infoLabel">Rasgos</label>
+                <span class="skeleton">&nbsp;</span>
+            </div>
+            <div class="traitsItem">
+                <label class="infoLabel">Tipo cuerpo</label>
+                <span class="skeleton">&nbsp;</span>
+            </div>
+        </div>
+    </div>
+    <div class="statsContainer">
+        <h2 class="sectionTitle">Estadísticas</h2>
+        <div class="statsList statsListLoading" >
+            <div class="statsBox" *ngFor="let _ of [1,2,3,4]">
+              <div class="chartContainer skeletonStats"></div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+
+<div
+*ngIf="requestError"
+class="errorContainer">
+<div *ngIf="requestError===404" class="feedback">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="feedbackIcon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+      </svg>
+    <label class="feedbackLabel">No existe el jugador buscado.</label>
+</div>
+<div *ngIf="requestError!==404" class="feedback">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="feedbackIcon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+      </svg>
+    <label class="feedbackLabel">Error al intentar buscar jugador. Intente de nuevo mas tarde</label>
+</div>
+
+</div>

@@ -35,6 +35,7 @@ export class PlayersController{
             const id= req.params.id
             if(!id || isNaN(Number(id))){
                 throw new BadRequestError("La variable id del path debe ser un número y es requerida")
+                return
             }
 
             const player= await PlayerService.getPlayerById(Number(id))

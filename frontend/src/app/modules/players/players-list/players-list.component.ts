@@ -5,6 +5,8 @@ import { Player } from '../../../models/player';
 import { columnSetting } from '../../../components/table/models/columnsSetting';
 import { Pagination } from '../../../components/table/models/Pagination';
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
+import { tableOption } from '../../../components/table/models/options';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-players-list',
@@ -21,6 +23,7 @@ export class PlayersListComponent implements OnInit{
 
   constructor(private playerService: PlayerService,
     private fb:FormBuilder,
+    private router: Router
   ){
     this.filtrosForm = this.fb.group({
       version: [''],
@@ -109,6 +112,11 @@ export class PlayersListComponent implements OnInit{
     orderBy:"id",
     orderDirection:"asc"
   }
+
+  tableOptions:tableOption<Player>[]=[{
+    label:"Ver jugador",
+    action:(player:Player)=>this.router.navigate(["detail",player.id])
+  }]
   rows:Player[]=[] 
   onPageChange(page: number) {
     this.pagination.page = page;

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { columnSetting } from './models/columnsSetting';
 import { Pagination } from './models/Pagination';
+import { tableOption } from './models/options';
 
 @Component({
   selector: 'app-table',
@@ -11,6 +12,7 @@ export class TableComponent<T extends {[key:string]:any}> implements OnChanges {
   @Input() columnsSetting: columnSetting<T>[]=[]
   @Input() pagination?:Pagination<T>
   @Input() rows:T[]=[]
+  @Input() tableOptions?:tableOption<T>[]
   @Input() isLoading:boolean=false
   @Input() error:boolean=false
   @Output() handlePageChange= new EventEmitter<number>()
@@ -83,6 +85,18 @@ export class TableComponent<T extends {[key:string]:any}> implements OnChanges {
     }
   }
 
+  selectedRow: any = null;
+  menuVisibleRowIndex: number | null = null;
+
+  onOptionClick(event: MouseEvent, index: number): void {
+    event.stopPropagation(); 
+    this.menuVisibleRowIndex = this.menuVisibleRowIndex === index ? null : index;
+  }
+
+  onOptionAction(row: any, action: (row: any) => void): void {
+    action(row);
+    this.menuVisibleRowIndex = null;
+  }
   getArrowClasses(key:string): string {
     return this.pagination?.orderBy===key && this.pagination.orderDirection==="asc"? 'arrowIcon arrowUp' : 'arrowIcon';
   }

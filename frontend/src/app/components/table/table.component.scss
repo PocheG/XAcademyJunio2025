@@ -75,6 +75,51 @@ span{
         font-size: 0.9rem;
     }
 }
+
+.iconCell {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .optionsIcon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    color: #444;
+    transition: transform 0.2s ease;
+  
+  }
+  .optionsIcon:hover{
+      transform: scale(1.1);
+      color: #000;
+  }
+  
+  .optionsMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 140px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    z-index: 999;
+  
+}
+.menuItem {
+    padding: 8px 12px;
+
+    cursor: pointer;
+    background-color: $app-background-color;
+}
+
+.menuItem:hover {
+    background-color: #888
+}
+
 .footer{
     width: 100%;
     justify-content: center;
