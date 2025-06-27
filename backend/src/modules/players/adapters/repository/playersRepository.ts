@@ -61,8 +61,7 @@ static async getPlayerById(id:number){
   })
 
   if(!player) throw new EntityNotFoundError('No se encontro el jugador seleccionado')
-    console.log(player)
-  console.log(new PlayerById(player.get({plain:true})))
+  new PlayerById(player.get({plain:true}))
   return new PlayerById(player.get({plain:true}))
 }
 
@@ -79,6 +78,39 @@ static async getTeams(){
   
 }
 
+static async updatePlayer(playerId:number, newInfo:any){ 
+  await playerModel.update({
+    fifaVersion:newInfo.fifaVersion,
+    playerFaceURL:newInfo.playerFaceURL,
+    longName: newInfo.longName,
+    team:newInfo.team,
+    positions:newInfo.positions,
+    reputation: newInfo.reputation,
+    age:newInfo.age,
+    heightCm:newInfo.heightCm,
+    weightKg:newInfo.weightKg,
+    nationality:newInfo.nationality,
+    preferredFoot:newInfo.preferredFoot,
+    bodyType:newInfo.bodyType,
+    traits:newInfo.traits,
+    overall:newInfo.overall,
+    pace:newInfo.pace,
+    shooting:newInfo.shooting,
+    passing:newInfo.passing,
+    dribbling:newInfo.dribbling,
+    physic: newInfo.physic,
+    defending: 99,
+    attackingCrossing:newInfo.attackingCrossing, 
+    attackingFinishing:newInfo.attackingFinishing,
+    attackingHeadingAccuracy: newInfo.attackingHeadingAccuracy,
+    attackingShortPassing:newInfo.attackingShortPassing,
+    attackingVolleys: newInfo.attackingVolleys
+  },{
+    where: {id:playerId}
+  }
+    
+  )
+}
 
 static async getVersions(){
   const uniqueVersions:any[] = await playerModel.findAll({

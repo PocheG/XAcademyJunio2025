@@ -323,6 +323,123 @@ playersRouter.get(
   "/positions",
   PlayersController.getPositions
 );
+
+/**
+ * @swagger
+ * /{id}:
+ *   put:
+ *     summary: Actualiza un jugador
+ *     description: Actualiza un jugador con los parametros que se pasan
+ *     tags:
+ *       - Player
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: number
+ *         required: true
+ *         description: id del jugador a actualizar
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               fifaVersion:
+ *                 type: integer
+ *                 description: version del jugador
+ *               playerFaceUrl:
+ *                 type: string
+ *                 description: url de la cara del jugador
+ *               longName:
+ *                 type: number
+ *                 description: nombre completo del jugador
+ *               team:
+ *                 type: string
+ *                 description: nombre del equipo
+ *               positions:
+ *                 type: string
+ *                 description: posiciones que ocupa el jugador
+ *               reputation:
+ *                 type: integer
+ *                 description: reputación internacional
+ *               age:
+ *                 type: integer
+ *                 description: edad
+ *               heightCm:
+ *                 type: integer
+ *                 description: Altura en centimetros
+ *               weightKg:
+ *                 type: integer
+ *                 description: Peso en kg
+ *               nationality:
+ *                 type: string
+ *                 description:  nacionalidad
+ *               preferredFoot:
+ *                 type: string
+ *                 description: pie habil
+ *               bodyType:
+ *                 type: string
+ *                 description: tipo de cuerpo
+ *               tags:
+ *                 type: string
+ *                 description: etiquetas del jugador
+ *               overall:
+ *                 type: integer
+ *                 description: puntaje general
+ *               pace:
+ *                 type: integer
+ *                 description: puntaje develocidad
+ *               shooting:
+ *                 type: integer
+ *                 description: puntaje de remates
+ *               passing:
+ *                 type: integer
+ *                 description: puntaje de pases
+ *               dribbling:
+ *                 type: integer
+ *                 description: puntaje de regates
+ *               physic:
+ *                 type: integer
+ *                 description: puntaje de físico
+ *               defending:
+ *                 type: integer
+ *                 description: puntaje de defensa
+ *               attackingCrossing:
+ *                 type: integer
+ *                 description: puntaje de precisión de centro
+ *               attackingFinishing:
+ *                 type: integer
+ *                 description: puntaje de definición
+ *               attackingHeadingAccuracy:
+ *                 type: integer
+ *                 description: puntaje de precisión de cabezasos
+ *               attackingShortPassing:
+ *                 type: integer
+ *                 description: puntaje de pases cortos
+ *               attackingVolleys:
+ *                 type: integer
+ *                 description:  puntaje de voleas
+ *     responses:
+ *       200:
+ *         description: JUgador encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/PlayerById'
+ *       400:
+ *         description: id invalido
+ *       404:
+ *         description: jugador no encontrado
+ *       500:
+ *         description: Error interno del servidor
+ */
+playersRouter.put(
+  "/:id",
+  PlayersController.updatePlayer
+)
+
 /**
  * @swagger
  * /{id}:
@@ -332,7 +449,7 @@ playersRouter.get(
  *     tags:
  *       - Player
  *     parameters:
- *       - in: params
+ *       - in: path
  *         name: id
  *         schema:
  *           type: number

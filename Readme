@@ -56,3 +56,5 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 - Decidi manejar el feedback de si se encuentra o no un jugador de la misma forma que en la pagina donde se ve la tabla. 
 - El loading de las estadisticas los deje como circulos, admito que me gustaria darle una forma mas cercana al gráfico si me da el tiempo.
 
+## Septimo commit
+- Si bien la consiga dice que el actualizar son menos campos, me parecia corrector el ofrecer la posibilidad de editar los campos que el detalle del jugador te muestra. 

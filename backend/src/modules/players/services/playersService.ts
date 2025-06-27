@@ -17,6 +17,10 @@ export class PlayerService{
     return await PlayersRepository.getPlayerById(id)
   }
 
+  static async updatePlayer(playerId:number, newInfo:any){
+    return await PlayersRepository.updatePlayer(playerId, newInfo)
+  }
+
   static async getTeams(){
     return await PlayersRepository.getTeams()
   }

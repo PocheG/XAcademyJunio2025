@@ -1,10 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { PlayerService } from "../../services/playersService";
-import { plainToClass } from "class-transformer";
-import { PaginatedPlayerFilters } from "../../core/validations/playersFiltersValidations";
+import { plainToClass, plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
 import { BadRequestError } from "../../../../errors/BadRequestError";
-import { exportCSV } from "../../../../utilities/csvUtility";
+import { UpdatePlayerValidations } from "../../core/validations/updatePlayerValidations";
 
 export class PlayersController{
     static async getPaginatedPlayers(req:Request,res:Response,next:NextFunction){
@@ -39,6 +38,31 @@ export class PlayersController{
             }
 
             const player= await PlayerService.getPlayerById(Number(id))
+
+            res.status(200).send(player)
+        }catch(error){
+            next(error)
+        }
+
+    }
+
+    static async updatePlayer(req:Request,res:Response,next:NextFunction){
+        try{
+            const id= req.params.id
+            if(!id || isNaN(Number(id))){
+                throw new BadRequestError("La variable id del path debe ser un número y es requerida")
+
+            }
+            
+            const newInfo= plainToInstance( UpdatePlayerValidations, req.body)
+
+            const errors= await validate(newInfo)
+            
+            if(errors.length){
+                const firstConstraint = Object.values(errors[0].constraints || {})[0];
+                throw new BadRequestError(firstConstraint)
+            }
+            const player= await PlayerService.updatePlayer(Number(id),newInfo)
 
             res.status(200).send(player)
         }catch(error){
