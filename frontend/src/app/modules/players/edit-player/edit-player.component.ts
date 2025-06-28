@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { version } from 'os';
 import { get } from 'http';
+import { ConfirmationModalService } from '../../../layout/confirmation-modal/service/confirmationModalService';
+import { ModalIconEnum } from '../../../layout/confirmation-modal/models/ModalProps';
 
 @Component({
   selector: 'app-edit-player',
@@ -22,7 +24,8 @@ export class EditPlayerComponent implements OnInit{
   constructor(
     private playerService: PlayerService,
     private activeRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private confirmationModalService: ConfirmationModalService
   ){ 
     this.player=new Player()
     console.log(this.player)
@@ -140,7 +143,6 @@ export class EditPlayerComponent implements OnInit{
       if(fieldErrors!['required']) return "Este campo es requerido"
       if(fieldErrors['min']) return `ESte campo no puede ser menor a ${fieldErrors['min'].min}`
       if(fieldErrors['max']) return `ESte campo no puede ser mayor a ${fieldErrors['max'].max}`
-      
 
 
     }
@@ -244,6 +246,41 @@ export class EditPlayerComponent implements OnInit{
     }))
   }
 
+  handleSubmit(){
+    if(this.playerForm.errors){
+      this.confirmationModalService.openModal({
+        icon: ModalIconEnum.error,
+        title:"Error en el formulario",
+        message:"Revise los valores ingresados antes de continuar",
+        accept:{
+          title:"Aceptar",
+          action:()=>{
+            this.confirmationModalService.closeModal()
+          }
+        }
+      })
+    }else{
+      this.confirmationModalService.openModal({
+        title:"Confirmar edición",
+        message:`¿Desea guardar los cambios sobre el/la jugador/a ${this.player.longName} en la versión ${this.player.fifaVersion}? Podra editar los cambios mas tarde.`,
+        reject:{
+          title:"Cancelar",
+          action:()=>{
+            this.confirmationModalService.closeModal()
+
+          }
+        },
+        accept:{
+          title:"Aceptar",
+          action:()=>{
+            prompt("FUnciona")
+            this.confirmationModalService.closeModal()
+          },
+        }
+      })
+
+    }
+  }
 
 
   ngOnInit(): void {
@@ -262,7 +299,7 @@ export class EditPlayerComponent implements OnInit{
   getInputRangeColor(field:string){
     const value:number=this.playerForm.get(field)?.value
     const percentage:number=value/99
-    console.log(value)
+    
     const green:number=value===99?255:Math.round(255*(percentage))
     const red: number=value===0?255:Math.round(255*(1-percentage))
 

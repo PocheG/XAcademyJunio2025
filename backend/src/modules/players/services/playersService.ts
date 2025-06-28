@@ -34,8 +34,7 @@ export class PlayerService{
 
   static async getPositions(){
     const positions:string[]=await PlayersRepository.getPositions()
-    console.log(positions)
-    //crea un array de string con 1 valor por posicion, eliminando espacios adicionales
+    
     const allUnified= positions.flatMap((element)=>element.split(",")).map((pos) => pos.trim());
     
     const uniqueTraits = Array.from(new Set(allUnified));

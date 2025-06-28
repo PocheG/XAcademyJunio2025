@@ -66,4 +66,7 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 - Inicialmente devolvia los stats del jugador desde el back ya armado porque me parecio mas directo que venga la información ya acomodada para pasarselo a la función que arma el gráfico. Ahora me estoy dando cuenta que hacer eso hace que tomar los valores para setear cada estadística individual en el formulario de actualizar jugador sea completamente impractico, asi que en este commit pienso hacer ese cambio.
 
 ## Decimo commit
-- Hice una función para obtener el error con un mensaje generico para poder utilizarlo cada campo en lugar de utilizar los mensaje predeterminados o de tener que hacer 1 especifico para cada error de cada campo.
+- Hice una función para obtener el error con un mensaje generico para poder utilizarlo cada campo en lugar de utilizar los mensaje predeterminados o de tener que hacer 1 específico para cada error de cada campo.
+
+## Commit 11
+- El modal de confirmación es una buena forma de prevenir que el usuario confirme algo antes de tiempo. Decidi dejarlo en el layout y utilizar un servicio para pasarle las propiedades al componente para poder utilizar el componente desde cualquier lugar de la aplicación sin tener que poner el html del mismo (en realidad es un componente que utilice tanto para mi proyecto final como para el trabajo que tengo, es bastante práctico).

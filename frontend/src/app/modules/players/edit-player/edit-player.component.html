@@ -1,7 +1,7 @@
 <div class="Page">
     <h1 class="pageTitle">Editar jugador</h1>
     <div class="editPlayerContainer">
-        <form [formGroup]="playerForm">
+        <form [formGroup]="playerForm" (submit)="handleSubmit()">
             <section class="formSection">
                 <h2 class="sectionTitle">Información General</h2>
                 <div class="sectionRow">
