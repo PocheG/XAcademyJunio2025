@@ -23,21 +23,25 @@ export class UpdatePlayerValidations{
     @IsNotEmpty({ message: 'El parametro playerFaceUrl no puede ser un string vacio' })
     playerFaceUrl?:string
 
+    @Type(() => Number)
     @IsNumber()
     @Min(1)
     @Max(5)
     reputation: number=0
 
+    @Type(() => Number)
     @IsNumber()
     @Min(18)
     @Max(40)
     age:number=0
 
+    @Type(() => Number)
     @IsNumber()
     @Min(100)
     @Max(230)
     heightCm:number=0
   
+    @Type(() => Number)
     @IsNumber()
     weightKg:number=0
 
@@ -55,7 +59,7 @@ export class UpdatePlayerValidations{
 
     @IsString()
     @IsNotEmpty({ message: 'El parametro traits no puede ser un string vacio' })
-    tratis:string=''
+    traits:string=''
     
     @Type(() => Number) 
     @isStatParam()

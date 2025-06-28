@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { PlayerService } from '../../../service/player-service';
 import { Player } from '../../../models/player';
 import { Subscription } from 'rxjs';
@@ -9,6 +9,7 @@ import { get } from 'http';
 import { ConfirmationModalService } from '../../../layout/confirmation-modal/service/confirmationModalService';
 import { ModalIconEnum } from '../../../layout/confirmation-modal/models/ModalProps';
 import { loadingScreenService } from '../../../layout/loading-screen/service/loadingScreenService';
+import { response } from 'express';
 
 @Component({
   selector: 'app-edit-player',
@@ -21,7 +22,7 @@ export class EditPlayerComponent implements OnInit{
 
   playerForm:FormGroup
   isLoading:boolean=true
-  errorMessage:string=''
+  requestError:number|null=null
 
   player:Player=new Player()
   constructor(
@@ -29,7 +30,8 @@ export class EditPlayerComponent implements OnInit{
     private activeRoute: ActivatedRoute,
     private fb: FormBuilder,
     private confirmationModalService: ConfirmationModalService,
-    private loadingService: loadingScreenService
+    private loadingService: loadingScreenService,
+    private router: Router
   ){ 
     this.player=new Player()
     console.log(this.player)
@@ -63,8 +65,8 @@ export class EditPlayerComponent implements OnInit{
       ]],
       heightCm:[this.player.heightCm,[
         Validators.required,
-        Validators.max(100),
-        Validators.min(230)
+        Validators.min(100),
+        Validators.max(230)
       ]],
       weightKg:[this.player.weightKg,[
         Validators.required,
@@ -169,10 +171,10 @@ export class EditPlayerComponent implements OnInit{
       },
       error:error=>{
         console.log(error)
-        this.errorMessage= 'No se pudo encontrar jugador, intente de nuevo mas tarde'
+        this.requestError=error.status
       },
       complete:()=>{
-        this.isLoading=false
+        this.isLoading=true
       }
     }))
   }
@@ -253,6 +255,7 @@ export class EditPlayerComponent implements OnInit{
 
   handleSubmit(){
     if(this.playerForm.invalid){
+      this.playerForm.markAllAsTouched()
       this.confirmationModalService.openModal({
         icon: ModalIconEnum.error,
         title:"Error en el formulario",
@@ -272,14 +275,44 @@ export class EditPlayerComponent implements OnInit{
           title:"Cancelar",
           action:()=>{
             this.confirmationModalService.closeModal()
-
           }
         },
         accept:{
           title:"Aceptar",
           action:()=>{
-            prompt("FUnciona")
             this.confirmationModalService.closeModal()
+            this.loadingService.showLoadingScreen('Guardando cambios...')
+            this.playerService.updatePlayer(this.player.id,this.playerForm.value).subscribe(
+              response=>{
+                this.loadingService.showLoadingScreen(null)
+                this.confirmationModalService.openModal({
+                  icon:ModalIconEnum.ok,
+                  title:"Jugador actualizado",
+                  message:"Se ha guardado la nueva información con éxito",
+                  accept:{
+                    title:"Aceptar",
+                    action:()=>{
+                      this.router.navigate(["/detail",this.player.id])
+                      this.confirmationModalService.closeModal()
+                    }
+                  }
+                })
+              },
+              error=>{
+                this.loadingService.showLoadingScreen(null)
+                this.confirmationModalService.openModal({
+                  icon:ModalIconEnum.error,
+                  title:"Error",
+                  message:"No se pudo confirmar la actualización. Intente de nuevo mas tarde",
+                  accept:{
+                    title:"Aceptar",
+                    action:()=>{
+                      this.confirmationModalService.closeModal()
+                    }
+                  }
+                })
+              }
+            )
           },
         }
       })

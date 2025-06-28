@@ -53,7 +53,7 @@ export class PlayersController{
                 throw new BadRequestError("La variable id del path debe ser un número y es requerida")
 
             }
-            
+            console.log(req.body)
             const newInfo= plainToInstance( UpdatePlayerValidations, req.body)
 
             const errors= await validate(newInfo)

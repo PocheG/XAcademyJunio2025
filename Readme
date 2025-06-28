@@ -73,3 +73,6 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 
 ## Commit 12
 - Decidi hacer una ventana de cargado adicional para cuando se espera que una actualización o alta se complete porque le da la sensación al usuario de que la operación que acaba de confirmar se esta procesando, lo cual no ocurre cuando simplemente se deja la pantalla a como estaba antes de confirmar. Al igual que el modal de confirmación, lo cree en layout para que se pueda acceder desde cualquier lugar del sistema desde un servicio.
+
+## Commit 13
+- Al terminar con la modificación del jugador, decidi que lo mejor era navegar a la ventana del detalle del mismo para que se pueda confirmar que los cambios efectivamente fueron efectuados en el sistema.

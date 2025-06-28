@@ -109,7 +109,7 @@
     }
 }
 
-.formItem{
+.infoItem{
     display: flex;
     flex-direction: column;
     width: 45%;
@@ -137,21 +137,16 @@
     }
 
 }
-.formLabel{
-    font-family: Inter;
+.infoLabel{
     color: $app-text-color;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
 }
-
-.formInput{
-    box-sizing: border-box;
-    width: 90%;
+.infoValue{
     color: $app-text-color;
-    padding: 0.5rem;
-    text-align: start;
-    font-size: 1rem;
-    background-color: transparent;
-    border: 1px solid $app-input-border;
-    border-radius: 20px;
+    font-family: sans-serif;
+    font-weight: 300;
 
 }
 

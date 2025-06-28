@@ -14,7 +14,7 @@ export class loadingScreenService {
       return this.loadingScreenMessage.asObservable()
     }
 
-    showLoadingScreen(props: string): void {
+    showLoadingScreen(props: string|null): void {
         this.loadingScreenMessage.next(props);
       }
     
