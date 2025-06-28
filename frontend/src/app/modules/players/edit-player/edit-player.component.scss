@@ -70,7 +70,19 @@
     background-color: transparent;
     border: 1px solid $app-input-border;
     border-radius: 20px;
+}
 
+select.formInput option {
+    background-color: #1e1e1e; 
+    color: white; 
+}
+
+.formInputError{
+    color: $app-error;
+    font-family: sans-serif;
+    font-size: 0.75;
+    text-align: start;
+    text-justify:distribute;
 }
 
 .statArticle{
@@ -120,4 +132,61 @@
     font-weight: 400;
     font-size: 0.9rem;
 
+}
+.formFooter{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 2.5vh;
+    margin-bottom: 4vh;
+    @include respond(smallLaptop){
+        flex-direction:row;
+        padding-right: 2.75vw;
+    }
+    @include respond(mediumLaptop){
+        padding-right: 2.75vw;
+        flex-direction:row
+    }
+    @include respond(mediumDesktop){
+        padding-right: 1.5vw;
+        flex-direction:row;
+    }
+    @include respond(bigDesktop){
+        padding-right: 1.5vw;
+        flex-direction:row;
+    }
+    
+}
+
+.searchFooterButton{
+    background-color: $app-green-button;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: Roboto;
+    padding: 0.5rem;
+    border-radius: 20px;
+    border:none;
+    cursor: pointer;
+    @include respond(smallLaptop){
+        padding: 0.5rem 0.5rem;
+        width: 50%;
+        min-width: 100px;
+    }
+    @include respond(mediumLaptop){
+        padding: 0.5rem 0.5rem;
+        width: 50%;
+        min-width: 100px;
+    }
+    @include respond(mediumDesktop){
+        padding: 0.45rem 0.45rem;
+        width: 45%;
+        min-width: 100px;
+    }
+    @include respond(bigDesktop){
+        padding: 0.5rem 0.5rem;
+        width: 45%;
+        min-width: 100px;
+    }
+    
 }

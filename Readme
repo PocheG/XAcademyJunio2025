@@ -62,5 +62,8 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 ## Octavo commit
 - Agregue endpoints para otros datos ya definidos en la base de datos, me parece correcto que si ya existen cosas como los rasgos de los jugadores, deberian mostrarse como opciones en lugar de que el usuario ingrese un texto plano.
 
-### Noveno commit
+## Noveno commit
 - Inicialmente devolvia los stats del jugador desde el back ya armado porque me parecio mas directo que venga la información ya acomodada para pasarselo a la función que arma el gráfico. Ahora me estoy dando cuenta que hacer eso hace que tomar los valores para setear cada estadística individual en el formulario de actualizar jugador sea completamente impractico, asi que en este commit pienso hacer ese cambio.
+
+## Decimo commit
+- Hice una función para obtener el error con un mensaje generico para poder utilizarlo cada campo en lugar de utilizar los mensaje predeterminados o de tener que hacer 1 especifico para cada error de cada campo.

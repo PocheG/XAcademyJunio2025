@@ -132,6 +132,20 @@ export class EditPlayerComponent implements OnInit{
     });
    }
 
+   getFieldError(field:string){
+    //si el campo tiene errores y fue clickeado
+    const fieldErrors= this.playerForm.get(field)?.errors
+    if(this.playerForm.get(field)?.touched && fieldErrors){
+      
+      if(fieldErrors!['required']) return "Este campo es requerido"
+      if(fieldErrors['min']) return `ESte campo no puede ser menor a ${fieldErrors['min'].min}`
+      if(fieldErrors['max']) return `ESte campo no puede ser mayor a ${fieldErrors['max'].max}`
+      
+
+
+    }
+    return ''
+   }
 
   versions:string[]=[]
   teams:string[]=[]

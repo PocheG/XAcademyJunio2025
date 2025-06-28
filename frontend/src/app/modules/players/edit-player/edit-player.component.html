@@ -10,6 +10,7 @@
                         <input class="formInput" 
                         placeholder="Ingrese un nombre"
                         formControlName="longName">
+                        <span class="formInputError">{{getFieldError('longName')}}</span>
                     </div>
                     <div class="longFormItem">
                         <label class="formLabel">Nacionalidad</label>
@@ -18,6 +19,7 @@
                         <option value="">Seleccione una nacionalidad</option>
                         <option *ngFor="let v of nationalities" [value]="v">{{ v }}</option>
                         </select>
+                        <span class="formInputError">{{getFieldError('nationality')}}</span>
                     </div>
                     <div class="longFormItem">
                         <label class="formLabel">Equipo</label>
@@ -26,11 +28,13 @@
                         <option value="">Seleccione un equipo</option>
                         <option *ngFor="let v of teams" [value]="v">{{ v }}</option>
                         </select>
+                        <span class="formInputError">{{getFieldError('team')}}</span>
                     </div>
                     <div class="longFormItem">
                         <label class="formLabel">Reputación</label>
                         <input class="formInput" placeholder="5"
                         formControlName="reputation">
+                        <span class="formInputError">{{getFieldError('reputation')}}</span>
                     </div>
 
                 </div>
@@ -39,16 +43,19 @@
                         <label class="formLabel">Edad</label>
                         <input class="formInput" placeholder="22"
                         formControlName="age">
+                        <span class="formInputError">{{getFieldError('age')}}</span>
                     </div>
                     <div class="shortFormItem">
                         <label class="formLabel">Altura</label>
                         <input class="formInput" placeholder="170"
                         formControlName="heightCm">
+                        <span class="formInputError">{{getFieldError('heightCm')}}</span>
                     </div>
                     <div class="shortFormItem">
                         <label class="formLabel">Peso</label>
                         <input class="formInput" placeholder="70"
                         formControlName="weightKg">
+                        <span class="formInputError">{{getFieldError('weightKg')}}</span>
                     </div>
                     <div class="shortFormItem">
                         <label class="formLabel">Versión</label>
@@ -57,11 +64,13 @@
                         <option value="">Seleccione un equipo</option>
                         <option *ngFor="let v of versions" [value]="v">{{ v }}</option>
                         </select>
+                        <span class="formInputError">{{getFieldError('fifaVersion')}}</span>
                     </div>
                     <div class="longFormItem">
                         <label class="formLabel">Image (url)</label>
                         <input class="formInput" placeholder="Ingrese una url"
                         formControlName="playerFaceUrl">
+                        <span class="formInputError">{{getFieldError('playerFaceUrl')}}</span>
                     </div>
 
                 </div>
@@ -77,6 +86,7 @@
                       <option >Seleccione un pie</option>
                       <option *ngFor="let v of preferredFoots" [value]="v">{{ v }}</option>
                     </select>
+                    <span class="formInputError">{{getFieldError('preferredFoot')}}</span>
                 </div>
                 <div class="longFromItem">
                     <label class="formLabel">Posiciones jugadas</label>
@@ -86,6 +96,7 @@
                       <option value="">Seleccione una posicion</option>
                       <option *ngFor="let v of positions" [value]="v">{{ v }}</option>
                     </select>
+                    <span class="formInputError">{{getFieldError('positions')}}</span>
                 </div>
                 <div class="longFromItem">
                     <label class="formLabel">Rasgos</label>
@@ -95,6 +106,7 @@
                       <option value="">Seleccione un rasgo</option>
                       <option *ngFor="let v of traits" [value]="v">{{ v }}</option>
                     </select>
+                    <span class="formInputError">{{getFieldError('traits')}}</span>
                 </div>
                 <div class="longFromItem">
                     <label class="formLabel">Tipo de cuerpo</label>
@@ -103,8 +115,8 @@
                       <option value="">Seleccione un tipo</option>
                       <option *ngFor="let v of bodyTypes" [value]="v">{{ v }}</option>
                     </select>
+                    <span class="formInputError">{{getFieldError('bodyType')}}</span>
                 </div>
-                
             </section>
             <section class="formSection">
                 <h2 class="sectionTitle">Estadísticas</h2>
@@ -119,6 +131,7 @@
                         formControlName="attackingCrossing"
                         [max]="100"
                         [ngStyle]="{'accent-color': getInputRangeColor('attackingCrossing')}"max="99">
+                        <span class="formInputError">{{getFieldError('attackingCrossing')}}</span>
                     </div>
                     <div class="inputRangeItem">
                         <div class="inputRangeText">
@@ -129,6 +142,7 @@
                         formControlName="attackingFinishing"
                         [max]="100"
                         [ngStyle]="{'accent-color': getInputRangeColor('attackingFinishing')}"max="99">
+                        <span class="formInputError">{{getFieldError('attackingFinishing')}}</span>
                     </div>
                     <div class="inputRangeItem">
                         <div class="inputRangeText">
@@ -139,6 +153,7 @@
                         formControlName="attackingHeadingAccuracy"
                         [max]="100"
                         [ngStyle]="{'accent-color': getInputRangeColor('attackingHeadingAccuracy')}"max="99">
+                        <span class="formInputError">{{getFieldError('attackingHeadingAccuracy')}}</span>
                     </div>
                     <div class="inputRangeItem">
                         <div class="inputRangeText">
@@ -149,6 +164,7 @@
                         formControlName="attackingShortPassing"
                         [max]="100"
                         [ngStyle]="{'accent-color': getInputRangeColor('attackingShortPassing')}"max="99">
+                        <span class="formInputError">{{getFieldError('attackingShortPassing')}}</span>
                     </div>
                     <div class="inputRangeItem">
                         <div class="inputRangeText">
@@ -159,6 +175,7 @@
                         formControlName="attackingVolleys"
                         [max]="100"
                         [ngStyle]="{'accent-color': getInputRangeColor('attackingVolleys')}"max="99">
+                        <span class="formInputError">{{getFieldError('attackingVolleys')}}</span>
                     </div>
                 </article>
                 <article class="statArticle">
@@ -172,6 +189,7 @@
                         formControlName="pace"
                         [max]="100"
                         [ngStyle]="{'accent-color': getInputRangeColor('pace')}"max="99">
+                        <span class="formInputError">{{getFieldError('pace')}}</span>
                     </div>
                     <div class="inputRangeItem">
                         <div class="inputRangeText">
@@ -182,6 +200,7 @@
                         formControlName="shooting"
                         [max]="100"
                         [ngStyle]="{'accent-color': getInputRangeColor('shooting')}"max="99">
+                        <span class="formInputError">{{getFieldError('shooting')}}</span>
                     </div>
                     <div class="inputRangeItem">
                         <div class="inputRangeText">
@@ -192,6 +211,7 @@
                         formControlName="passing"
                         [max]="100"
                         [ngStyle]="{'accent-color': getInputRangeColor('passing')}"max="99">
+                        <span class="formInputError">{{getFieldError('passing')}}</span>
                     </div>
                     <div class="inputRangeItem">
                         <div class="inputRangeText">
@@ -202,6 +222,7 @@
                         formControlName="dribbling"
                         [max]="100"
                         [ngStyle]="{'accent-color': getInputRangeColor('dribbling')}"max="99">
+                        <span class="formInputError">{{getFieldError('dribbling')}}</span>
                     </div>
                     <div class="inputRangeItem">
                         <div class="inputRangeText">
@@ -212,6 +233,7 @@
                         formControlName="physic"
                         [max]="100"
                         [ngStyle]="{'accent-color': getInputRangeColor('physic')}"max="99">
+                        <span class="formInputError">{{getFieldError('physic')}}</span>
                     </div>
                     <div class="inputRangeItem">
                         <div class="inputRangeText">
@@ -222,10 +244,13 @@
                         formControlName="defending"
                         [max]="100"
                         [ngStyle]="{'accent-color': getInputRangeColor('defending')}"max="99">
+                        <span class="formInputError">{{getFieldError('defending')}}</span>
                     </div>
                 </article>
+                <div class="formFooter">
+                    <button class="searchFooterButton" type="submit">Guardar cambios</button>
+                </div>
             </section>
-
         </form>
     </div>
 </div>
