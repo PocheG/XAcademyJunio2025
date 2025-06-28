@@ -5,6 +5,20 @@
     font-family: sans-serif;
     text-align: center;
     font-size: 3rem;
+    @include respond(smallLaptop){
+        font-size: 2.5rem;
+        margin: 1rem;
+    }
+    @include respond(mediumLaptop){
+        font-size: 2.5rem;
+        margin: 1rem;
+    }
+    @include respond(mediumDesktop){
+        margin: 1rem;
+    }
+    @include respond(bigDesktop){
+        margin: 1rem;
+    }
 
 }
 
@@ -24,6 +38,22 @@
     font-family: sans-serif;
     text-align: center;
     font-size: 2rem;
+    @include respond(smallLaptop){
+        font-size: 1.75rem;
+        margin: 2rem;
+        margin-bottom: 0.25rem;
+    }
+    @include respond(mediumLaptop){
+        font-size: 1.75rem;
+        margin: 2rem;
+        margin-bottom: 0.25rem;
+    }
+    @include respond(mediumDesktop){
+        margin: 1rem;
+    }
+    @include respond(bigDesktop){
+        margin: 1rem;
+    }
 
 }
 
@@ -31,6 +61,7 @@
     display: flex;
     flex-direction: column;
     gap: 4vh;
+    
 }
 .sectionRow{
     display: flex;
@@ -38,7 +69,8 @@
     width: 100%;
     row-gap: 4vh;
     flex-wrap: wrap;
-    justify-content: space-between
+    justify-content: space-between;
+    align-items: stretch;
 }
 
 .formLabel{
@@ -48,10 +80,23 @@
     font-size: 1.2rem;
 }
 
-.longFromItem{
+.longFormItem{
     display: flex;
     flex-direction: column;
     gap: 1vh;
+    width: 100%;
+    @include respond(smallLaptop){
+        width: 22%;
+    }
+    @include respond(mediumLaptop){
+        width: 22%;
+    }
+    @include respond(mediumDesktop){
+        width: 22%;
+    }
+    @include respond(bigDesktop){
+        width: 22%;
+    }
 }
 
 .shortFormItem{
@@ -59,7 +104,41 @@
     display: flex;
     flex-direction: column;
     gap: 1vh;
+
+    @include respond(smallLaptop){
+        width: 9.875%;
+    }
+    @include respond(mediumLaptop){
+        width: 9.875%;
+    }
+    @include respond(mediumDesktop){
+        width: 9.875%;
+    }
+    @include respond(bigDesktop){
+        width: 9.875%;
+    }
 }
+
+.imageFormItem{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+
+    @include respond(smallLaptop){
+        width: 48.5%;
+    }
+    @include respond(mediumLaptop){
+        width: 48.5%;
+    }
+    @include respond(mediumDesktop){
+        width: 48.5%;
+    }
+    @include respond(bigDesktop){
+        width: 48.5%;
+    }
+
+}
+
 .formInput{
     box-sizing: border-box;
     width: 100%;
@@ -93,6 +172,20 @@ select.formInput option {
     border-radius: 10px;
     align-items: stretch;
     padding: 0vh 1.25vw;
+    width: 100%;
+    min-height: 100%; 
+    @include respond(smallLaptop){
+        width: 30%;
+    }
+    @include respond(mediumLaptop){
+        width: 33%;
+    }
+    @include respond(mediumDesktop){
+        width: 33%;
+    }
+    @include respond(bigDesktop){
+        width: 33%;
+    }
 }
 .statArticleTitle{
     padding: 0%;
@@ -115,6 +208,18 @@ select.formInput option {
     justify-content: space-between;
     align-items: center;
     gap: 10vw;
+    @include respond(smallLaptop){
+        gap:0;
+    }
+    @include respond(mediumLaptop){
+        gap:0;
+    }
+    @include respond(mediumDesktop){
+        gap:0;
+    }
+    @include respond(bigDesktop){
+        gap:0;
+    }
     
 }
 .inputRangeLabel{
@@ -136,24 +241,20 @@ select.formInput option {
 .formFooter{
     display: flex;
     flex-direction:column;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 2rem;
     margin-top: 2.5vh;
     margin-bottom: 4vh;
     @include respond(smallLaptop){
         flex-direction:row;
-        padding-right: 2.75vw;
     }
     @include respond(mediumLaptop){
-        padding-right: 2.75vw;
         flex-direction:row
     }
     @include respond(mediumDesktop){
-        padding-right: 1.5vw;
         flex-direction:row;
     }
     @include respond(bigDesktop){
-        padding-right: 1.5vw;
         flex-direction:row;
     }
     
@@ -169,24 +270,16 @@ select.formInput option {
     border:none;
     cursor: pointer;
     @include respond(smallLaptop){
-        padding: 0.5rem 0.5rem;
-        width: 50%;
-        min-width: 100px;
+        padding: 0.5rem 1rem;
     }
     @include respond(mediumLaptop){
-        padding: 0.5rem 0.5rem;
-        width: 50%;
-        min-width: 100px;
+        padding: 0.5rem 1rem;
     }
     @include respond(mediumDesktop){
         padding: 0.45rem 0.45rem;
-        width: 45%;
-        min-width: 100px;
     }
     @include respond(bigDesktop){
         padding: 0.5rem 0.5rem;
-        width: 45%;
-        min-width: 100px;
     }
     
 }

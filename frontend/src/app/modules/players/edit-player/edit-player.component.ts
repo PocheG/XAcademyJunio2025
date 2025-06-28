@@ -8,6 +8,7 @@ import { version } from 'os';
 import { get } from 'http';
 import { ConfirmationModalService } from '../../../layout/confirmation-modal/service/confirmationModalService';
 import { ModalIconEnum } from '../../../layout/confirmation-modal/models/ModalProps';
+import { loadingScreenService } from '../../../layout/loading-screen/service/loadingScreenService';
 
 @Component({
   selector: 'app-edit-player',
@@ -19,13 +20,16 @@ export class EditPlayerComponent implements OnInit{
   subscription= new Subscription()
 
   playerForm:FormGroup
+  isLoading:boolean=true
+  errorMessage:string=''
 
   player:Player=new Player()
   constructor(
     private playerService: PlayerService,
     private activeRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private confirmationModalService: ConfirmationModalService
+    private confirmationModalService: ConfirmationModalService,
+    private loadingService: loadingScreenService
   ){ 
     this.player=new Player()
     console.log(this.player)
@@ -165,9 +169,10 @@ export class EditPlayerComponent implements OnInit{
       },
       error:error=>{
         console.log(error)
+        this.errorMessage= 'No se pudo encontrar jugador, intente de nuevo mas tarde'
       },
       complete:()=>{
-        console.log(this.player)
+        this.isLoading=false
       }
     }))
   }
@@ -225,7 +230,7 @@ export class EditPlayerComponent implements OnInit{
   }
 
   getTraits(){ 
-    this.subscription.add(this.playerService.getPositions().subscribe({
+    this.subscription.add(this.playerService.getTraits().subscribe({
       next:res=>{
         this.traits=res
       },
@@ -247,7 +252,7 @@ export class EditPlayerComponent implements OnInit{
   }
 
   handleSubmit(){
-    if(this.playerForm.errors){
+    if(this.playerForm.invalid){
       this.confirmationModalService.openModal({
         icon: ModalIconEnum.error,
         title:"Error en el formulario",

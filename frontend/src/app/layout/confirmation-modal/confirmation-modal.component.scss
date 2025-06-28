@@ -23,17 +23,30 @@
     height: fit-content;
     background-color: $app-boxes-background-color;
     box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
     border-radius: 20px;
     width: fit-content;
     margin: 0vh 5vw;
+    @include respond(smallLaptop){
+        max-width: 40%;
+    }
+    @include respond(mediumLaptop){
+        max-width: 40%;
+    }
+    @include respond(mediumDesktop){
+        max-width: 30%;
+    }
+    @include respond(bigDesktop){
+        max-width: 30%;
+    }
+
 }
 
 .modalIcon{
-    width: 10rem;
-    height: 10rem;
+    width: 6rem;
+    height: 6rem;
     color: $app-green-button;
-    align-self: center;
-    justify-self: center;
 }
 .modalErrorIcon{
     width: 10rem;
@@ -50,19 +63,60 @@
     color: $app-text-color;
     padding: 1rem;
     padding-bottom: 0rem;
+    @include respond(smallLaptop){
+        margin: 0.25rem;
+    }
+    @include respond(mediumLaptop){
+        margin: 0.25rem;
+    }
+    @include respond(mediumDesktop){
+        margin: 0.25rem;
+    }
+    @include respond(bigDesktop){
+        margin: 0.25rem;
+    }
 }
 
 .message{
     font-size: 1.5rem;
     text-align: center;
     color: $app-text-color;
+    @include respond(smallLaptop){
+        padding: 0.25rem;
+        padding-bottom: 0rem;
+    }
+    @include respond(mediumLaptop){
+        padding: 0.25rem;
+        padding-bottom: 0rem;
+    }
+    @include respond(mediumDesktop){
+        padding: 0.25rem;
+        padding-bottom: 0rem;
+    }
+    @include respond(bigDesktop){
+        padding: 0.25rem;
+        padding-bottom: 0rem;
+    }
 }
 
 .footer{
     align-items: center;
     justify-content: space-between;
     padding: 2rem;
+    width: 100%;
     display: flex;
+    @include respond(smallLaptop){
+        padding: 0.75rem;
+    }
+    @include respond(mediumLaptop){
+        padding: 0.75rem;
+    }
+    @include respond(mediumDesktop){
+        padding: 0.75rem;
+    }
+    @include respond(bigDesktop){
+        padding: 0.75rem;
+    }
 }
 
 .singleFooter{
@@ -70,7 +124,20 @@
     justify-content: flex-end;
     padding: 2rem;
     display: flex;
+    width: 100%;
     
+    @include respond(smallLaptop){
+        padding: 0.75rem;
+    }
+    @include respond(mediumLaptop){
+        padding: 0.75rem;
+    }
+    @include respond(mediumDesktop){
+        padding: 0.75rem;
+    }
+    @include respond(bigDesktop){
+        padding: 0.75rem;
+    }
 }
 .acceptButton{
     background-color: $app-green-button;
@@ -83,12 +150,16 @@
     border:none;
     cursor: pointer;
     @include respond(smallLaptop){
+        font-size: 1.35rem;
     }
     @include respond(mediumLaptop){
+        font-size: 1.35rem;
     }
     @include respond(mediumDesktop){
+        font-size: 1.35rem;
     }
     @include respond(bigDesktop){
+        font-size: 1.35rem;
     }
     
 }
@@ -107,11 +178,15 @@
     border-radius: 20px;
     cursor: pointer;
     @include respond(smallLaptop){
+        font-size: 1.35rem;
     }
     @include respond(mediumLaptop){
+        font-size: 1.35rem;
     }
     @include respond(mediumDesktop){
+        font-size: 1.35rem;
     }
     @include respond(bigDesktop){
+        font-size: 1.35rem;
     }
 }

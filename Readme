@@ -70,3 +70,6 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 
 ## Commit 11
 - El modal de confirmación es una buena forma de prevenir que el usuario confirme algo antes de tiempo. Decidi dejarlo en el layout y utilizar un servicio para pasarle las propiedades al componente para poder utilizar el componente desde cualquier lugar de la aplicación sin tener que poner el html del mismo (en realidad es un componente que utilice tanto para mi proyecto final como para el trabajo que tengo, es bastante práctico).
+
+## Commit 12
+- Decidi hacer una ventana de cargado adicional para cuando se espera que una actualización o alta se complete porque le da la sensación al usuario de que la operación que acaba de confirmar se esta procesando, lo cual no ocurre cuando simplemente se deja la pantalla a como estaba antes de confirmar. Al igual que el modal de confirmación, lo cree en layout para que se pueda acceder desde cualquier lugar del sistema desde un servicio.

@@ -6,6 +6,7 @@ import { NavigationComponent } from "./navigation/navigation.component";
 import { RouterModule } from "@angular/router";
 import { ConfirmationModalComponent } from "./confirmation-modal/confirmation-modal.component";
 import { ConfirmationModalService } from "./confirmation-modal/service/confirmationModalService";
+import { LoadingScreenComponent } from "./loading-screen/loading-screen.component";
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { ConfirmationModalService } from "./confirmation-modal/service/confirmat
         SidebarComponent,
         NavigationComponent,
         ConfirmationModalComponent,
+        LoadingScreenComponent
     ],
     imports:[
         CommonModule,
@@ -21,7 +23,8 @@ import { ConfirmationModalService } from "./confirmation-modal/service/confirmat
     ],
     exports:[
         NavigationComponent,
-        ConfirmationModalComponent
+        ConfirmationModalComponent,
+        LoadingScreenComponent
     ]
 })
 

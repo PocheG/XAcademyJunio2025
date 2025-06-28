@@ -66,7 +66,7 @@
                         </select>
                         <span class="formInputError">{{getFieldError('fifaVersion')}}</span>
                     </div>
-                    <div class="longFormItem">
+                    <div class="imageFormItem">
                         <label class="formLabel">Image (url)</label>
                         <input class="formInput" placeholder="Ingrese una url"
                         formControlName="playerFaceUrl">
@@ -78,7 +78,8 @@
             </section>
             <section class="formSection">
                 <h2 class="sectionTitle">Características</h2>
-                <div class="longFromItem">
+                <div class="sectionRow">
+                <div class="longFormItem">
                     <label class="formLabel">Pie preferido</label>
                     <select class="formInput"
                       formControlName="preferredFoot"
@@ -88,8 +89,8 @@
                     </select>
                     <span class="formInputError">{{getFieldError('preferredFoot')}}</span>
                 </div>
-                <div class="longFromItem">
-                    <label class="formLabel">Posiciones jugadas</label>
+                <div class="longFormItem">
+                    <label class="formLabel">Posiciones</label>
                     <select class="formInput"
                       formControlName="positions"
                     >
@@ -98,7 +99,7 @@
                     </select>
                     <span class="formInputError">{{getFieldError('positions')}}</span>
                 </div>
-                <div class="longFromItem">
+                <div class="longFormItem">
                     <label class="formLabel">Rasgos</label>
                     <select class="formInput"
                       formControlName="traits"
@@ -108,7 +109,7 @@
                     </select>
                     <span class="formInputError">{{getFieldError('traits')}}</span>
                 </div>
-                <div class="longFromItem">
+                <div class="longFormItem">
                     <label class="formLabel">Tipo de cuerpo</label>
                     <select class="formInput"
                     formControlName="bodyType">
@@ -117,9 +118,12 @@
                     </select>
                     <span class="formInputError">{{getFieldError('bodyType')}}</span>
                 </div>
+
+                </div>
             </section>
             <section class="formSection">
                 <h2 class="sectionTitle">Estadísticas</h2>
+                <div class="sectionRow">
                 <article class="statArticle">
                     <h3 class="statArticleTitle">Ataque</h3>
                     <div class="inputRangeItem">
@@ -247,6 +251,8 @@
                         <span class="formInputError">{{getFieldError('defending')}}</span>
                     </div>
                 </article>
+
+                </div>
                 <div class="formFooter">
                     <button class="searchFooterButton" type="submit">Guardar cambios</button>
                 </div>

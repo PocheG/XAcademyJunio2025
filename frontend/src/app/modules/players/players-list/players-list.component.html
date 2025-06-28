@@ -31,21 +31,21 @@
               
         </div>
        <form class="filtersForm" [formGroup]="filtrosForm" (submit)="getPaginatedPlayer()">
-            <div class="longFromItem">
+            <div class="longFormItem">
                 <label class="formLabel">Versión</label>
                 <select class="formInput" formControlName="version">
                   <option value="">Seleccione una versión</option>
                   <option *ngFor="let v of versions" [value]="v">{{ v }}</option>
                 </select>
             </div>
-            <div class="longFromItem">
+            <div class="longFormItem">
                 <label class="formLabel">Equipo</label>
                 <select class="formInput" formControlName="team">
                   <option value="">Seleccione un equipo</option>
                   <option *ngFor="let v of teams" [value]="v">{{ v }}</option>
                 </select>
             </div>
-            <div class="longFromItem">
+            <div class="longFormItem">
                 <label class="formLabel">Posición</label>
                 <select class="formInput" formControlName="position">
                   <option class="option" value="">Seleccione una posición</option>
