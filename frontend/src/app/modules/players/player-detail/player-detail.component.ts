@@ -37,9 +37,37 @@ export class PlayerDetailComponent implements OnInit {
 
   }
 
+  stats:{
+    title:string,
+    labels:string[],
+    values:number[]
+
+  }[]=[]
   buildCharts(){
+    this.stats=[{
+      title:"Ataque",
+      labels:["Precisión de centro","Definición", "Precisión cabezasos","Pases cortos", "Voleas"],
+      values:[this.player?.attackingCrossing??0, 
+          this.player?.attackingFinishing??0,
+          this.player?.attackingHeadingAccuracy??0,
+          this.player?.attackingShortPassing??0,
+          this.player?.attackingVolleys??0
+      ]
+      },{
+          title:"Overall",
+          labels:["Velocidad","Remates","Pases", "Regate","Físico", "Defensa",],
+          values:[this.player?.pace??0, 
+            this.player?.shooting??0,
+            this.player?.passing??0,
+            this.player?.dribbling??0,
+            this.player?.physic??0,
+            this.player?.defending??0
+          ]
+
+      }   
+]
     
-    this.player?.stats.forEach(stat => {
+    this.stats.forEach(stat => {
       new Chart(
         document.getElementById(stat.title) as HTMLCanvasElement,{
           type:'radar',
@@ -102,7 +130,7 @@ export class PlayerDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const idParam = this.activeRoute.snapshot.paramMap.get('id');
-    this.getPlayer(2)
+    this.getPlayer(Number(idParam))
   }
 
 }

@@ -1,0 +1,123 @@
+@import "main";
+
+.pageTitle{
+    color: $app-text-color;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 3rem;
+
+}
+
+.editPlayerContainer{
+    width: 80vw;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    justify-self: center;
+    background-color: $app-boxes-background-color;
+    border-radius: 20px;
+    padding:2vh 10vw;
+}
+
+.sectionTitle{
+    color: $app-text-color;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 2rem;
+
+}
+
+.formSection{
+    display: flex;
+    flex-direction: column;
+    gap: 4vh;
+}
+.sectionRow{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    row-gap: 4vh;
+    flex-wrap: wrap;
+    justify-content: space-between
+}
+
+.formLabel{
+    color: $app-text-color;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.longFromItem{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.shortFormItem{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+.formInput{
+    box-sizing: border-box;
+    width: 100%;
+    color: $app-text-color;
+    padding: 0.5rem;
+    text-align: start;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 1px solid $app-input-border;
+    border-radius: 20px;
+
+}
+
+.statArticle{
+    border: 1px solid $app-input-border;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    align-items: stretch;
+    padding: 0vh 1.25vw;
+}
+.statArticleTitle{
+    padding: 0%;
+    margin: 2vh;
+    color: $app-text-color;
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.inputRangeItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1vh;
+}
+
+.inputRangeText{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10vw;
+    
+}
+.inputRangeLabel{
+    color: $app-text-color;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-wrap: wrap;
+    margin-bottom:  0.5vh;
+}
+.inputRangeSpan{
+    color: $app-text-color;
+    font-family: sans-serif;
+    text-align: end;
+    font-weight: 400;
+    font-size: 0.9rem;
+
+}

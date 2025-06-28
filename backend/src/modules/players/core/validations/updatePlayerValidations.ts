@@ -4,15 +4,15 @@ import { IsIn, IsInt, IsNotEmpty, IsNumber, IsOptional, isString, IsString, Leng
 
 export class UpdatePlayerValidations{
     @IsString()
-    @Length(1, 100, { message: 'El nombre completo debe tener entre 1 y 100 caracteres' })
+    @Length(3, 100, { message: 'El nombre completo debe tener entre 1 y 100 caracteres' })
     longName:string='';
 
     @IsString()
     @IsNotEmpty({ message: 'El parametro team no puede ser un string vacio' })
-    team:string=''
+    team?:string
 
     @IsString()
-    @IsNotEmpty({ message: 'El parametro team no puede ser un string vacio' })
+    @IsNotEmpty({ message: 'El parametro positions no puede ser un string vacio' })
     positions:string=''
 
     @Type(() => Number)
@@ -20,8 +20,8 @@ export class UpdatePlayerValidations{
     fifaVersion:number=0;
 
     @IsString()
-    @IsNotEmpty({ message: 'El parametro team no puede ser un string vacio' })
-    playerFaceUrl:string=''
+    @IsNotEmpty({ message: 'El parametro playerFaceUrl no puede ser un string vacio' })
+    playerFaceUrl?:string
 
     @IsNumber()
     @Min(1)
@@ -30,7 +30,7 @@ export class UpdatePlayerValidations{
 
     @IsNumber()
     @Min(18)
-    @Max(50)
+    @Max(40)
     age:number=0
 
     @IsNumber()
@@ -42,24 +42,21 @@ export class UpdatePlayerValidations{
     weightKg:number=0
 
     @IsString()
-    @IsNotEmpty({ message: 'El parametro team no puede ser un string vacio' })
+    @IsNotEmpty({ message: 'El parametro nationality no puede ser un string vacio' })
     nationality:string=''
 
     @IsString()
-    @IsNotEmpty({ message: 'El parametro team no puede ser un string vacio' })
+    @IsNotEmpty({ message: 'El parametro preferredFoot no puede ser un string vacio' })
     preferredFoot:string=''
 
     @IsString()
-    @IsNotEmpty({ message: 'El parametro team no puede ser un string vacio' })
+    @IsNotEmpty({ message: 'El parametro bodyType no puede ser un string vacio' })
     bodyType:string=''
 
     @IsString()
-    @IsNotEmpty({ message: 'El parametro team no puede ser un string vacio' })
-    tags:string=''
+    @IsNotEmpty({ message: 'El parametro traits no puede ser un string vacio' })
+    tratis:string=''
     
-    @Type(() => Number) 
-    @isStatParam()
-    overall:number=0
     @Type(() => Number) 
     @isStatParam()
     pace:number=0

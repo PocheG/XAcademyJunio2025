@@ -271,7 +271,10 @@ playersRouter.get(
  *         description: Lista de equipos registrados
  *         content:
  *           application/json:
- *             type:string[]
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
  *       500:
  *         description: Error interno del servidor
  */
@@ -293,7 +296,10 @@ playersRouter.get(
  *         description: Lista de versiones
  *         content:
  *           application/json:
- *             type:string[]
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
  *       500:
  *         description: Error interno del servidor
  */
@@ -315,7 +321,10 @@ playersRouter.get(
  *         description: Lista de posiciones registradas
  *         content:
  *           application/json:
- *             type:string[]
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
  *       500:
  *         description: Error interno del servidor
  */
@@ -324,6 +333,102 @@ playersRouter.get(
   PlayersController.getPositions
 );
 
+/**
+ * @swagger
+ * /nationalities:
+ *   get:
+ *     summary: Obtiene todos las nacionalidades registradas
+ *     description: Retorna un array con todas las nacionalidades registradas
+ *     tags:
+ *       - Player
+ *     responses:
+ *       200:
+ *         description: Lista de posiciones rnacionalidades
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ *       500:
+ *         description: Error interno del servidor
+ */
+playersRouter.get(
+  "/nationalities",
+  PlayersController.getNationalities
+);
+/**
+ * @swagger
+ * /foot:
+ *   get:
+ *     summary: Obtiene todos los preferredFoots registrados
+ *     description: Retorna un array con todos lo preferredFoots registrados
+ *     tags:
+ *       - Player
+ *     responses:
+ *       200:
+ *         description: Lista de preferredFoots registrados
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ *       500:
+ *         description: Error interno del servidor
+ */
+playersRouter.get(
+  "/foot",
+  PlayersController.getPreferredFoot
+);
+/**
+ * @swagger
+ * /bodyType:
+ *   get:
+ *     summary: Obtiene todos los bodyTypes registrados
+ *     description: Retorna un array con todos los bodyTypes registrados
+ *     tags:
+ *       - Player
+ *     responses:
+ *       200:
+ *         description: Lista de bodyTypes registrados
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ *       500:
+ *         description: Error interno del servidor
+ */
+playersRouter.get(
+  "/bodyType",
+  PlayersController.getBodyTypes
+);
+/**
+ * @swagger
+ * /traits:
+ *   get:
+ *     summary: Obtiene todos los rasgos registrados
+ *     description: Retorna un array con todos las rasgos registrados
+ *     tags:
+ *       - Player
+ *     responses:
+ *       200:
+ *         description: Lista de rasgos registrados
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ *       500:
+ *         description: Error interno del servidor
+ */
+playersRouter.get(
+  "/traits",
+  PlayersController.getTraits
+);
 /**
  * @swagger
  * /{id}:
@@ -382,12 +487,9 @@ playersRouter.get(
  *               bodyType:
  *                 type: string
  *                 description: tipo de cuerpo
- *               tags:
+ *               tratis:
  *                 type: string
- *                 description: etiquetas del jugador
- *               overall:
- *                 type: integer
- *                 description: puntaje general
+ *                 description: rasgos del jugador
  *               pace:
  *                 type: integer
  *                 description: puntaje develocidad

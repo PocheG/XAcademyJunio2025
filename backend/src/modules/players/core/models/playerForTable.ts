@@ -61,7 +61,7 @@ export class PlayerForTable{
     id: number
     fifaVersion: string
     fifaUpdate:string
-    playerFaceURL: string
+    playerFaceUrl: string
     longName: string
     team:string
     positions:string
@@ -77,7 +77,7 @@ export class PlayerForTable{
         this.id=data.id
         this.fifaVersion= data.fifaVersion
         this.fifaUpdate=data.fifaUpdate,
-        this.playerFaceURL= data.playerFaceURL
+        this.playerFaceUrl= data.playerFaceUrl
         this.longName=data.longName
         this.overall= data.overall
         this.team=data.team;

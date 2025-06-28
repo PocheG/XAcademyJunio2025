@@ -20,7 +20,7 @@ export const playerModel = sequelize.define("player", {
         allowNull: false,
         field:"fifa_update"
     },
-    playerFaceURL: {
+    playerFaceUrl: {
         type: DataTypes.STRING,
         allowNull: false,
         field:"player_face_url"

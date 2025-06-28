@@ -24,6 +24,22 @@ export class PlayerService {
     return this.http.get<string[]>(this.url+"/positions")
   }
 
+  getNationalities():Observable<string[]>{
+    return this.http.get<string[]>(this.url+"/nationalities")
+  }
+
+  getPreferredFoots():Observable<string[]>{
+    return this.http.get<string[]>(this.url+"/foot")
+  }
+
+  getBodyTypes():Observable<string[]>{
+    return this.http.get<string[]>(this.url+"/bodyType")
+  }
+
+  getTraits():Observable<string[]>{
+    return this.http.get<string[]>(this.url+"/traits")
+  }
+
   getPaginatedPlayers(pagination:Pagination<Player>,longName:string, advanceFilters:any):Observable<any>{
     let params:any={
       "page":pagination.page.toString(),

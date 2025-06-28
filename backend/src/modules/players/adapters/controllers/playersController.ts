@@ -57,7 +57,7 @@ export class PlayersController{
             const newInfo= plainToInstance( UpdatePlayerValidations, req.body)
 
             const errors= await validate(newInfo)
-            
+
             if(errors.length){
                 const firstConstraint = Object.values(errors[0].constraints || {})[0];
                 throw new BadRequestError(firstConstraint)
@@ -92,6 +92,38 @@ export class PlayersController{
         try{
             const positions= await PlayerService.getPositions()
             res.status(200).send(positions)
+        }catch(error){
+            next(error)
+        }
+    }
+    static async getNationalities(req:Request,res:Response,next:NextFunction){
+        try{
+            const nationalities= await PlayerService.getNationalities()
+            res.status(200).send(nationalities)
+        }catch(error){
+            next(error)
+        }
+    }
+    static async getPreferredFoot(req:Request,res:Response,next:NextFunction){
+        try{
+            const preferredFoot= await PlayerService.getPreferredFoot()
+            res.status(200).send(preferredFoot)
+        }catch(error){
+            next(error)
+        }
+    }
+    static async getTraits(req:Request,res:Response,next:NextFunction){
+        try{
+            const traits= await PlayerService.getTraits()
+            res.status(200).send(traits)
+        }catch(error){
+            next(error)
+        }
+    }
+    static async getBodyTypes(req:Request,res:Response,next:NextFunction){
+        try{
+            const bodyTypes= await PlayerService.getBodyType()
+            res.status(200).send(bodyTypes)
         }catch(error){
             next(error)
         }

@@ -1,57 +1,59 @@
-
-export class Player{
-    id: number
-    fifaVersion: string
-    fifaUpdate:string
-    playerFaceURL: string
-    team:string
-    positions:string
-    longName: string
-    overall: number
-    pace: number
-    age:number
-    shooting: number
-    passing: number
-    dribbling: number
-    defending: number
-    physic: number
-    reputation:number
-    heightCm:number;
-    weightKg:number;
-    nationality:string
-    preferredFoot:string;
-    bodyType:number
-    tags:string[]
-    stats:{        
-        title:string;
-        labels:string[],
-        values:number[]
-    }[]
-
-    constructor(data:any){
-        this.id=data.id
-        this.fifaVersion= data.fifaVersion
-        this.fifaUpdate=data.fifaUpdate,
-        this.playerFaceURL= data.playerFaceURL
-        this.longName=data.longName
-        this.team=data.team
-        this.age=data.age
-        this.positions=data.positions
-        this.overall= data.overall
-        this.pace= data.pace
-        this.shooting= data.shooting
-        this.passing = data.passing
-        this.dribbling= data.dribbling
-        this.defending= data.defending
-        this.physic= data.physic
-        this.reputation= data.reputation
-        this.heightCm= data.heightCm
-        this.weightKg= data.weightKg
-        this.nationality= data.nationality
-        this.preferredFoot = data.preferredFoot
-        this.positions = data.positions
-        this.bodyType = data.bodyType
-        this.tags= data.tags
-        this.stats=data.stats
+export class Player {
+    id: number=0;
+    fifaVersion: string='';
+    fifaUpdate: string='';
+    playerFaceUrl: string='';
+    team: string='';
+    positions: string='';
+    longName: string='';
+    overall: number=0;
+    pace: number=0;
+    age: number=0;
+    shooting: number=0;
+    passing: number=0;
+    dribbling: number=0;
+    defending: number=0;
+    physic: number=0;
+    reputation: number=0;
+    heightCm: number=0;
+    weightKg: number=0;
+    nationality: string='';
+    preferredFoot: string='';
+    bodyType: number=0;
+    traits: string='';
+    attackingCrossing: number=0;
+    attackingFinishing: number=0;
+    attackingHeadingAccuracy: number=0;
+    attackingShortPassing: number=0;
+    attackingVolleys: number=0;
+  
+    constructor(data: any = {}) {
+      this.id = data.id ?? null;
+      this.fifaVersion = data.fifaVersion ?? '';
+      this.fifaUpdate = data.fifaUpdate ?? '';
+      this.playerFaceUrl = data.playerFaceUrl ?? '';
+      this.longName = data.longName ?? '';
+      this.team = data.team ?? '';
+      this.age = data.age ?? 0;
+      this.positions = data.positions ?? '';
+      this.overall = data.overall ?? 0;
+      this.pace = data.pace ?? 0;
+      this.shooting = data.shooting ?? 0;
+      this.passing = data.passing ?? 0;
+      this.dribbling = data.dribbling ?? 0;
+      this.defending = data.defending ?? 0;
+      this.physic = data.physic ?? 0;
+      this.reputation = data.reputation ?? 0;
+      this.heightCm = data.heightCm ?? 0;
+      this.weightKg = data.weightKg ?? 0;
+      this.nationality = data.nationality ?? '';
+      this.preferredFoot = data.preferredFoot ?? '';
+      this.bodyType = data.bodyType ?? 0;
+      this.traits = data.traits ?? '';
+      this.attackingCrossing = data.attackingCrossing ?? 0;
+      this.attackingFinishing = data.attackingFinishing ?? 0;
+      this.attackingHeadingAccuracy = data.attackingHeadingAccuracy ?? 0;
+      this.attackingShortPassing = data.attackingShortPassing ?? 0;
+      this.attackingVolleys = data.attackingVolleys ?? 0;
     }
-}
+  }

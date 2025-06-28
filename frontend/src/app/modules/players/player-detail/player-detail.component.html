@@ -7,7 +7,7 @@ class="page"
   
       <div class="sectionContent">
         <div class="imageContainer">
-          <img [src]="player?.playerFaceURL" />
+          <img [src]="" />
         </div>
   
         <div class="generalInfoColumn">
@@ -65,7 +65,7 @@ class="page"
             </div>
             <div class="infoItem">
                 <label class="infoLabel">Rasgos</label>
-                <span class="infoValue">{{player.tags}}</span>
+                <span class="infoValue">{{player.traits}}</span>
             </div>
             <div class="traitsItem">
                 <label class="infoLabel">Tipo cuerpo</label>
@@ -76,9 +76,9 @@ class="page"
     <div class="statsContainer">
         <h2 class="sectionTitle">Estadísticas</h2>
         <div class="statsList">
-          <div *ngFor="let stats of player.stats" class="statsBox">
+          <div *ngFor="let stat of stats" class="statsBox">
             <div class="chartContainer">
-              <canvas [id]="stats.title"></canvas>
+              <canvas [id]="stat.title"></canvas>
             </div>
           </div>
         </div>

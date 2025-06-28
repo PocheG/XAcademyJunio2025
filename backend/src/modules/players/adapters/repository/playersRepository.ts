@@ -81,7 +81,7 @@ static async getTeams(){
 static async updatePlayer(playerId:number, newInfo:any){ 
   await playerModel.update({
     fifaVersion:newInfo.fifaVersion,
-    playerFaceURL:newInfo.playerFaceURL,
+    playerFaceUrl:newInfo.playerFaceUrl,
     longName: newInfo.longName,
     team:newInfo.team,
     positions:newInfo.positions,
@@ -99,7 +99,7 @@ static async updatePlayer(playerId:number, newInfo:any){
     passing:newInfo.passing,
     dribbling:newInfo.dribbling,
     physic: newInfo.physic,
-    defending: 99,
+    defending: newInfo.defending,
     attackingCrossing:newInfo.attackingCrossing, 
     attackingFinishing:newInfo.attackingFinishing,
     attackingHeadingAccuracy: newInfo.attackingHeadingAccuracy,
@@ -135,7 +135,51 @@ static async getPositions(){
   
 }   
 
+static async getPreferredFoot(){
+  const uniqueFoots:any[] = await playerModel.findAll({
+    attributes: ['preferredFoot'],
+    group: ['preferredFoot'],
+    raw: true,
+  });
   
+  const stringArray: string[] = uniqueFoots.map((element) => element.preferredFoot);
+  return stringArray;
+  
+}   
+static async getNationalities(){
+  const uniqueNationalities:any[] = await playerModel.findAll({
+    attributes: ['nationality'],
+    group: ['nationality'],
+    raw: true,
+  });
+  
+  const stringArray: string[] = uniqueNationalities.map((element) => element.nationality);
+  return stringArray;
+  
+}   
+
+static async getTraits(){
+  const uniqueTraits:any[] = await playerModel.findAll({
+    attributes: ['traits'],
+    group: ['traits'],
+    raw: true,
+  });
+  
+  const stringArray: string[] = uniqueTraits.map((element) => element.traits);
+  return stringArray;
+  
+}   
+static async getBodyTypes(){
+  const uniqueBodyType:any[] = await playerModel.findAll({
+    attributes: ['bodyType'],
+    group: ['bodyType'],
+    raw: true,
+  });
+  
+  const stringArray: string[] = uniqueBodyType.map((element) => element.bodyType);
+  return stringArray;
+  
+}   
 
 
 }

@@ -1,0 +1,231 @@
+<div class="Page">
+    <h1 class="pageTitle">Editar jugador</h1>
+    <div class="editPlayerContainer">
+        <form [formGroup]="playerForm">
+            <section class="formSection">
+                <h2 class="sectionTitle">Información General</h2>
+                <div class="sectionRow">
+                    <div class="longFormItem">
+                        <label class="formLabel">Nombre</label>
+                        <input class="formInput" 
+                        placeholder="Ingrese un nombre"
+                        formControlName="longName">
+                    </div>
+                    <div class="longFormItem">
+                        <label class="formLabel">Nacionalidad</label>
+                        <select class="formInput"
+                        formControlName="nationality">
+                        <option value="">Seleccione una nacionalidad</option>
+                        <option *ngFor="let v of nationalities" [value]="v">{{ v }}</option>
+                        </select>
+                    </div>
+                    <div class="longFormItem">
+                        <label class="formLabel">Equipo</label>
+                        <select class="formInput"
+                        formControlName="team">
+                        <option value="">Seleccione un equipo</option>
+                        <option *ngFor="let v of teams" [value]="v">{{ v }}</option>
+                        </select>
+                    </div>
+                    <div class="longFormItem">
+                        <label class="formLabel">Reputación</label>
+                        <input class="formInput" placeholder="5"
+                        formControlName="reputation">
+                    </div>
+
+                </div>
+                <div class="sectionRow">
+                    <div class="shortFormItem">
+                        <label class="formLabel">Edad</label>
+                        <input class="formInput" placeholder="22"
+                        formControlName="age">
+                    </div>
+                    <div class="shortFormItem">
+                        <label class="formLabel">Altura</label>
+                        <input class="formInput" placeholder="170"
+                        formControlName="heightCm">
+                    </div>
+                    <div class="shortFormItem">
+                        <label class="formLabel">Peso</label>
+                        <input class="formInput" placeholder="70"
+                        formControlName="weightKg">
+                    </div>
+                    <div class="shortFormItem">
+                        <label class="formLabel">Versión</label>
+                        <select class="formInput"
+                        formControlName="fifaVersion">
+                        <option value="">Seleccione un equipo</option>
+                        <option *ngFor="let v of versions" [value]="v">{{ v }}</option>
+                        </select>
+                    </div>
+                    <div class="longFormItem">
+                        <label class="formLabel">Image (url)</label>
+                        <input class="formInput" placeholder="Ingrese una url"
+                        formControlName="playerFaceUrl">
+                    </div>
+
+                </div>
+                
+            </section>
+            <section class="formSection">
+                <h2 class="sectionTitle">Características</h2>
+                <div class="longFromItem">
+                    <label class="formLabel">Pie preferido</label>
+                    <select class="formInput"
+                      formControlName="preferredFoot"
+                    >
+                      <option >Seleccione un pie</option>
+                      <option *ngFor="let v of preferredFoots" [value]="v">{{ v }}</option>
+                    </select>
+                </div>
+                <div class="longFromItem">
+                    <label class="formLabel">Posiciones jugadas</label>
+                    <select class="formInput"
+                      formControlName="positions"
+                    >
+                      <option value="">Seleccione una posicion</option>
+                      <option *ngFor="let v of positions" [value]="v">{{ v }}</option>
+                    </select>
+                </div>
+                <div class="longFromItem">
+                    <label class="formLabel">Rasgos</label>
+                    <select class="formInput"
+                      formControlName="traits"
+                    >
+                      <option value="">Seleccione un rasgo</option>
+                      <option *ngFor="let v of traits" [value]="v">{{ v }}</option>
+                    </select>
+                </div>
+                <div class="longFromItem">
+                    <label class="formLabel">Tipo de cuerpo</label>
+                    <select class="formInput"
+                    formControlName="bodyType">
+                      <option value="">Seleccione un tipo</option>
+                      <option *ngFor="let v of bodyTypes" [value]="v">{{ v }}</option>
+                    </select>
+                </div>
+                
+            </section>
+            <section class="formSection">
+                <h2 class="sectionTitle">Estadísticas</h2>
+                <article class="statArticle">
+                    <h3 class="statArticleTitle">Ataque</h3>
+                    <div class="inputRangeItem">
+                        <div class="inputRangeText">
+                            <label class="inputRangeLabel">Precisión de centros</label>
+                            <span class="inputRangeSpan">{{this.playerForm.get("attackingCrossing")?.value}}</span>
+                        </div>
+                        <input type="range" class="inputRange" 
+                        formControlName="attackingCrossing"
+                        [max]="100"
+                        [ngStyle]="{'accent-color': getInputRangeColor('attackingCrossing')}"max="99">
+                    </div>
+                    <div class="inputRangeItem">
+                        <div class="inputRangeText">
+                            <label class="inputRangeLabel">Definición</label>
+                            <span class="inputRangeSpan">{{this.playerForm.get("attackingFinishing")?.value}}</span>
+                        </div>
+                        <input type="range" class="inputRange" 
+                        formControlName="attackingFinishing"
+                        [max]="100"
+                        [ngStyle]="{'accent-color': getInputRangeColor('attackingFinishing')}"max="99">
+                    </div>
+                    <div class="inputRangeItem">
+                        <div class="inputRangeText">
+                            <label class="inputRangeLabel">Precisión de cabezasos</label>
+                            <span class="inputRangeSpan">{{this.playerForm.get("attackingHeadingAccuracy")?.value}}</span>
+                        </div>
+                        <input type="range" class="inputRange" 
+                        formControlName="attackingHeadingAccuracy"
+                        [max]="100"
+                        [ngStyle]="{'accent-color': getInputRangeColor('attackingHeadingAccuracy')}"max="99">
+                    </div>
+                    <div class="inputRangeItem">
+                        <div class="inputRangeText">
+                            <label class="inputRangeLabel">Pases cortos</label>
+                            <span class="inputRangeSpan">{{this.playerForm.get("attackingShortPassing")?.value}}</span>
+                        </div>
+                        <input type="range" class="inputRange" 
+                        formControlName="attackingShortPassing"
+                        [max]="100"
+                        [ngStyle]="{'accent-color': getInputRangeColor('attackingShortPassing')}"max="99">
+                    </div>
+                    <div class="inputRangeItem">
+                        <div class="inputRangeText">
+                            <label class="inputRangeLabel">Voleas</label>
+                            <span class="inputRangeSpan">{{this.playerForm.get("attackingVolleys")?.value}}</span>
+                        </div>
+                        <input type="range" class="inputRange" 
+                        formControlName="attackingVolleys"
+                        [max]="100"
+                        [ngStyle]="{'accent-color': getInputRangeColor('attackingVolleys')}"max="99">
+                    </div>
+                </article>
+                <article class="statArticle">
+                    <h3 class="statArticleTitle">Overall</h3>
+                    <div class="inputRangeItem">
+                        <div class="inputRangeText">
+                            <label class="inputRangeLabel">Velocidad</label>
+                            <span class="inputRangeSpan">{{this.playerForm.get("pace")?.value}}</span>
+                        </div>
+                        <input type="range" class="inputRange" 
+                        formControlName="pace"
+                        [max]="100"
+                        [ngStyle]="{'accent-color': getInputRangeColor('pace')}"max="99">
+                    </div>
+                    <div class="inputRangeItem">
+                        <div class="inputRangeText">
+                            <label class="inputRangeLabel">Remates</label>
+                            <span class="inputRangeSpan">{{this.playerForm.get("shooting")?.value}}</span>
+                        </div>
+                        <input type="range" class="inputRange" 
+                        formControlName="shooting"
+                        [max]="100"
+                        [ngStyle]="{'accent-color': getInputRangeColor('shooting')}"max="99">
+                    </div>
+                    <div class="inputRangeItem">
+                        <div class="inputRangeText">
+                            <label class="inputRangeLabel">Pases</label>
+                            <span class="inputRangeSpan">{{this.playerForm.get("passing")?.value}}</span>
+                        </div>
+                        <input type="range" class="inputRange" 
+                        formControlName="passing"
+                        [max]="100"
+                        [ngStyle]="{'accent-color': getInputRangeColor('passing')}"max="99">
+                    </div>
+                    <div class="inputRangeItem">
+                        <div class="inputRangeText">
+                            <label class="inputRangeLabel">Regates</label>
+                            <span class="inputRangeSpan">{{this.playerForm.get("dribbling")?.value}}</span>
+                        </div>
+                        <input type="range" class="inputRange" 
+                        formControlName="dribbling"
+                        [max]="100"
+                        [ngStyle]="{'accent-color': getInputRangeColor('dribbling')}"max="99">
+                    </div>
+                    <div class="inputRangeItem">
+                        <div class="inputRangeText">
+                            <label class="inputRangeLabel">Físico</label>
+                            <span class="inputRangeSpan">{{this.playerForm.get("physic")?.value}}</span>
+                        </div>
+                        <input type="range" class="inputRange" 
+                        formControlName="physic"
+                        [max]="100"
+                        [ngStyle]="{'accent-color': getInputRangeColor('physic')}"max="99">
+                    </div>
+                    <div class="inputRangeItem">
+                        <div class="inputRangeText">
+                            <label class="inputRangeLabel">Defensa</label>
+                            <span class="inputRangeSpan">{{this.playerForm.get("defending")?.value}}</span>
+                        </div>
+                        <input type="range" class="inputRange" 
+                        formControlName="defending"
+                        [max]="100"
+                        [ngStyle]="{'accent-color': getInputRangeColor('defending')}"max="99">
+                    </div>
+                </article>
+            </section>
+
+        </form>
+    </div>
+</div>

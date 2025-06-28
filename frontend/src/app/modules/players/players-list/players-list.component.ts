@@ -116,6 +116,9 @@ export class PlayersListComponent implements OnInit{
   tableOptions:tableOption<Player>[]=[{
     label:"Ver jugador",
     action:(player:Player)=>this.router.navigate(["detail",player.id])
+  },{
+    label:"Editar jugador",
+    action:(player:Player)=>this.router.navigate(["edit",player.id])
   }]
   rows:Player[]=[] 
   onPageChange(page: number) {
@@ -184,6 +187,7 @@ export class PlayersListComponent implements OnInit{
   openSibebar(){
     this.isSidebarOpen=true
   }
+  
   getVersions(){ 
     this.subscription.add(this.playerService.getVersions().subscribe({
       next:res=>{

@@ -57,4 +57,10 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 - El loading de las estadisticas los deje como circulos, admito que me gustaria darle una forma mas cercana al gráfico si me da el tiempo.
 
 ## Septimo commit
-- Si bien la consiga dice que el actualizar son menos campos, me parecia corrector el ofrecer la posibilidad de editar los campos que el detalle del jugador te muestra. 
+- Si bien la consiga dice que el actualizar son menos campos, me parecia correcto el ofrecer la posibilidad de editar los campos que el detalle del jugador te muestra. 
+
+## Octavo commit
+- Agregue endpoints para otros datos ya definidos en la base de datos, me parece correcto que si ya existen cosas como los rasgos de los jugadores, deberian mostrarse como opciones en lugar de que el usuario ingrese un texto plano.
+
+### Noveno commit
+- Inicialmente devolvia los stats del jugador desde el back ya armado porque me parecio mas directo que venga la información ya acomodada para pasarselo a la función que arma el gráfico. Ahora me estoy dando cuenta que hacer eso hace que tomar los valores para setear cada estadística individual en el formulario de actualizar jugador sea completamente impractico, asi que en este commit pienso hacer ese cambio.

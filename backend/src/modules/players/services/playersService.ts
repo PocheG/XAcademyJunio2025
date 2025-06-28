@@ -22,7 +22,10 @@ export class PlayerService{
   }
 
   static async getTeams(){
-    return await PlayersRepository.getTeams()
+    const teams= await PlayersRepository.getTeams()
+    const sortedTeams=teams.sort()
+    const noEmptyTeams=sortedTeams.filter((team)=>team!=='')
+    return noEmptyTeams
   }
 
   static async getVersions(){
@@ -31,12 +34,44 @@ export class PlayerService{
 
   static async getPositions(){
     const positions:string[]=await PlayersRepository.getPositions()
+    console.log(positions)
     //crea un array de string con 1 valor por posicion, eliminando espacios adicionales
     const allUnified= positions.flatMap((element)=>element.split(",")).map((pos) => pos.trim());
     
-    //crea un array de unicos
-    const uniquePositions = [...new Set(allUnified)];
-    return uniquePositions
+    const uniqueTraits = Array.from(new Set(allUnified));
+    const sortedPositions =uniqueTraits.sort();
+    return sortedPositions
+  }
+
+  static async getNationalities(){
+    const nationalities=await PlayersRepository.getNationalities()
+    const sortedNationalities=nationalities.sort()
+    return sortedNationalities
+  }
+  static async getPreferredFoot(){
+    return await PlayersRepository.getPreferredFoot()
+
+  }
+
+  static async getTraits(){
+    const traits:string[]=await PlayersRepository.getTraits()
+
+    const allUnified= traits.flatMap((element)=>element.split(", ")).map((pos) => pos.trim());
+
+    const uniqueTraits = Array.from(new Set(allUnified));
+
+    const sortedTraits= uniqueTraits.sort()
+    return sortedTraits;
+  }
+
+  static async getBodyType(){
+    const bodyTypes:string[]=await PlayersRepository.getBodyTypes()
+    
+    const allUnified=  bodyTypes.flatMap((element)=>element.split(",")).map((pos) => pos.trim());
+
+    const sortedBodyTypes= allUnified.sort()
+    
+    return sortedBodyTypes
   }
 
 };
