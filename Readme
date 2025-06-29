@@ -85,3 +85,6 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 
 ## Commit 16
 - Claramente la autenticación es algo general de todo el sistema, por lo que cree un módulo nuevo en el back y una nueva tabla en la base de datos para hacer el login. Decidi tener dos services separados en el modulo por tema de cohesión: si bien los dos hacen cosas relativas al login, el de usuario maneja claramente a la entendidad de usuario en el sistema mientras que le otro maneja el json web token. Me ha parecido mas organizado separarlos y que el service de usuario utilice el servicio del jsonwebtoken.
+
+## Commit 17
+- Como es evidente, cree un middleware para controlar el acceso a las rutas solo para los usuario logeados. Se llamara a dicho middleware desde el router general de la aplicación ya que pensaba usarlo en el index, pero el tener la ruta auth dentro del router general de la aplicación me lo impide( siendo que claramente la petición de login no requiere token).
