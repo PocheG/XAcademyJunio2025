@@ -13,6 +13,9 @@ export class NavigationComponent {
     items:[{
       label:"Listado de jugadores",
       route:"players/"
+    },{
+      label:"Nuevo jugador",
+      route:"/players/new-player"
     }]
   }]
   isMobile = false;

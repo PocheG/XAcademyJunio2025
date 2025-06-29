@@ -23,15 +23,15 @@ export class PlayerDetailComponent implements OnInit {
     this.subscription.add(this.playerService.getPlayerById(id).subscribe({
       next:res => {
         this.player=new Player(res)
-        setTimeout(() => {
-          this.buildCharts();
-        }, 0);
       },
       error:error=>{
         this.requestError=error.status
       },
       complete:()=>{
+        setTimeout(() => {
         this.isLoading=false
+          this.buildCharts();
+        }, 3000);
       }
     }))
 

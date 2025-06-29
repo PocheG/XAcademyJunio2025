@@ -1,7 +1,7 @@
 export type NavigationItem={
     label:string,
-    items:[{
+    items:{
         label:string,
         route:string,
-    }]
+    }[]
 }

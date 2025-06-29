@@ -160,7 +160,9 @@ export class PlayersListComponent implements OnInit{
         error=true
       },
       complete:()=>{
+        setTimeout(() => {
         this.isLoading=false
+        }, 3000);
       }
     }))
   } 

@@ -79,6 +79,7 @@ static async getTeams(){
 }
 
 static async updatePlayer(playerId:number, newInfo:any){ 
+  const newOverall:number=(newInfo.pace+newInfo.shooting+newInfo.passing+newInfo.dribbling+newInfo.physic+newInfo.defending)/6
   await playerModel.update({
     fifaVersion:newInfo.fifaVersion,
     playerFaceUrl:newInfo.playerFaceUrl,
@@ -93,7 +94,7 @@ static async updatePlayer(playerId:number, newInfo:any){
     preferredFoot:newInfo.preferredFoot,
     bodyType:newInfo.bodyType,
     traits:newInfo.traits,
-    overall:newInfo.overall,
+    overall:parseInt(newOverall.toString()),
     pace:newInfo.pace,
     shooting:newInfo.shooting,
     passing:newInfo.passing,
@@ -110,6 +111,40 @@ static async updatePlayer(playerId:number, newInfo:any){
   }
     
   )
+}
+
+static async insertNewPlayer(newInfo:any){
+    const newOverall:number=(newInfo.pace+newInfo.shooting+newInfo.passing+newInfo.dribbling+newInfo.physic+newInfo.defending)/6
+    const newPlayerId=await playerModel.create({
+      fifaVersion:newInfo.fifaVersion,
+      playerFaceUrl:newInfo.playerFaceUrl,
+      fifaUpdate:1,
+      longName: newInfo.longName,
+      team:newInfo.team,
+      positions:newInfo.positions,
+      potentiaL:99,
+      reputation: newInfo.reputation,
+      age:newInfo.age,
+      heightCm:newInfo.heightCm,
+      weightKg:newInfo.weightKg,
+      nationality:newInfo.nationality,
+      preferredFoot:newInfo.preferredFoot,
+      bodyType:newInfo.bodyType,
+      traits:newInfo.traits,
+      overall:parseInt(newOverall.toString()),
+      pace:newInfo.pace,
+      shooting:newInfo.shooting,
+      passing:newInfo.passing,
+      dribbling:newInfo.dribbling,
+      physic: newInfo.physic,
+      defending: newInfo.defending,
+      attackingCrossing:newInfo.attackingCrossing, 
+      attackingFinishing:newInfo.attackingFinishing,
+      attackingHeadingAccuracy: newInfo.attackingHeadingAccuracy,
+      attackingShortPassing:newInfo.attackingShortPassing,
+      attackingVolleys: newInfo.attackingVolleys
+    })
+    return new PlayerById(newPlayerId).id
 }
 
 static async getVersions(){

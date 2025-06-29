@@ -21,6 +21,10 @@ export class PlayerService{
     return await PlayersRepository.updatePlayer(playerId, newInfo)
   }
 
+  static async insertNewPlayer(newInfo:any){
+    return await PlayersRepository.insertNewPlayer(newInfo)
+  }
+
   static async getTeams(){
     const teams= await PlayersRepository.getTeams()
     const sortedTeams=teams.sort()

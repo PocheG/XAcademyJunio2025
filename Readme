@@ -76,3 +76,6 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 
 ## Commit 13
 - Al terminar con la modificación del jugador, decidi que lo mejor era navegar a la ventana del detalle del mismo para que se pueda confirmar que los cambios efectivamente fueron efectuados en el sistema.
+
+## Commit 14
+- Decidi hacer que el alta devolviera el id del jugador creado para que, al confirmarse el alta, se pueda redireccionar al usuario a la ventana de consultar jugador, asi como lo hice con la actualización.

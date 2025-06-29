@@ -429,6 +429,106 @@ playersRouter.get(
   "/traits",
   PlayersController.getTraits
 );
+
+/**
+ * @swagger
+ * /:
+ *   post:
+ *     summary: Nuevo jugador
+ *     description: Crea un nuevo jugador con los parametros del body
+ *     tags:
+ *       - Player
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               fifaVersion:
+ *                 type: integer
+ *                 description: version del jugador
+ *               playerFaceUrl:
+ *                 type: string
+ *                 description: url de la cara del jugador
+ *               longName:
+ *                 type: number
+ *                 description: nombre completo del jugador
+ *               team:
+ *                 type: string
+ *                 description: nombre del equipo
+ *               positions:
+ *                 type: string
+ *                 description: posiciones que ocupa el jugador
+ *               reputation:
+ *                 type: integer
+ *                 description: reputación internacional
+ *               age:
+ *                 type: integer
+ *                 description: edad
+ *               heightCm:
+ *                 type: integer
+ *                 description: Altura en centimetros
+ *               weightKg:
+ *                 type: integer
+ *                 description: Peso en kg
+ *               nationality:
+ *                 type: string
+ *                 description:  nacionalidad
+ *               preferredFoot:
+ *                 type: string
+ *                 description: pie habil
+ *               bodyType:
+ *                 type: string
+ *                 description: tipo de cuerpo
+ *               tratis:
+ *                 type: string
+ *                 description: rasgos del jugador
+ *               pace:
+ *                 type: integer
+ *                 description: puntaje develocidad
+ *               shooting:
+ *                 type: integer
+ *                 description: puntaje de remates
+ *               passing:
+ *                 type: integer
+ *                 description: puntaje de pases
+ *               dribbling:
+ *                 type: integer
+ *                 description: puntaje de regates
+ *               physic:
+ *                 type: integer
+ *                 description: puntaje de físico
+ *               defending:
+ *                 type: integer
+ *                 description: puntaje de defensa
+ *               attackingCrossing:
+ *                 type: integer
+ *                 description: puntaje de precisión de centro
+ *               attackingFinishing:
+ *                 type: integer
+ *                 description: puntaje de definición
+ *               attackingHeadingAccuracy:
+ *                 type: integer
+ *                 description: puntaje de precisión de cabezasos
+ *               attackingShortPassing:
+ *                 type: integer
+ *                 description: puntaje de pases cortos
+ *               attackingVolleys:
+ *                 type: integer
+ *                 description:  puntaje de voleas
+ *     responses:
+ *       200:
+ *         description: jugador creado
+ *       400:
+ *         description: Request Error
+ *       500:
+ *         description: Error interno del servidor
+ */
+playersRouter.post(
+  "",
+  PlayersController.insertNewPlayer
+)
 /**
  * @swagger
  * /{id}:

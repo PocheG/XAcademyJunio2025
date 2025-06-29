@@ -71,6 +71,26 @@ export class PlayersController{
 
     }
 
+    static async insertNewPlayer(req:Request,res:Response,next:NextFunction){
+        try{
+            console.log(req.body)
+            const newPlayer= plainToInstance( UpdatePlayerValidations, req.body)
+
+            const errors= await validate(newPlayer)
+
+            if(errors.length){
+                const firstConstraint = Object.values(errors[0].constraints || {})[0];
+                throw new BadRequestError(firstConstraint)
+            }
+            const player= await PlayerService.insertNewPlayer(newPlayer)
+            console.log(player)
+            res.status(200).send(player)
+        }catch(error){
+            next(error)
+        }
+
+    }
+
     static async getTeams(req:Request,res:Response,next:NextFunction){
         try{
             const teams= await PlayerService.getTeams()

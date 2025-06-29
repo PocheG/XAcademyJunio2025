@@ -6,10 +6,11 @@ import { PlayersListComponent } from './players-list/players-list.component';
 import { ComponentModule } from '../../components/component.index';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { EditPlayerComponent } from './edit-player/edit-player.component';
+import { NewPlayerComponent } from './new-player/new-player.component';
 
 
 @NgModule({
-  declarations: [PlayersListComponent, PlayerDetailComponent, EditPlayerComponent],
+  declarations: [PlayersListComponent, PlayerDetailComponent, EditPlayerComponent, NewPlayerComponent],
   imports: [
     CommonModule,
     PlayersRoutingModule,

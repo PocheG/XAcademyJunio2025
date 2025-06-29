@@ -89,6 +89,12 @@ export const playerModel = sequelize.define("player", {
         field:"body_type"
 
     },
+    potential: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field:"potential",
+        defaultValue:90
+    },
     overall: {
         type: DataTypes.INTEGER,
         allowNull: false,

@@ -1,28 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { PlayerService } from '../../../service/player-service';
-import { Player } from '../../../models/player';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { version } from 'os';
-import { get } from 'http';
+import { Player } from '../../../models/player';
+import { PlayerService } from '../../../service/player-service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationModalService } from '../../../layout/confirmation-modal/service/confirmationModalService';
-import { ModalIconEnum } from '../../../layout/confirmation-modal/models/ModalProps';
 import { loadingScreenService } from '../../../layout/loading-screen/service/loadingScreenService';
-import { response } from 'express';
+import { ModalIconEnum } from '../../../layout/confirmation-modal/models/ModalProps';
 
 @Component({
-  selector: 'app-edit-player',
-  templateUrl: './edit-player.component.html',
-  styleUrl: './edit-player.component.scss'
+  selector: 'app-new-player',
+  templateUrl: './new-player.component.html',
+  styleUrl: './new-player.component.scss'
 })
-export class EditPlayerComponent implements OnInit{
+export class NewPlayerComponent implements OnInit{
 
   subscription= new Subscription()
 
   playerForm:FormGroup
-  isLoading:boolean=true
-  requestError:number|null=null
 
   player:Player=new Player()
   constructor(
@@ -34,7 +29,7 @@ export class EditPlayerComponent implements OnInit{
     private router: Router
   ){ 
     this.player=new Player()
-    console.log(this.player)
+    
     this.playerForm = this.fb.group({
       longName:[this.player.longName,[
         Validators.required,
@@ -150,7 +145,6 @@ export class EditPlayerComponent implements OnInit{
       if(fieldErrors['min']) return `ESte campo no puede ser menor a ${fieldErrors['min'].min}`
       if(fieldErrors['max']) return `ESte campo no puede ser mayor a ${fieldErrors['max'].max}`
 
-
     }
     return ''
    }
@@ -163,23 +157,7 @@ export class EditPlayerComponent implements OnInit{
   traits: string[]=[]
   bodyTypes:string[]=[]
 
-  getPlayer(id:number){
-    this.subscription.add(this.playerService.getPlayerById(id).subscribe({
-      next:res => {
-        this.player=new Player(res)
-        this.playerForm.patchValue(this.player); 
-      },
-      error:error=>{
-        console.log(error)
-        this.requestError=error.status
-      },
-      complete:()=>{
-        setTimeout(() => {
-        this.isLoading=false
-        }, 3000);
-      }
-    }))
-  }
+  
   getVersions(){ 
     this.subscription.add(this.playerService.getVersions().subscribe({
       next:res=>{
@@ -271,8 +249,8 @@ export class EditPlayerComponent implements OnInit{
       })
     }else{
       this.confirmationModalService.openModal({
-        title:"Confirmar edición",
-        message:`¿Desea guardar los cambios sobre el/la jugador/a ${this.player.longName} en la versión ${this.player.fifaVersion}? Podra editar los cambios mas tarde.`,
+        title:"Confirmar registro",
+        message:`¿Desea registrar a el/la jugador/a ${this.playerForm.get('longName')} en la versión ${this.playerForm.get('fifaVersion')}? Podra editarlo/a mas tarde.`,
         reject:{
           title:"Cancelar",
           action:()=>{
@@ -283,20 +261,20 @@ export class EditPlayerComponent implements OnInit{
           title:"Aceptar",
           action:()=>{
             this.confirmationModalService.closeModal()
-            this.loadingService.showLoadingScreen('Guardando cambios...')
-            this.playerService.updatePlayer(this.player.id,this.playerForm.value).subscribe(
+            this.loadingService.showLoadingScreen('Registrando jugador...')
+            this.playerService.insertNewPlayer(this.playerForm.value).subscribe(
               response=>{
                 setTimeout(() => {
                 this.loadingService.showLoadingScreen(null)
                 }, 3000);
                 this.confirmationModalService.openModal({
                   icon:ModalIconEnum.ok,
-                  title:"Jugador actualizado",
-                  message:"Se ha guardado la nueva información con éxito",
+                  title:"Jugador registrado",
+                  message:"Se ha confirmado el registro con éxito",
                   accept:{
                     title:"Aceptar",
                     action:()=>{
-                      this.router.navigate(["/detail",this.player.id])
+                      this.router.navigate(["/detail",response.id])
                       this.confirmationModalService.closeModal()
                     }
                   }
@@ -334,7 +312,6 @@ export class EditPlayerComponent implements OnInit{
     this.getTeams()
     this.getTraits()
     this.getVersions()
-    this.getPlayer(Number(idParam))
   }
   rangeValue:number=99
 
