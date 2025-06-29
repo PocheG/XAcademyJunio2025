@@ -1,0 +1,105 @@
+@import "main";
+
+.backgroundImage{
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left:0;
+}
+
+.loginSection{
+    position: relative;    
+    z-index: 101;     
+    width: fit-content;         
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;  
+    justify-self: center;   
+    justify-content: center;   
+    padding: 2rem;
+    background-color: $app-boxes-background-color;
+    border-radius: 20px;
+}
+
+.fifaLogo{
+    max-height: 20rem;
+    max-width: 20rem
+}
+
+.formSection{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 500vh;
+    gap: 10vh;
+    min-width: 60vw;
+}
+.sectionRow{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    row-gap: 4vh;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.formLabel{
+    color: $app-text-color;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.formItem{
+    display: flex;
+    flex-direction: column;
+    margin: 2.5vh 0vh;
+    gap: 3vh;
+}
+
+.formInput{
+    box-sizing: border-box;
+    width: 100%;
+    color: $app-text-color;
+    padding: 0.5rem;
+    text-align: start;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 1px solid $app-input-border;
+    border-radius: 20px;
+}
+.searchFooterButton{
+    background-color: $app-green-button;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: Roboto;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 20px;
+    border:none;
+    cursor: pointer;
+    @include respond(smallLaptop){
+        padding: 0.5rem 1rem;
+    }
+    @include respond(mediumLaptop){
+        padding: 0.5rem 1rem;
+    }
+    @include respond(mediumDesktop){
+        padding: 0.45rem 0.45rem;
+    }
+    @include respond(bigDesktop){
+        padding: 0.5rem 0.5rem;
+    }
+    
+}
+.formInputError{
+    color: $app-error;
+    font-family: sans-serif;
+    font-size: 0.75;
+    text-align: start;
+    text-justify:distribute;
+}

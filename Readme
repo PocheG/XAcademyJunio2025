@@ -81,10 +81,13 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 - Decidi hacer que el alta devolviera el id del jugador creado para que, al confirmarse el alta, se pueda redireccionar al usuario a la ventana de consultar jugador, asi como lo hice con la actualización.
 
 ## Commit 15
-- El insertar un nuevo jugador lo implemente de forma similar al modificar un jugador, por lo que no hay mucho que comentar al respecto.
-
+- El insertar un nuevo jugador lo implemente de forma similar al modificar un jugador por las razones ya aclaradas en figma, por lo que no hay mucho que comentar al respecto. 
 ## Commit 16
 - Claramente la autenticación es algo general de todo el sistema, por lo que cree un módulo nuevo en el back y una nueva tabla en la base de datos para hacer el login. Decidi tener dos services separados en el modulo por tema de cohesión: si bien los dos hacen cosas relativas al login, el de usuario maneja claramente a la entendidad de usuario en el sistema mientras que le otro maneja el json web token. Me ha parecido mas organizado separarlos y que el service de usuario utilice el servicio del jsonwebtoken.
 
 ## Commit 17
 - Como es evidente, cree un middleware para controlar el acceso a las rutas solo para los usuario logeados. Se llamara a dicho middleware desde el router general de la aplicación ya que pensaba usarlo en el index, pero el tener la ruta auth dentro del router general de la aplicación me lo impide( siendo que claramente la petición de login no requiere token).
+
+## Commit 18
+- Si bien esta es la única funcionalidad solicitada en el challenge respecto a usuario o autenticación, la ventana de login decidi colocarla en un módulo nuevo, ya que si fuera un proyecto real, ahi se podria incluir la ventana para registrar un nuevo usuario, por poner un ejemplo.
+

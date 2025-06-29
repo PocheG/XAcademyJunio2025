@@ -15,11 +15,9 @@ export class userController{
                 throw new BadRequestError('El parametro password es requerido')
             }
 
-            const userExsist= await UserService.login(userName,password)
+            const token= await UserService.login(userName,password)
 
-            const token= jwtService.sign({userExsist})
-
-            res.status(200).send(token)
+            res.status(200).send({token})
         }catch(error){
             next(error)
         }

@@ -1,0 +1,24 @@
+
+<img class="backgroundImage" src="assets/login-background.jpg">
+    <div class="loginSection">
+        <img 
+        class="fifaLogo"
+        src="assets/fifa-logo.png" alt="Logo">
+        <form class="loginForm" [formGroup]="userForm" (ngSubmit)="handleSubmit()">
+            <div class="formItem">
+                <label class="formLabel">Nombre</label>
+                <input class="formInput" 
+                placeholder="Ingrese un nombre"
+                formControlName="userName">
+                <span class="formInputError">{{getFieldError('userName')}}</span>
+            </div>
+            <div class="formItem">
+                <label class="formLabel">Nacionalidad</label>
+                <input class="formInput"
+                formControlName="password">
+                <span class="formInputError">{{getFieldError('password')}}</span>
+            </div>
+            <button class="searchFooterButton" type="submit">Iniciar sesión</button>
+        </form>
+    
+</div>
