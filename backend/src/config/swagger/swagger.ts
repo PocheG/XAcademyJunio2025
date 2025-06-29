@@ -13,6 +13,10 @@ const options: Options = {
         url: 'http://localhost:8080/api/players',
         description: 'local server',
       },
+      {
+        url: 'http://localhost:8080/api/auth',
+        description: 'local server',
+      },
     ],
   },
   apis: ['src/modules/*/*.ts',

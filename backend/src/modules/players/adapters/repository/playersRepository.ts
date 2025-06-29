@@ -11,7 +11,7 @@ export class PlayersRepository{
 
   static async getPaginatedPlayers (filters:any):Promise<PaginatedPlayersResponse> {
     const where:any={}
-    if (filters.longName) where.longName = { [Op.like]: `%${filters.longName}%` };
+    if (filters.longName) where.longName = { [Op.iLike]: `%${filters.longName}%` };
     if (filters.fifaVersion) where.fifaVersion = { [Op.like]: `${filters.fifaVersion}` };
     if (filters.fifaUpdate ==='true') {
       const maxUpdate = await playerModel.max('fifaUpdate');
@@ -34,6 +34,7 @@ export class PlayersRepository{
     const orderBy = filters.orderBy || 'id';
     const orderDirection = filters.orderDirection?.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
 
+    console.log(where)
     const players = await playerModel.findAll({
       where,
       limit: parsedPageSize,

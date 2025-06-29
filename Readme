@@ -79,3 +79,9 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 
 ## Commit 14
 - Decidi hacer que el alta devolviera el id del jugador creado para que, al confirmarse el alta, se pueda redireccionar al usuario a la ventana de consultar jugador, asi como lo hice con la actualización.
+
+## Commit 15
+- El insertar un nuevo jugador lo implemente de forma similar al modificar un jugador, por lo que no hay mucho que comentar al respecto.
+
+## Commit 16
+- Claramente la autenticación es algo general de todo el sistema, por lo que cree un módulo nuevo en el back y una nueva tabla en la base de datos para hacer el login. Decidi tener dos services separados en el modulo por tema de cohesión: si bien los dos hacen cosas relativas al login, el de usuario maneja claramente a la entendidad de usuario en el sistema mientras que le otro maneja el json web token. Me ha parecido mas organizado separarlos y que el service de usuario utilice el servicio del jsonwebtoken.
