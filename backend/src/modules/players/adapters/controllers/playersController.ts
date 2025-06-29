@@ -53,7 +53,6 @@ export class PlayersController{
                 throw new BadRequestError("La variable id del path debe ser un número y es requerida")
 
             }
-            console.log(req.body)
             const newInfo= plainToInstance( UpdatePlayerValidations, req.body)
 
             const errors= await validate(newInfo)
@@ -73,7 +72,6 @@ export class PlayersController{
 
     static async insertNewPlayer(req:Request,res:Response,next:NextFunction){
         try{
-            console.log(req.body)
             const newPlayer= plainToInstance( UpdatePlayerValidations, req.body)
 
             const errors= await validate(newPlayer)
@@ -83,7 +81,6 @@ export class PlayersController{
                 throw new BadRequestError(firstConstraint)
             }
             const player= await PlayerService.insertNewPlayer(newPlayer)
-            console.log(player)
             res.status(200).send(player)
         }catch(error){
             next(error)

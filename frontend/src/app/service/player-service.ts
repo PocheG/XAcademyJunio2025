@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Pagination } from '../components/table/models/Pagination';
@@ -12,32 +12,46 @@ export class PlayerService {
   constructor(private http: HttpClient) { }
   url:string='http://localhost:8080/api/players'
 
+
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage?.getItem('token') || '';
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  }
   getVersions():Observable<string[]>{
-    return this.http.get<string[]>(this.url+"/versions")
+    const headers=this.getAuthHeaders()
+    return this.http.get<string[]>(this.url+"/versions",{headers})
   }
 
   getTeams():Observable<string[]>{
-    return this.http.get<string[]>(this.url+"/teams")
+    const headers=this.getAuthHeaders()
+    return this.http.get<string[]>(this.url+"/teams",{headers})
   }
 
   getPositions():Observable<string[]>{
-    return this.http.get<string[]>(this.url+"/positions")
+    const headers=this.getAuthHeaders()
+    return this.http.get<string[]>(this.url+"/positions",{headers})
   }
 
   getNationalities():Observable<string[]>{
-    return this.http.get<string[]>(this.url+"/nationalities")
+    const headers=this.getAuthHeaders()
+    return this.http.get<string[]>(this.url+"/nationalities",{headers})
   }
 
   getPreferredFoots():Observable<string[]>{
-    return this.http.get<string[]>(this.url+"/foot")
+    const headers=this.getAuthHeaders()
+    return this.http.get<string[]>(this.url+"/foot",{headers})
   }
 
   getBodyTypes():Observable<string[]>{
-    return this.http.get<string[]>(this.url+"/bodyType")
+    const headers=this.getAuthHeaders()
+    return this.http.get<string[]>(this.url+"/bodyType",{headers})
   }
 
   getTraits():Observable<string[]>{
-    return this.http.get<string[]>(this.url+"/traits")
+    const headers=this.getAuthHeaders()
+    return this.http.get<string[]>(this.url+"/traits",{headers})
   }
 
   getPaginatedPlayers(pagination:Pagination<Player>,longName:string, advanceFilters:any):Observable<any>{
@@ -59,7 +73,8 @@ export class PlayerService {
     if(advanceFilters.minDefending)params['minDefending']=advanceFilters.minDefending
     if(advanceFilters.minDribbling)params['minDribliing']=advanceFilters.minDribbling
     
-    return this.http.get<any>(this.url,{params})
+    const headers=this.getAuthHeaders()
+    return this.http.get<any>(this.url,{headers,params})
 
   }
 
@@ -82,7 +97,9 @@ export class PlayerService {
     if(advanceFilters.minDefending)params['minDefending']=advanceFilters.minDefending
     if(advanceFilters.minDribbling)params['minDribliing']=advanceFilters.minDribbling
     
+    const headers=this.getAuthHeaders()
     return this.http.get(this.url+'/csv', {
+      headers,
       params,
       responseType: 'blob' 
     });
@@ -90,14 +107,17 @@ export class PlayerService {
   }
 
   getPlayerById(id:number):Observable<any>{
-    return this.http.get(this.url+`/${id}`)
+    const headers=this.getAuthHeaders()
+    return this.http.get(this.url+`/${id}`,{headers})
   }
 
   updatePlayer(id:number, newData:any): Observable<any>{
-    return this.http.put(this.url+`/${id}`,newData)
+    const headers=this.getAuthHeaders()
+    return this.http.put(this.url+`/${id}`,newData,{headers})
   }
   insertNewPlayer(newData:any): Observable<any>{
-    return this.http.post(this.url,newData)
+    const headers=this.getAuthHeaders()
+    return this.http.post(this.url,newData,{headers})
   }
 
 }

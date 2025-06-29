@@ -50,7 +50,6 @@ export class LoginComponent {
       this.loadingService.showLoadingScreen('Iniciando sesión...')
       this.subscription.add(this.authService.login(this.userForm.value).subscribe({
         next:res=>{
-          console.log(res)
           localStorage.setItem('token',res.token);
           this.loadingService.showLoadingScreen(null)
           this.router.navigate(["/players",])

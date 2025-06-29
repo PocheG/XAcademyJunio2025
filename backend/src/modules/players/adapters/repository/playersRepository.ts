@@ -34,7 +34,6 @@ export class PlayersRepository{
     const orderBy = filters.orderBy || 'id';
     const orderDirection = filters.orderDirection?.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
 
-    console.log(where)
     const players = await playerModel.findAll({
       where,
       limit: parsedPageSize,

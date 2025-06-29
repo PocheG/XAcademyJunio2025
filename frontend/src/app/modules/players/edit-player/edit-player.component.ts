@@ -296,7 +296,7 @@ export class EditPlayerComponent implements OnInit{
                   accept:{
                     title:"Aceptar",
                     action:()=>{
-                      this.router.navigate(["/detail",this.player.id])
+                      this.router.navigate(["detail",this.player.id], { relativeTo: this.activeRoute.parent })
                       this.confirmationModalService.closeModal()
                     }
                   }

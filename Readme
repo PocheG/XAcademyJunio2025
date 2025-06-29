@@ -91,3 +91,5 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 ## Commit 18
 - Si bien esta es la única funcionalidad solicitada en el challenge respecto a usuario o autenticación, la ventana de login decidi colocarla en un módulo nuevo, ya que si fuera un proyecto real, ahi se podria incluir la ventana para registrar un nuevo usuario, por poner un ejemplo.
 
+## Commit 19
+- Se que se puede utilizar un interceptor para agregar el encabezado en cada petición sin tener que duplicar código, pero perdi mucho tiempo con eso, asi que prefiero dejarlo como lo implemente en playerService de momento.

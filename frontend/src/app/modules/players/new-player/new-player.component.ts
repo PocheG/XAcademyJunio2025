@@ -274,7 +274,7 @@ export class NewPlayerComponent implements OnInit{
                   accept:{
                     title:"Aceptar",
                     action:()=>{
-                      this.router.navigate(["/detail",response.id])
+                      this.router.navigate(["detail",response.id], { relativeTo: this.activeRoute.parent })
                       this.confirmationModalService.closeModal()
                     }
                   }
