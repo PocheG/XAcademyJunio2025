@@ -32,6 +32,7 @@ export class SidebarComponent {
   }
 
   navigateTo(route:string){
+    this.closeSibear()
     this.router.navigate([route]);
     this.clickedItem=null
   }
@@ -39,5 +40,12 @@ export class SidebarComponent {
   closeSibear(){
     this.isSidebarOpen=false
   }
+  closeSesion(){
+    this.closeSibear()
+    setTimeout(()=>{
+    localStorage.clear()
+    this.router.navigate([""])
 
+    },1000)
+  }
 }

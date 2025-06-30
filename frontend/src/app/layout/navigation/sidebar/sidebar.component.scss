@@ -1,3 +1,5 @@
+@import "main";
+
 .header{
     display: flex;
     position: fixed;
@@ -6,8 +8,8 @@
     flex-direction: row;
     height: 10vh;
     width: 100vw;
-    border-bottom: 1px solid gray;
-    background-color: #151616;
+    border-bottom: 1px solid $app-input-border;
+    background-color: $app-boxes-background-color;
     gap: 15vw;
 }
 .container{
@@ -15,7 +17,7 @@
     flex-direction: row;
     height: 10vh;
     width: 100vw;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid $app-input-border;
     gap: 2vw;
 }
 
@@ -24,7 +26,7 @@
     margin-top: 0rem;
     width: 3.5rem;
     height: 3.5rem;
-    color: #FAFAFA;
+    color: $app-text-color;
 }
 
 img{
@@ -34,23 +36,28 @@ img{
 .background{
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+    top: 0;
+    left: 0;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
+    position: fixed;
     width: 100vw;
     height: 100vh;
+    box-sizing: border-box;
     z-index: 5;
 }
 
 .sidebar{
+    box-sizing: border-box;
     height: 100vh;
     width: 80vw;
     display: flex;
-    position: fixed;
+    flex-direction: column;
     padding-top: 20vh;
-    top: 1;
-    left:1;
-    background-color: #151616;
-    z-index: 6;
+    top: 0;
+    left:0;
+    background-color: $app-boxes-background-color;
+    z-index:1000;
 }
 
 .navigationItem{
@@ -82,7 +89,7 @@ img{
     justify-content: space-between;
     padding: 1vh 0.5rem;
     width:100%;
-    color: #fafafa;
+    color: $app-text-color;
     font-size: 1.2rem;
     font-family: sans-serif;
     cursor:pointer;
@@ -95,7 +102,6 @@ img{
 .navigationSubItems{
     justify-content: start;
     position: relative;
-    padding:  0.5rem 1rem;
     font-size: 0.8rem;
     color: white;
     display: flex;
@@ -105,7 +111,32 @@ img{
     cursor: pointer;
 }
 
-.navigationSubItems:hover{
-    background-color: #333;
 
+.subItem{
+    padding:  0.5rem 1rem;
+}
+
+.subItem:hover{
+    background-color: #333;
+}
+.footer{
+    margin-top: auto;
+    display: block;
+    width: 100%;
+    flex-direction: row;
+    color: $app-text-color;
+    align-self: flex-end;
+    font-family: sans-serif;
+}
+.closeSessionButton{
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1vh 0.5rem;
+    width:100%;
+    color: $app-text-color;
+    font-size: 1.2rem;
+    font-family: sans-serif;
+    cursor:pointer;
 }

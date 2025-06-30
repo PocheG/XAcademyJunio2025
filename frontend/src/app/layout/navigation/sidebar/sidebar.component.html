@@ -12,6 +12,7 @@
     *ngIf="isSidebarOpen"
 >
     <div class="sidebar" (click)="$event.stopPropagation()">
+          
         <div class="itemList">
             <div *ngFor="let item of navigationItems; let index=index"
             (click)="onItemClick(index)"
@@ -26,13 +27,17 @@
                 </div>
                 <div class="navigationSubItems"
                 *ngIf="clickedItem===index">
-                    <span *ngFor="let subitem of item.items"
+                    <span 
+                    class="subItem"
+                    *ngFor="let subitem of item.items"
                          (click)="navigateTo(subitem.route)">
                         {{ subitem.label }}
                     </span>
                 </div>
             </div>
         </div>
+        <div class="footer">
+            <span class="closeSessionButton" (click)="closeSesion()">Cerrar Sesion</span>
+        </div>
     </div>
-
 </div>

@@ -1,5 +1,5 @@
 import "reflect-metadata"
-import { Type } from "class-transformer";
+import { Transform, Type } from "class-transformer";
 import { IsIn, IsInt, IsNotEmpty, IsNumber, IsOptional, isString, IsString, Length, Max, Min, } from "class-validator";
 
 export class UpdatePlayerValidations{
@@ -35,6 +35,7 @@ export class UpdatePlayerValidations{
     @Max(40)
     age:number=0
 
+    @Transform(({ value }) => parseInt(String(value).replace('.', ''), 10))
     @Type(() => Number)
     @IsNumber()
     @Min(100)

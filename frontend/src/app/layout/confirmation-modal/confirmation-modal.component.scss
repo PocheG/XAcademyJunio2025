@@ -17,7 +17,7 @@
 }
 
 .modal{
-    padding: 1vh;
+    padding: 0.25rem 2rem;
     display: flex;
     flex-direction: column;
     height: fit-content;
@@ -29,15 +29,19 @@
     width: fit-content;
     margin: 0vh 5vw;
     @include respond(smallLaptop){
+        padding:  2rem;
         max-width: 40%;
     }
     @include respond(mediumLaptop){
+        padding:  2rem;
         max-width: 40%;
     }
     @include respond(mediumDesktop){
+        padding:  2rem;
         max-width: 30%;
     }
     @include respond(bigDesktop){
+        padding:  2rem;
         max-width: 30%;
     }
 

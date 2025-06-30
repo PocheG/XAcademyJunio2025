@@ -14,6 +14,7 @@ export class PlayerService {
 
 
   private getAuthHeaders(): HttpHeaders {
+    
     const token = localStorage?.getItem('token') || '';
     return new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -62,7 +63,6 @@ export class PlayerService {
     if(pagination.orderDirection){params["orderDirection"]=pagination.orderDirection}
     if(pagination.pageSize)params["pageSize"]=pagination.pageSize
     if(longName!=="")params["longName"]=longName
-    if(advanceFilters.fifaUpdate)params['fifaUpdate']=advanceFilters.fifaUpdate
     if(advanceFilters.position)params['position']=advanceFilters.position
     if(advanceFilters.version)params['fifaVersion']=advanceFilters.version
     if(advanceFilters.team)params['team']=advanceFilters.team
@@ -86,7 +86,6 @@ export class PlayerService {
     if(pagination.orderDirection){params["orderDirection"]=pagination.orderDirection}
     if(pagination.pageSize)params["pageSize"]=pagination.pageSize
     if(longName!=="")params["longName"]=longName
-    if(advanceFilters.fifaUpdate)params['fifaUpdate']=advanceFilters.fifaUpdate
     if(advanceFilters.position)params['position']=advanceFilters.position
     if(advanceFilters.version)params['fifaVersion']=advanceFilters.version
     if(advanceFilters.team)params['team']=advanceFilters.team

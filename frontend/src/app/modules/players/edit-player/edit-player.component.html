@@ -1,6 +1,6 @@
 <div class="Page">
     <h1 class="pageTitle">Editar jugador</h1>
-    <div class="editPlayerContainer" *ngIf="player">
+    <div class="editPlayerContainer" *ngIf="player &&!isLoading">
         <form [formGroup]="playerForm" (submit)="handleSubmit()">
             <section class="formSection">
                 <h2 class="sectionTitle">Información General</h2>
@@ -67,10 +67,15 @@
                         <span class="formInputError">{{getFieldError('fifaVersion')}}</span>
                     </div>
                     <div class="imageFormItem">
-                        <label class="formLabel">Image (url)</label>
-                        <input class="formInput" placeholder="Ingrese una url"
-                        formControlName="playerFaceUrl">
-                        <span class="formInputError">{{getFieldError('playerFaceUrl')}}</span>
+                        <div class="imageField"> 
+                            <label class="formLabel">Image (url)</label>
+                            <input class="formInput" placeholder="Ingrese una url"
+                            formControlName="playerFaceUrl">
+                            <span class="formInputError">{{getFieldError('playerFaceUrl')}}</span>
+
+                        </div>
+                            <img class="formImage"
+                            [src]="this.playerForm.get('playerFaceUrl')?.value">
                     </div>
 
                 </div>
@@ -300,8 +305,11 @@
                         <span class="skeleton">&nbsp;</span>
                     </div>
                     <div class="imageFormItem">
-                        <label class="formLabel">Image (url)</label>
-                        <span class="skeleton">&nbsp;</span>
+                        <div class="loadingImageField"> 
+                            <label class="formLabel">Image (url)</label>
+                            <span class="skeleton">&nbsp;</span>
+                        </div>
+                        <span class="imageSkeleton">&nbsp;</span>
                     </div>
 
                 </div>

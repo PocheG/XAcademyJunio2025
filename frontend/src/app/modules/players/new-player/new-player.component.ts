@@ -60,8 +60,8 @@ export class NewPlayerComponent implements OnInit{
       ]],
       heightCm:[this.player.heightCm,[
         Validators.required,
-        Validators.min(100),
-        Validators.max(230)
+        Validators.min(1.00),
+        Validators.max(2.30)
       ]],
       weightKg:[this.player.weightKg,[
         Validators.required,
@@ -142,8 +142,8 @@ export class NewPlayerComponent implements OnInit{
     if(this.playerForm.get(field)?.touched && fieldErrors){
       
       if(fieldErrors!['required']) return "Este campo es requerido"
-      if(fieldErrors['min']) return `ESte campo no puede ser menor a ${fieldErrors['min'].min}`
-      if(fieldErrors['max']) return `ESte campo no puede ser mayor a ${fieldErrors['max'].max}`
+      if(fieldErrors['min']) return `Este campo no puede ser menor a ${fieldErrors['min'].min}`
+      if(fieldErrors['max']) return `Este campo no puede ser mayor a ${fieldErrors['max'].max}`
 
     }
     return ''
@@ -207,6 +207,9 @@ export class NewPlayerComponent implements OnInit{
       },
       error:error=>{
         console.error(error)
+        if(error.status===401){
+          this.router.navigate([""])
+        }
       }
     }))
   }
@@ -250,7 +253,7 @@ export class NewPlayerComponent implements OnInit{
     }else{
       this.confirmationModalService.openModal({
         title:"Confirmar registro",
-        message:`¿Desea registrar a el/la jugador/a ${this.playerForm.get('longName')} en la versión ${this.playerForm.get('fifaVersion')}? Podra editarlo/a mas tarde.`,
+        message:`¿Desea registrar a el/la jugador/a ${this.playerForm.get('longName')?.value} en la versión ${this.playerForm.get('fifaVersion')?.value}? Podra editarlo/a mas tarde.`,
         reject:{
           title:"Cancelar",
           action:()=>{
@@ -266,7 +269,6 @@ export class NewPlayerComponent implements OnInit{
               response=>{
                 setTimeout(() => {
                 this.loadingService.showLoadingScreen(null)
-                }, 3000);
                 this.confirmationModalService.openModal({
                   icon:ModalIconEnum.ok,
                   title:"Jugador registrado",
@@ -279,6 +281,8 @@ export class NewPlayerComponent implements OnInit{
                     }
                   }
                 })
+
+                }, 3000);
               },
               error=>{
                 this.loadingService.showLoadingScreen(null)
@@ -304,6 +308,9 @@ export class NewPlayerComponent implements OnInit{
 
 
   ngOnInit(): void {
+    if(!localStorage.getItem("token")){
+      this.router.navigate([""])
+    }
     const idParam = this.activeRoute.snapshot.paramMap.get('id');
     this.getBodyTypes()
     this.getNationalities()

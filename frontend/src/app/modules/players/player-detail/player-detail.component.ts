@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PlayerService } from '../../../service/player-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Player } from '../../../models/player';
 import Chart from 'chart.js/auto'
@@ -9,30 +9,34 @@ import Chart from 'chart.js/auto'
   templateUrl: './player-detail.component.html',
   styleUrl: './player-detail.component.scss'
 })
-export class PlayerDetailComponent implements OnInit {
+export class PlayerDetailComponent implements OnInit, AfterViewChecked{
   subscription= new Subscription
   requestError:number|null=null
   isLoading:boolean=true
   player:Player|null=null
   constructor(
     private playerService: PlayerService,
-    private activeRoute: ActivatedRoute){}
+    private activeRoute: ActivatedRoute,
+    private changeDetector: ChangeDetectorRef,
+    private router: Router){}
 
   getPlayer(id:number){
     this.isLoading=true
     this.subscription.add(this.playerService.getPlayerById(id).subscribe({
       next:res => {
-        this.player=new Player(res)
+        setTimeout(()=>{
+          this.player=new Player(res)
+          this.isLoading=false
+          this.buildCharts();
+          this.changeDetector.detectChanges();
+        },3000)
       },
       error:error=>{
         this.requestError=error.status
+        if(error.status===401){
+          this.router.navigate([""])
+        }
       },
-      complete:()=>{
-        setTimeout(() => {
-        this.isLoading=false
-          this.buildCharts();
-        }, 3000);
-      }
     }))
 
   }
@@ -41,8 +45,9 @@ export class PlayerDetailComponent implements OnInit {
     title:string,
     labels:string[],
     values:number[]
-
   }[]=[]
+
+  chartsReady:boolean=false
   buildCharts(){
     this.stats=[{
       title:"Ataque",
@@ -66,7 +71,6 @@ export class PlayerDetailComponent implements OnInit {
 
       }   
 ]
-    
     this.stats.forEach(stat => {
       new Chart(
         document.getElementById(stat.title) as HTMLCanvasElement,{
@@ -128,9 +132,28 @@ export class PlayerDetailComponent implements OnInit {
   })}
 
 
+
   ngOnInit(): void {
+    if(!localStorage.getItem("token")){
+      this.router.navigate([""])
+    }
+    
+    this.requestError=null
     const idParam = this.activeRoute.snapshot.paramMap.get('id');
     this.getPlayer(Number(idParam))
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.player &&!this.chartsReady) {
+      const ataqueCanvas = document.getElementById('Ataque');
+      const overallCanvas = document.getElementById('Overall');
+  
+      if (ataqueCanvas && overallCanvas) {
+        this.buildCharts();
+        this.changeDetector.detectChanges(); 
+        this.chartsReady=true
+      }
+    }
   }
 
 }

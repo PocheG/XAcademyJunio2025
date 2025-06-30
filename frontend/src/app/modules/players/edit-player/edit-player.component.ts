@@ -34,7 +34,6 @@ export class EditPlayerComponent implements OnInit{
     private router: Router
   ){ 
     this.player=new Player()
-    console.log(this.player)
     this.playerForm = this.fb.group({
       longName:[this.player.longName,[
         Validators.required,
@@ -65,8 +64,8 @@ export class EditPlayerComponent implements OnInit{
       ]],
       heightCm:[this.player.heightCm,[
         Validators.required,
-        Validators.min(100),
-        Validators.max(230)
+        Validators.min(1.00),
+        Validators.max(2.30)
       ]],
       weightKg:[this.player.weightKg,[
         Validators.required,
@@ -147,8 +146,8 @@ export class EditPlayerComponent implements OnInit{
     if(this.playerForm.get(field)?.touched && fieldErrors){
       
       if(fieldErrors!['required']) return "Este campo es requerido"
-      if(fieldErrors['min']) return `ESte campo no puede ser menor a ${fieldErrors['min'].min}`
-      if(fieldErrors['max']) return `ESte campo no puede ser mayor a ${fieldErrors['max'].max}`
+      if(fieldErrors['min']) return `Este campo no puede ser menor a ${fieldErrors['min'].min}`
+      if(fieldErrors['max']) return `Este campo no puede ser mayor a ${fieldErrors['max'].max}`
 
 
     }
@@ -164,19 +163,26 @@ export class EditPlayerComponent implements OnInit{
   bodyTypes:string[]=[]
 
   getPlayer(id:number){
+    this.isLoading=true
     this.subscription.add(this.playerService.getPlayerById(id).subscribe({
       next:res => {
+        setTimeout(()=>{
         this.player=new Player(res)
         this.playerForm.patchValue(this.player); 
+        this.isLoading=false
+
+        },3000)
       },
       error:error=>{
         console.log(error)
+
         this.requestError=error.status
+
+        if(error.status===401){
+          this.router.navigate([""])
+        }
       },
       complete:()=>{
-        setTimeout(() => {
-        this.isLoading=false
-        }, 3000);
       }
     }))
   }
@@ -288,7 +294,6 @@ export class EditPlayerComponent implements OnInit{
               response=>{
                 setTimeout(() => {
                 this.loadingService.showLoadingScreen(null)
-                }, 3000);
                 this.confirmationModalService.openModal({
                   icon:ModalIconEnum.ok,
                   title:"Jugador actualizado",
@@ -301,6 +306,8 @@ export class EditPlayerComponent implements OnInit{
                     }
                   }
                 })
+
+                }, 3000);
               },
               error=>{
                 this.loadingService.showLoadingScreen(null)
@@ -326,6 +333,10 @@ export class EditPlayerComponent implements OnInit{
 
 
   ngOnInit(): void {
+    if(!localStorage.getItem("token")){
+      this.router.navigate([""])
+    }
+    this.requestError=null
     const idParam = this.activeRoute.snapshot.paramMap.get('id');
     this.getBodyTypes()
     this.getNationalities()

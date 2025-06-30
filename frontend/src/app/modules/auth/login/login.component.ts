@@ -50,10 +50,11 @@ export class LoginComponent {
       this.loadingService.showLoadingScreen('Iniciando sesión...')
       this.subscription.add(this.authService.login(this.userForm.value).subscribe({
         next:res=>{
+          setTimeout(()=>{
           localStorage.setItem('token',res.token);
           this.loadingService.showLoadingScreen(null)
           this.router.navigate(["/players",])
-
+          },3000)
         },
         error:error=>{
           console.log(error)

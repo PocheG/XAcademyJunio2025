@@ -1,13 +1,12 @@
 # Challenge XAcademy
 
 En este readme se deja registro de las decisiones tomadas en cada commit. 
-Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https://www.figma.com/design/Dc8YFuKtNAwYe5F0jUleoM/XAcademy-Challenge?node-id=3-19&t=9XewDKwFRoKwDeov-0
-
+Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https://www.figma.com/design/Dc8YFuKtNAwYe5F0jUleoM/XAcademy-Challenge?node-id=3-19&t=BzDxinARR4kVNYNq-0
 
 ## Como iniciar el proyecto
-1- Iniciar la instancia de docker donde esta almacenada la base de datos (debe correr en el puerto 3306).
-2- Abrir una consola en la carpeta backend y ejecutar el comando npm run start.
-3- Abrir una consola en la carpeta frontend y ejecutar el comando npm run start.
+1- Iniciar la instancia de docker donde esta almacenada la base de datos (debe correr en el puerto 3306, la tabla de jugadores debe llamarse players y debe contar con una tabla de usuario llamada users con los atributos id, user_name y password).
+2- Abrir una consola en la carpeta backend y ejecutar el comando npm i, npm run build y npm run start.
+3- Abrir una consola en la carpeta frontend y ejecutar el comando npm i y npm run start.
 
 
 ## Primer commit 
@@ -17,7 +16,7 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 - Dentro de cada módulo decidi separar la funcionalidad en controller-service-repository para que cada método sea mas cohesivo y fácil de mantener. El controller se encarga de las peticiones, el repository de la comunicación con la base de datos y el service de la lógica de negocio. Todo lo que corresponda al módulo  pero no sea ninguno de los componentes mencionados (como los modelos de sequelize y las clases para validaciones) estara en una carpeta core.
 - Pensaba dejar el proyecto en javascript, pero al querer hacer una validacion reutilizable para los jugadores paginados no se podia, asi que decidi pasarlo a typescript.
 - Decidi crear un middleware para el manejo de errores y crear errores nuevos para manejar las respuestas de las response.
-- La funcionalidad del csv la deje como una utility porque es algo que podria tranquilamente utilizarse en otro modulo.
+- La funcionalidad del csv la deje como una utility porque es algo que podria tranquilamente utilizarse en otro módulo.
 
 - Dependencias agregadas:
     -- class-validator: Decidi usarla para las validaciones ya que me parecio mas ordenado hacer las validaciones en las clases antes que en el router. Además las dos primeras rutas que debia crear para el challenge (para obtener jugadores paginados y para exportarlos como csv), usan los mismos filtros, asi que iba a tener las validaciones duplicadas.
@@ -93,3 +92,6 @@ Las decisiones en cuanto al estilo visual las dejo en el siguiente figma: https:
 
 ## Commit 19
 - Se que se puede utilizar un interceptor para agregar el encabezado en cada petición sin tener que duplicar código, pero perdi mucho tiempo con eso, asi que prefiero dejarlo como lo implemente en playerService de momento.
+
+## Commit 20
+- Antes de intentar los puntos adicionales, decidi dedicar este commit para arreglar bugs y de detalles que deje pendientes. Además, agregue timeouts para que los elementos como las pantallas de cargas se puedan apreciar en la demo.

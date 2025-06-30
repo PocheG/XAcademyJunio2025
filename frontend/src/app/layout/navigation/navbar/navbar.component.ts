@@ -16,9 +16,9 @@ export class NavbarComponent {
   }
   
   clickedItem:number|null=null
-
+  isUserOptionsOpen:boolean=false
   onItemClick(index: number): void {
-    if(!this.clickedItem){
+    if(!this.clickedItem && this.clickedItem!==0){
       this.clickedItem = index;
     }
     else{
@@ -43,5 +43,13 @@ export class NavbarComponent {
   }
   getArrowClasses(i: number): string {
     return this.clickedItem === i ? 'arrowIcon arrowUp' : 'arrowIcon';
+  }
+
+  closeSesion(){
+    setTimeout(()=>{
+    localStorage.clear()
+    this.router.navigate([""])
+
+    },1000)
   }
 }

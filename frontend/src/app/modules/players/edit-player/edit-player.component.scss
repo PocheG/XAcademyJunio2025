@@ -120,11 +120,11 @@
     }
 }
 
+
+
 .imageFormItem{
     display: flex;
-    flex-direction: column;
-    gap: 1vh;
-
+    flex-direction: row;
     @include respond(smallLaptop){
         width: 48.5%;
     }
@@ -139,6 +139,20 @@
     }
 
 }
+
+.imageField{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.formImage{
+    width: 20%;
+    max-height: 80%;
+}
+
+
 
 .formInput{
     box-sizing: border-box;
@@ -289,7 +303,7 @@ select.formInput option {
     background-size: 400% 100%;
     animation: shine 1.5s ease infinite;
     border-radius: 4px;
-    width: 80%;
+    width: 95%;
     height: 20px;
   }
   
@@ -297,6 +311,7 @@ select.formInput option {
     0% { background-position: 100% 0; }
     100% { background-position: -100% 0; }
   }
+
 
 .skeletonStat {
     background: linear-gradient(90deg, #474343 25%, #ddd 37%, #eee 63%);
@@ -310,4 +325,28 @@ select.formInput option {
     @keyframes shine {
     0% { background-position: 100% 0; }
     100% { background-position: -100% 0; }
+}
+.imageSkeleton{
+    background: linear-gradient(90deg, #474343 25%, #ddd 37%, #eee 63%);
+    background-size: 400% 100%;
+    animation: shine 1.5s ease infinite;
+    border-radius: 10px;
+    width: 80px;
+    margin-right: 3px;
+
+    height: 60px;
+  }
+  
+@keyframes shine {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+.statsListLoading{
+overflow-x: hidden;
+}
+.loadingImageField{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
 }

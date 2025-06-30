@@ -100,7 +100,7 @@ export class PlayerById{
     reputation:number;
     team:string
     age:number
-    heightCm:number;
+    heightCm:string;
     weightKg:number;
     nationality:string
     preferredFoot:string;
@@ -130,7 +130,7 @@ export class PlayerById{
         this.positions=data.positions
         this.reputation=data.reputation
         this.age=data.age
-        this.heightCm=data.heightCm
+        this.heightCm=(data.heightCm/100).toFixed(2)
         this.weightKg= data.weightKg
         this.nationality= data.nationality
         this.preferredFoot= data.preferredFoot

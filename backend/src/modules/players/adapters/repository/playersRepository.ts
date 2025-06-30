@@ -11,12 +11,9 @@ export class PlayersRepository{
 
   static async getPaginatedPlayers (filters:any):Promise<PaginatedPlayersResponse> {
     const where:any={}
-    if (filters.longName) where.longName = { [Op.iLike]: `%${filters.longName}%` };
+    if (filters.longName) where.longName = { [Op.like]: `%${filters.longName}%` };
     if (filters.fifaVersion) where.fifaVersion = { [Op.like]: `${filters.fifaVersion}` };
-    if (filters.fifaUpdate ==='true') {
-      const maxUpdate = await playerModel.max('fifaUpdate');
-      where.fifaUpdate = { [Op.eq]: maxUpdate };
-    }
+    
     if (filters.team) where.team = { [Op.like]: `%${filters.team}%` };
     if (filters.positions) where.positions = { [Op.like]: `%${filters.positions}%` };
     

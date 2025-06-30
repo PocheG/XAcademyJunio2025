@@ -36,7 +36,6 @@ export class PlayersListComponent implements OnInit{
       minDefending: [null],
       minPassing: [null],
       minDribbling: [null],
-      fifaUpdate:[false]
     });
   }
   subscription = new Subscription
@@ -140,7 +139,7 @@ export class PlayersListComponent implements OnInit{
   }
 
   error:boolean=false
-  isLoading:boolean=false
+  isLoading:boolean=true
   isSidebarOpen:boolean=false;
   getPaginatedPlayer(){
     const filters= this.filtrosForm.value
@@ -150,21 +149,22 @@ export class PlayersListComponent implements OnInit{
     this.subscription.add(this.playerService.getPaginatedPlayers(
       this.pagination,this.longName, filters).subscribe({
       next:res=>{
+        setTimeout(()=>{
         this.rows=res.results.map((player: any)=> new Player(player))
         this.pagination={
           ...this.pagination,
           totalPages:res.pagination.totalPages,
-          
         }
+        this.isLoading=false
+        },3000)
       },
       error:error=>{
-        error=true
+        this.error=true
+        console.log(error)
+        if(error.status===401){
+          this.router.navigate([""])
+        }
       },
-      complete:()=>{
-        setTimeout(() => {
-        this.isLoading=false
-        }, 3000);
-      }
     }))
   } 
 
@@ -223,6 +223,10 @@ export class PlayersListComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    if(!localStorage.getItem("token")){
+      this.router.navigate([""])
+    }
+    this.error=false
     this.getPositions()
     this.getTeams()
     this.getVersions()

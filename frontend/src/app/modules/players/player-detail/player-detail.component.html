@@ -45,7 +45,7 @@ class="page"
             </div>
             <div class="infoItem">
               <label class="infoLabel">Peso</label>
-              <span class="infoValue">{{ player.weightKg }}</span>
+              <span class="infoValue">{{ player.weightKg }} kg</span>
             </div>
           </div>
         </div>
@@ -76,9 +76,14 @@ class="page"
     <div class="statsContainer">
         <h2 class="sectionTitle">Estadísticas</h2>
         <div class="statsList">
-          <div *ngFor="let stat of stats" class="statsBox">
+          <div class="statsBox">
             <div class="chartContainer">
-              <canvas [id]="stat.title"></canvas>
+              <canvas [id]="'Ataque'"></canvas>
+            </div>
+          </div>
+          <div class="statsBox">
+            <div class="chartContainer">
+              <canvas [id]="'Overall'"></canvas>
             </div>
           </div>
         </div>
@@ -89,14 +94,14 @@ class="page"
 
 <div 
 class="page"
-*ngIf="isLoading &&  !player">
+*ngIf="isLoading && !player">
     <h1 class="pageTitle">Detalles del jugador</h1>
     <div class="generalInfoContainer">
       <h2 class="sectionTitle">Información General</h2>
   
       <div class="sectionContent">
         <div class="imageContainer">
-          <img/>
+          <span class="imageSkeleton">&nbsp;</span>
         </div>
   
         <div class="generalInfoColumn">
@@ -152,7 +157,7 @@ class="page"
                 <label class="infoLabel">Posiciones jugadas</label>
                 <span class="skeleton">&nbsp;</span>
             </div>
-            <div class="infoItem">
+            <div class="traitsItem">
                 <label class="infoLabel">Rasgos</label>
                 <span class="skeleton">&nbsp;</span>
             </div>

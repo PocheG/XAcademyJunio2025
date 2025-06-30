@@ -151,28 +151,35 @@
 }
 
 .secondRowBoxes{
-    width: 83vw;
+    width: 80vw;
     display: flex;
     gap: 3.5vw;
     display: flex;
     align-self: stretch;
-    justify-self: center;
+    justify-self: flex-start;
     flex-direction: column;
+    margin-left: 1.5vw;
     
     @include respond(smallLaptop){
+        justify-self: center;
+        width: 83vw;
         flex-direction: row;
         align-items: stretch; 
     }
     @include respond(mediumLaptop){
+        justify-self: center;
+        width: 83vw;
         flex-direction: row;
         align-items: stretch; 
     }
     @include respond(desktop){
+        justify-self: center;
         flex-direction: row;
         width: 81.5vw;
         align-items: stretch; 
     }
     @include respond(bigDesktop){
+        justify-self: center;
         flex-direction: row;
         width: 81.5vw;
         align-items: stretch; 
@@ -346,13 +353,42 @@
     border-radius: 25vh;
     width: 50vh;
     height: 50vh;
+    @include respond(smallLaptop){
+        width: 300px;
+        height: 300px;
+    }
+    @include respond(mediumLaptop){
+        width: 300px;
+        height: 300px;
+    }
+    @include respond(desktop){
+        width: 300px;
+        height: 300px;
+    }
+    @include respond(bigDesktop){
+        width: 300px;
+        height: 300px;
+    }
   }
   
-  @keyframes shine {
+@keyframes shine {
     0% { background-position: 100% 0; }
     100% { background-position: -100% 0; }
   }
 
+.imageSkeleton{
+    background: linear-gradient(90deg, #474343 25%, #ddd 37%, #eee 63%);
+    background-size: 400% 100%;
+    animation: shine 1.5s ease infinite;
+    border-radius: 10px;
+    width: 80%;
+    height: 150px;
+  }
+  
+@keyframes shine {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
 .statsListLoading{
 overflow-x: hidden;
 }

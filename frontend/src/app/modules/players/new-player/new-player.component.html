@@ -67,10 +67,15 @@
                         <span class="formInputError">{{getFieldError('fifaVersion')}}</span>
                     </div>
                     <div class="imageFormItem">
-                        <label class="formLabel">Image (url)</label>
-                        <input class="formInput" placeholder="Ingrese una url"
-                        formControlName="playerFaceUrl">
-                        <span class="formInputError">{{getFieldError('playerFaceUrl')}}</span>
+                        <div class="imageField"> 
+                            <label class="formLabel">Image (url)</label>
+                            <input class="formInput" placeholder="Ingrese una url"
+                            formControlName="playerFaceUrl">
+                            <span class="formInputError">{{getFieldError('playerFaceUrl')}}</span>
+
+                        </div>
+                            <img class="formImage"
+                            [src]="this.playerForm.get('playerFaceUrl')?.value">
                     </div>
 
                 </div>
